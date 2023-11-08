@@ -1,0 +1,90 @@
+
+21.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 160, 52
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 2, 10
+  size: 19, 13
+  orig: 19, 13
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: false
+  xy: 464, 92
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 25
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+images/mat1
+  rotate: false
+  xy: 245, 56
+  size: 20, 8
+  orig: 20, 8
+  offset: 0, 0
+  index: -1
+images/mat2
+  rotate: true
+  xy: 464, 70
+  size: 20, 8
+  orig: 20, 8
+  offset: 0, 0
+  index: -1
+images/mieng
+  rotate: false
+  xy: 86, 45
+  size: 72, 62
+  orig: 72, 62
+  offset: 0, 0
+  index: -1
+images/ncmat0001
+  rotate: true
+  xy: 160, 66
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1
+images/ncmat0002
+  rotate: true
+  xy: 236, 66
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1
+images/ncmat0003
+  rotate: true
+  xy: 312, 66
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1
+images/ncmat0004
+  rotate: true
+  xy: 388, 66
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1
+images/ncmat0005
+  rotate: true
+  xy: 86, 2
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1

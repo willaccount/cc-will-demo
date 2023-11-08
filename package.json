@@ -1,0 +1,27 @@
+{
+  "name": "cc-games",
+  "version": "1.0.0",
+  "description": "",
+  "main": "appindex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dat.gui": "^0.7.7",
+    "engine.io-client": "^3.4.2",
+    "hashmap": "^2.4.0",
+    "javascript-state-machine": "^3.1.0",
+    "jszip": "^3.5.0",
+    "lodash": "^4.17.15",
+    "mobile-detect": "^1.4.3",
+    "msgpack-lite": "^0.1.26",
+    "queue-fifo": "^0.2.6",
+    "socket.io-client": "^2.3.0",
+    "uuid": "^3.3.3"
+  }
+}

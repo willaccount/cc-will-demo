@@ -1,0 +1,136 @@
+
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+      ]
+      layer: 0
+    }
+  ]
+  properties: {
+    texture: {
+      type: sampler2D
+      value: null
+    }
+
+    iCenter: {
+      type: 'vec2',
+      value: [0.5,0.5]
+    }
+
+    iResolution: {
+      type: 'vec3',
+      value: [0.0,0.0, 0.0]
+    }
+
+    threshold: {
+      type: number
+      value: 0.5
+    }
+
+    strength: {
+      type: number
+      value: 0.125
+    }
+  }
+%}
+
+%% vs {
+
+precision highp float;
+
+uniform mat4 cc_matViewProj;
+
+#if _USE_MODEL
+  uniform mat4 cc_matWorld;
+#endif
+
+attribute vec3 a_position;
+attribute lowp vec4 a_color;
+
+#if USE_TEXTURE
+  attribute mediump vec2 a_uv0;
+  varying mediump vec2 v_uv0;
+#endif
+
+varying lowp vec4 v_color;
+
+void main () {
+  mat4 mvp;
+  
+  #if _USE_MODEL
+    mvp = cc_matViewProj * cc_matWorld;
+  #else
+    mvp = cc_matViewProj;
+  #endif
+
+  #if USE_TEXTURE
+    v_uv0 = a_uv0;
+  #endif
+
+  v_color = a_color;
+
+  gl_Position = mvp * vec4(a_position, 1);
+}
+
+}
+
+%% fs {
+
+precision highp float;
+
+#if USE_TEXTURE
+  uniform sampler2D texture;
+  varying mediump vec2 v_uv0;
+#endif
+uniform vec2 iCenter;
+uniform vec3 iResolution;
+uniform float threshold;
+uniform float strength;
+varying lowp vec4 v_color;
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    const int Samples = 64; //multiple of 2
+    vec2 uv = fragCoord.xy;
+    
+    vec2 dir = (fragCoord.xy-iCenter.xy);
+
+    vec4 color = vec4(0.0,0.0,0.0,0.0);
+    
+    for (int i = 0; i < Samples; i += 2) //operating at 2 samples for better performance
+    {
+        color += texture2D(texture,uv+float(i)/float(Samples)*dir*strength);
+        color += texture2D(texture,uv+float(i+1)/float(Samples)*dir*strength);
+    }   
+    
+    fragColor = color/float(Samples);
+}
+
+void normalImageProcess(){
+  vec4 color = v_color;
+
+  #if USE_TEXTURE
+    color *= texture2D(texture, v_uv0);
+    #if _USE_ETC1_TEXTURE
+      color.a *= texture2D(texture, v_uv0 + vec2(0, 0.5)).r;
+    #endif
+  #endif
+
+  gl_FragColor = color;
+}
+void main () {
+  if(threshold>=0.95){
+    normalImageProcess();
+  }else{
+    mainImage(gl_FragColor, v_uv0);
+  }
+}
+
+}

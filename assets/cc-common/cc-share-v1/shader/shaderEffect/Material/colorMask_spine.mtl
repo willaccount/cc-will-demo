@@ -1,0 +1,19 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "33b1b7ca-5d05-4b13-9032-2d6a8ec4d188"
+  },
+  "_defines": {},
+  "_props": {
+    "color_mask": {
+      "__type__": "cc.Vec4",
+      "x": 1,
+      "y": 1,
+      "z": 1,
+      "w": 0
+    }
+  }
+}

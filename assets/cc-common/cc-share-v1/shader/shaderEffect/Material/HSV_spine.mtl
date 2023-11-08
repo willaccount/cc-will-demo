@@ -1,0 +1,18 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "fd35f30c-23f7-4d68-bda6-8d86cbcf0aed"
+  },
+  "_defines": {},
+  "_props": {
+    "vHSV": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    }
+  }
+}

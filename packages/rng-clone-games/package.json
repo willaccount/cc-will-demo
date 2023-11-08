@@ -1,0 +1,52 @@
+{
+  "name": "rng-clone-games",
+  "version": "0.0.1",
+  "description": "Clone RNG Game",
+  "author": "RNG Team",
+  "scene-script": "libs/scene-utils.js",
+  "main": "main.js",
+  "main-menu": {
+    "RNG Games/Clone Game v2 (Faster And Stable)": {
+      "message": "rng-clone-games:cloneV2"
+    },
+    "RNG Games/Clone Game v1": {
+      "message": "rng-clone-games:clone"
+    },
+    "RNG Games/Remove Unused Assets": {
+      "message": "rng-clone-games:removeUnused"
+    },
+    "RNG Games/Reload": {
+      "message": "rng-clone-games:reload"
+    },
+    "RNG Games/Test": {
+      "message": "rng-clone-games:test"
+    }
+  },
+  "panel.clone": {
+    "main": "clone-panel/main.js",
+    "type": "dockable",
+    "title": "Chọn game để clone",
+    "width": 800,
+    "min-width": 800,
+    "min-height": 500,
+    "height": 500
+  },
+  "panel.cloneV2": {
+    "main": "clone-panel-v2/main.js",
+    "type": "dockable",
+    "title": "Chọn game để clone",
+    "width": 800,
+    "min-width": 800,
+    "min-height": 500,
+    "height": 500
+  },
+  "panel.remove": {
+    "main": "remove-panel/main.js",
+    "type": "dockable",
+    "title": "Chọn folder để xóa asset thừa",
+    "width": 800,
+    "min-width": 800,
+    "min-height": 500,
+    "height": 500
+  }
+}

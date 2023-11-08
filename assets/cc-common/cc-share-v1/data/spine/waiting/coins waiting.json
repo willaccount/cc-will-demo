@@ -1,0 +1,171 @@
+{
+"skeleton": { "hash": "Q4dCDApmJG8AfdmK3QzjSTAkc7s", "spine": "3.7.94", "width": 148, "height": 151, "images": "./images/", "audio": "./waiting" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Layer 9", "bone": "root", "attachment": "Layer 9" },
+	{ "name": "Layer 8", "bone": "root", "attachment": "Layer 8" },
+	{ "name": "Layer 7", "bone": "root", "attachment": "Layer 7" },
+	{ "name": "Layer 6", "bone": "root", "attachment": "Layer 6" },
+	{ "name": "Layer 5", "bone": "root", "attachment": "Layer 5" },
+	{ "name": "Layer 4", "bone": "root", "attachment": "Layer 4" },
+	{ "name": "Layer 3", "bone": "root", "attachment": "Layer 3" },
+	{ "name": "Layer 2", "bone": "root", "attachment": "Layer 2" },
+	{ "name": "Layer 1", "bone": "root", "attachment": "Layer 1" }
+],
+"skins": {
+	"default": {
+		"Layer 1": {
+			"Layer 1": { "x": -0.21, "y": -0.29, "width": 146, "height": 151 }
+		},
+		"Layer 2": {
+			"Layer 2": { "x": -0.21, "y": 0.21, "width": 146, "height": 128 }
+		},
+		"Layer 3": {
+			"Layer 3": { "x": -0.21, "y": 0.21, "width": 146, "height": 104 }
+		},
+		"Layer 4": {
+			"Layer 4": { "x": -0.21, "y": 0.21, "width": 146, "height": 72 }
+		},
+		"Layer 5": {
+			"Layer 5": { "x": -0.21, "y": 0.21, "width": 146, "height": 56 }
+		},
+		"Layer 6": {
+			"Layer 6": { "x": -0.21, "y": 0.21, "width": 148, "height": 130 }
+		},
+		"Layer 7": {
+			"Layer 7": { "x": -0.21, "y": 0.71, "width": 146, "height": 107 }
+		},
+		"Layer 8": {
+			"Layer 8": { "x": -0.21, "y": 0.21, "width": 146, "height": 72 }
+		},
+		"Layer 9": {
+			"Layer 9": { "x": -0.21, "y": 0.21, "width": 146, "height": 56 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"Layer 1": {
+				"attachment": [
+					{ "time": 0, "name": "Layer 1" },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": "Layer 1" }
+				]
+			},
+			"Layer 2": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": "Layer 2" },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 3": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": "Layer 3" },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 4": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": "Layer 4" },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 5": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 6": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": "Layer 6" },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 7": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": "Layer 7" },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 8": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": null },
+					{ "time": 0.5, "name": "Layer 8" },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"Layer 9": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.1, "name": null },
+					{ "time": 0.2, "name": null },
+					{ "time": 0.3, "name": null },
+					{ "time": 0.4, "name": "Layer 9" },
+					{ "time": 0.5, "name": null },
+					{ "time": 0.6, "name": null },
+					{ "time": 0.7, "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			}
+		}
+	}
+}
+}

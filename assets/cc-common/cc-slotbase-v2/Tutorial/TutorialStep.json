@@ -1,0 +1,29 @@
+{
+    "Steps":[
+        {
+            "command":"_lockAtButton",
+            "data":{
+                "objPath":"Canvas/g9000/MainGamePrefab/SlotButtonPrefab/SpinBtn"
+            }
+        },
+        {
+            "command":"_showDialog",
+            "data":{
+                "title":"TITLE_1",
+                "content":"DES_TOUCH_TO_SPIN"
+            }
+        },
+        {
+            "command":"_waitFor",
+            "data":{
+                "trigger":["SPIN_CLICK"]
+            }
+        },
+        {
+            "command":"_unlockButton"
+        },
+        {
+            "command":"_unlockTouch"
+        }
+    ]
+}

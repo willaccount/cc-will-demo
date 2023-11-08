@@ -1,0 +1,82 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "UI_PreLoading",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.8,
+  "sample": 15,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "angle": [
+        {
+          "frame": 0,
+          "value": 0,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.06666666666666667,
+          "value": 330,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.13333333333333333,
+          "value": 300,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.2,
+          "value": 270,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.26666666666666666,
+          "value": 240,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.3333333333333333,
+          "value": 210,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.4,
+          "value": 180,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.4666666666666667,
+          "value": 150,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.5333333333333333,
+          "value": 120,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.6,
+          "value": 90,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.6666666666666666,
+          "value": 60,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.7333333333333333,
+          "value": 30,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.8,
+          "value": 0,
+          "curve": "constant"
+        }
+      ]
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,90 @@
+
+16.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 84, 106
+  size: 83, 18
+  orig: 83, 18
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 2, 2
+  size: 16, 5
+  orig: 16, 5
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: true
+  xy: 68, 27
+  size: 15, 5
+  orig: 15, 5
+  offset: 0, 0
+  index: -1
+images/lomui
+  rotate: false
+  xy: 169, 118
+  size: 22, 6
+  orig: 22, 6
+  offset: 0, 0
+  index: -1
+images/mat
+  rotate: false
+  xy: 2, 44
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+images/mat1
+  rotate: false
+  xy: 84, 56
+  size: 32, 23
+  orig: 32, 23
+  offset: 0, 0
+  index: -1
+images/mat2
+  rotate: false
+  xy: 135, 83
+  size: 31, 21
+  orig: 31, 21
+  offset: 0, 0
+  index: -1
+images/mau
+  rotate: true
+  xy: 84, 49
+  size: 5, 11
+  orig: 5, 11
+  offset: 0, 0
+  index: -1
+images/mieng
+  rotate: false
+  xy: 2, 9
+  size: 64, 33
+  orig: 64, 33
+  offset: 0, 0
+  index: -1
+images/ncmieng
+  rotate: false
+  xy: 84, 81
+  size: 49, 23
+  orig: 49, 23
+  offset: 0, 0
+  index: -1
+images/tronmat1
+  rotate: false
+  xy: 118, 73
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+images/tronmat2
+  rotate: false
+  xy: 169, 110
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1

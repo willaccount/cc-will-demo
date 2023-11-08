@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="layout horizontal center-justified">
+        <h3>Chọn Folder cần xóa asset dư</h3>
+    </div>
+    <div class="layout horizontal center-justified">
+        <h3>(Kéo thả hoặc chọn folder từ danh sách)</h3>
+    </div>
+
+    <ui-prop class="row layout horizontal center-justified" name="Folders:">
+        <ui-select id="selectFolder" class="wd-300" @change="onSelectFolder">
+            <template v-for="item in folders">
+                <option v-value="item.value" class="wd-300">{{ item.text }}</option>
+            </template>
+        </ui-select>
+    </ui-prop>
+    <ui-prop class="row layout horizontal center-justified" name="Folder:">
+        <ui-asset id="folderAsset" class="wd-300" type="folder"></ui-asset>
+    </ui-prop>
+    <ui-prop class="row layout horizontal center-justified" name="File size check (MB):">
+        <ui-num-input value="1" min="0.01" placeholder="1" class="wd-300" id="fileSize"></ui-num-input>
+    </ui-prop>
+
+    <div class="layout horizontal center-justified">
+        <h3>{{ log }}</h3>
+    </div>
+
+    <div class="row layout horizontal center-justified">
+        <ui-button id="btnRemove" class="blue " @confirm="onClickRemove">Remove</ui-button>
+        <ui-button id="btnDebug" class="red" @confirm="onClickDebug">Debug</ui-button>
+        <ui-button id="btnCheckSize" class="green" @confirm="onClickCheckFileSize">Check File Size</ui-button>
+        <ui-button id="btnCheckRemove" class="yellow" @confirm="onClickCheckUnusedAsset">Check Unused Assets</ui-button>
+    </div>
+</div>

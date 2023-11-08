@@ -1,0 +1,18 @@
+[submodule "assets/cc-common/cc-share-v1"]
+	path = assets/cc-common/cc-share-v1
+	url = git@github.com:feenotionorg/cc-share-v1.git
+[submodule "assets/cc-common/cc-slotbase-v2"]
+	path = assets/cc-common/cc-slotbase-v2
+	url = git@github.com:feenotionorg/cc-slotbase-v2.git
+[submodule "assets/cc-common/cc-network"]
+	path = assets/cc-common/cc-network
+	url = git@github.com:feenotionorg/cc-network.git
+[submodule "assets/cc-common/cc-lobby-999"]
+	path = assets/cc-common/cc-lobby-999
+	url = git@github.com:feenotionorg/cc-lobby-999.git
+[submodule "assets/cc-common/cc-betting-base"]
+	path = assets/cc-common/cc-betting-base
+	url = git@github.com:feenotionorg/cc-betting-base.git
+[submodule "assets/cc-common/cc-cardbase-v2"]
+	path = assets/cc-common/cc-cardbase-v2
+	url = git@github.com:feenotionorg/cc-cardbase-v2.git

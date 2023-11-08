@@ -1,0 +1,135 @@
+// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.  
+
+// Note: Current format version is experiment, the format may be changed.
+// The future format may not be compatible, you may need to update the script manually.
+
+// 注意：当前版本的格式是实验性的，之后还会进行修改。
+// 后续版本的格式不保证兼容当前格式，可能需要手动升级到最新版本。，
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+      ]
+      layer: 0
+    }
+  ]
+  properties: {
+    texture: {
+      type: sampler2D
+      value: null
+    }
+    alphaThreshold: {
+      type: number
+      value: 0.5
+    }
+  }
+%}
+
+%% vs {
+
+precision highp float;
+
+uniform mat4 cc_matViewProj;
+
+#if _USE_MODEL
+  uniform mat4 cc_matWorld;
+#endif
+
+attribute vec3 a_position;
+attribute lowp vec4 a_color;
+
+#if USE_TEXTURE
+  attribute mediump vec2 a_uv0;
+  varying mediump vec2 v_uv0;
+#endif
+
+varying lowp vec4 v_color;
+
+void main () {
+  mat4 mvp;
+  
+  #if _USE_MODEL
+    mvp = cc_matViewProj * cc_matWorld;
+  #else
+    mvp = cc_matViewProj;
+  #endif
+
+  #if USE_TEXTURE
+    v_uv0 = a_uv0;
+  #endif
+
+  v_color = a_color;
+
+  gl_Position = mvp * vec4(a_position, 1);
+}
+
+}
+
+%% fs {
+
+precision highp float;
+
+#if USE_TEXTURE
+  uniform sampler2D texture;
+  varying mediump vec2 v_uv0;
+#endif
+
+#include <alpha-test>
+
+varying lowp vec4 v_color;
+uniform float strength;
+
+void main () {
+	float bs = strength;//0.025;
+
+  if (bs > 0.0)
+  {
+    vec4 sum = vec4( 0.0 );
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.48484848484848486)) * 2.3283064365386963e-10;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.45454545454545453)) * 7.450580596923828e-09;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.42424242424242425)) * 1.1548399925231934e-07;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.3939393939393939)) * 1.1548399925231934e-06;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.36363636363636365)) * 8.372589945793152e-06;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.3333333333333333)) * 4.688650369644165e-05;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.30303030303030304)) * 0.00021098926663398743;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.2727272727272727)) * 0.000783674418926239;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.24242424242424243)) * 0.002448982559144497;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.21212121212121213)) * 0.0065306201577186584;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.18181818181818182)) * 0.015020426362752914;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.15151515151515152)) * 0.03004085272550583;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.12121212121212122)) * 0.0525714922696352;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.09090909090909091)) * 0.08087921887636185;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.06060606060606061)) * 0.10976465418934822;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * -0.030303030303030304)) * 0.13171758502721786;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.0)) * 0.13994993409141898;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.030303030303030304)) * 0.13171758502721786;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.06060606060606061)) * 0.10976465418934822;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.09090909090909091)) * 0.08087921887636185;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.12121212121212122)) * 0.0525714922696352;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.15151515151515152)) * 0.03004085272550583;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.18181818181818182)) * 0.015020426362752914;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.21212121212121213)) * 0.0065306201577186584;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.24242424242424243)) * 0.002448982559144497;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.2727272727272727)) * 0.000783674418926239;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.30303030303030304)) * 0.00021098926663398743;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.3333333333333333)) * 4.688650369644165e-05;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.36363636363636365)) * 8.372589945793152e-06;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.3939393939393939)) * 1.1548399925231934e-06;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.42424242424242425)) * 1.1548399925231934e-07;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.45454545454545453)) * 7.450580596923828e-09;
+    sum += texture2D(texture, vec2(v_uv0.x, v_uv0.y + bs * 0.48484848484848486)) * 2.3283064365386963e-10;
+    gl_FragColor = sum * v_color;
+  }
+  else
+  {
+    gl_FragColor = texture2D(texture, vec2(v_uv0.x, v_uv0.y)) * v_color;
+  }
+}
+
+}

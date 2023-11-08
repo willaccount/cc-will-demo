@@ -1,0 +1,20 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "fc79a203-5a62-40d8-b264-a3cb3a608188"
+  },
+  "_defines": {
+    "USE_TEXTURE": true
+  },
+  "_props": {
+    "dissolveTexture": {
+      "__uuid__": "aafe6983-1d14-49df-a577-d4cdef4f43d4"
+    },
+    "threshold": 1,
+    "strength": 0.15,
+    "fadeType": 1
+  }
+}

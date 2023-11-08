@@ -1,0 +1,76 @@
+
+20.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 2, 28
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay
+  rotate: false
+  xy: 27, 18
+  size: 46, 8
+  orig: 46, 8
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 42
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+images/mat
+  rotate: false
+  xy: 2, 2
+  size: 23, 24
+  orig: 23, 24
+  offset: 0, 0
+  index: -1
+images/mieng1
+  rotate: true
+  xy: 41, 9
+  size: 7, 13
+  orig: 7, 13
+  offset: 0, 0
+  index: -1
+images/mieng2
+  rotate: true
+  xy: 116, 95
+  size: 19, 2
+  orig: 19, 2
+  offset: 0, 0
+  index: -1
+images/mieng3
+  rotate: false
+  xy: 27, 5
+  size: 12, 11
+  orig: 12, 11
+  offset: 0, 0
+  index: -1
+images/tay1
+  rotate: false
+  xy: 88, 82
+  size: 26, 44
+  orig: 26, 44
+  offset: 0, 0
+  index: -1
+images/tay2
+  rotate: true
+  xy: 88, 44
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+images/tronmat
+  rotate: false
+  xy: 116, 116
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

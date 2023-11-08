@@ -1,0 +1,11 @@
+{
+  "ver": "1.0.15",
+  "uuid": "11657980-d4a2-4085-9313-d96474d506a3",
+  "compiledShaders": [
+    {
+      "vert": "\n#define _IS_VERT_SHADER 1\n\nprecision highp float;\n\nuniform mat4 cc_matViewProj;\n\n#if _USE_MODEL\n  uniform mat4 cc_matWorld;\n#endif\n\nattribute vec3 a_position;\nattribute lowp vec4 a_color;\n\n#if USE_TEXTURE\n  attribute mediump vec2 a_uv0;\n  varying mediump vec2 v_uv0;\n#endif\n\nvarying lowp vec4 v_color;\n\nvoid main () {\n  mat4 mvp;\n  \n  #if _USE_MODEL\n    mvp = cc_matViewProj * cc_matWorld;\n  #else\n    mvp = cc_matViewProj;\n  #endif\n\n  #if USE_TEXTURE\n    v_uv0 = a_uv0;\n  #endif\n\n  v_color = a_color;\n\n  gl_Position = mvp * vec4(a_position, 1);\n}\n\n\n",
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\n\n#if USE_TEXTURE\n  uniform sampler2D texture;\n  varying mediump vec2 v_uv0;\n#endif\n\n#if USE_ALPHA_TEST\n  uniform float alphaThreshold;\n#endif\n\nvoid ALPHA_TEST (in vec4 color) {\n  #if USE_ALPHA_TEST\n      if (color.a < alphaThreshold) discard;\n  #endif\n}\n\nvoid ALPHA_TEST (in float alpha) {\n  #if USE_ALPHA_TEST\n      if (alpha < alphaThreshold) discard;\n  #endif\n}\n\nvarying lowp vec4 v_color;\nuniform float radiusMultiple;\nuniform float Strength;\n\nvec4 getTexelColor(sampler2D texture, vec2 uv) {\n  vec4 color = texture2D(texture, uv);\n  #if _USE_ETC1_TEXTURE\n    color.a *= texture2D(texture, uv + vec2(0, 0.5)).r;\n  #endif\n\n  ALPHA_TEST(color);\n  return color;\n}\n\nvoid main () {\n  vec4 color = vec4(0.0, 0.0, 0.0, 0.0);\n\n  const int Samples = 8; \n  vec2 center = vec2(0.5, 0.5);\n    \n  vec2 uv = v_uv0 ;\n    \n\tvec2 dir = (v_uv0-center) ;\n  \n  for (int i = 0; i < Samples; i += 2) \n  {\n      color += getTexelColor(texture,uv+float(i)/float(Samples)*dir*Strength);\n      color += getTexelColor(texture,uv+float(i+1)/float(Samples)*dir*Strength);\n  } \n  color = v_color * color/float(Samples);  \n  if(radiusMultiple > 0.0) {\n    float d = distance(v_uv0, center);\n    color.a = d * radiusMultiple;\n    color.rgb /= d * radiusMultiple;\n  }\n  gl_FragColor = color;\n}\n\n\n"
+    }
+  ],
+  "subMetas": {}
+}

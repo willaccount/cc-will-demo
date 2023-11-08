@@ -1,0 +1,55 @@
+
+26.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 2, 18
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay
+  rotate: false
+  xy: 2, 2
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 32
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+images/kt
+  rotate: false
+  xy: 88, 48
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+images/mat
+  rotate: false
+  xy: 32, 5
+  size: 23, 11
+  orig: 23, 11
+  offset: 0, 0
+  index: -1
+images/mieng
+  rotate: false
+  xy: 109, 48
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+images/tay
+  rotate: false
+  xy: 88, 68
+  size: 36, 48
+  orig: 36, 48
+  offset: 0, 0
+  index: -1

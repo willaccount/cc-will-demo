@@ -1,0 +1,153 @@
+
+19.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 91, 56
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 2, 2
+  size: 16, 10
+  orig: 16, 10
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: true
+  xy: 243, 101
+  size: 25, 11
+  orig: 25, 11
+  offset: 0, 0
+  index: -1
+images/dieuthuoc
+  rotate: false
+  xy: 176, 50
+  size: 44, 19
+  orig: 44, 19
+  offset: 0, 0
+  index: -1
+images/effSm0001
+  rotate: true
+  xy: 222, 50
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0002
+  rotate: true
+  xy: 91, 39
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0003
+  rotate: true
+  xy: 125, 39
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0004
+  rotate: false
+  xy: 159, 22
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0005
+  rotate: true
+  xy: 176, 33
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0006
+  rotate: true
+  xy: 210, 33
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0007
+  rotate: true
+  xy: 176, 16
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0008
+  rotate: true
+  xy: 210, 16
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/effSm0009
+  rotate: true
+  xy: 78, 22
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 43
+  size: 87, 83
+  orig: 87, 83
+  offset: 0, 0
+  index: -1
+images/lineKinh0001
+  rotate: false
+  xy: 2, 14
+  size: 74, 27
+  orig: 74, 27
+  offset: 0, 0
+  index: -1
+images/lineKinh0005
+  rotate: false
+  xy: 2, 14
+  size: 74, 27
+  orig: 74, 27
+  offset: 0, 0
+  index: -1
+images/lineKinh0002
+  rotate: false
+  xy: 91, 99
+  size: 74, 27
+  orig: 74, 27
+  offset: 0, 0
+  index: -1
+images/lineKinh0003
+  rotate: false
+  xy: 91, 70
+  size: 74, 27
+  orig: 74, 27
+  offset: 0, 0
+  index: -1
+images/lineKinh0004
+  rotate: false
+  xy: 167, 99
+  size: 74, 27
+  orig: 74, 27
+  offset: 0, 0
+  index: -1
+images/mieng
+  rotate: false
+  xy: 167, 71
+  size: 54, 26
+  orig: 54, 26
+  offset: 0, 0
+  index: -1
+images/sao
+  rotate: false
+  xy: 223, 67
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

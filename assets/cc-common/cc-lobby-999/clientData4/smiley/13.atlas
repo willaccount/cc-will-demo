@@ -1,0 +1,48 @@
+
+13.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bantay
+  rotate: false
+  xy: 83, 47
+  size: 65, 55
+  orig: 65, 55
+  offset: 0, 0
+  index: -1
+images/bong
+  rotate: false
+  xy: 2, 9
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 210, 97
+  size: 8, 5
+  orig: 8, 5
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: false
+  xy: 2, 2
+  size: 8, 5
+  orig: 8, 5
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: true
+  xy: 150, 49
+  size: 53, 58
+  orig: 53, 58
+  offset: 0, 0
+  index: -1
+images/mat
+  rotate: false
+  xy: 2, 23
+  size: 79, 79
+  orig: 79, 79
+  offset: 0, 0
+  index: -1

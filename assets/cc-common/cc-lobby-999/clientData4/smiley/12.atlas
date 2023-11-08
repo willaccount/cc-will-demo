@@ -1,0 +1,62 @@
+
+12.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bong
+  rotate: false
+  xy: 2, 25
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 55, 7
+  size: 28, 16
+  orig: 28, 16
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: true
+  xy: 100, 93
+  size: 28, 16
+  orig: 28, 16
+  offset: 0, 0
+  index: -1
+images/conmat1
+  rotate: false
+  xy: 86, 44
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+images/conmat2
+  rotate: false
+  xy: 87, 15
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 39
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+images/mieng1
+  rotate: true
+  xy: 86, 73
+  size: 48, 12
+  orig: 48, 12
+  offset: 0, 0
+  index: -1
+images/mieng2
+  rotate: false
+  xy: 2, 2
+  size: 51, 21
+  orig: 51, 21
+  offset: 0, 0
+  index: -1

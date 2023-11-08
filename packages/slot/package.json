@@ -1,0 +1,19 @@
+{
+  "name": "slot",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/SlotGame": {
+      "message": "slot:open-menu"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "slot",
+    "width": 1200,
+    "height": 1200
+  }
+}

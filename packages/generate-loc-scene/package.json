@@ -1,0 +1,25 @@
+{
+  "name": "generate-loc-scene",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/generate-loc-scene/open": {
+      "message": "generate-loc-scene:open"
+    },
+    "i18n:MAIN_MENU.package.title/generate-loc-scene/hello": {
+      "message": "generate-loc-scene:say-hello"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "generate-loc-scene",
+    "width": 400,
+    "height": 300
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}

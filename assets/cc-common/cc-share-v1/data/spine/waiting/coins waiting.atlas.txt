@@ -1,0 +1,69 @@
+
+coins waiting.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: false
+  xy: 2, 76
+  size: 146, 151
+  orig: 146, 151
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 300, 99
+  size: 146, 128
+  orig: 146, 128
+  offset: 0, 0
+  index: -1
+Layer 3
+  rotate: false
+  xy: 596, 123
+  size: 146, 104
+  orig: 146, 104
+  offset: 0, 0
+  index: -1
+Layer 4
+  rotate: false
+  xy: 2, 2
+  size: 146, 72
+  orig: 146, 72
+  offset: 0, 0
+  index: -1
+Layer 5
+  rotate: false
+  xy: 744, 171
+  size: 146, 56
+  orig: 146, 56
+  offset: 0, 0
+  index: -1
+Layer 6
+  rotate: false
+  xy: 150, 97
+  size: 148, 130
+  orig: 148, 130
+  offset: 0, 0
+  index: -1
+Layer 7
+  rotate: false
+  xy: 448, 120
+  size: 146, 107
+  orig: 146, 107
+  offset: 0, 0
+  index: -1
+Layer 8
+  rotate: false
+  xy: 150, 23
+  size: 146, 72
+  orig: 146, 72
+  offset: 0, 0
+  index: -1
+Layer 9
+  rotate: false
+  xy: 744, 113
+  size: 146, 56
+  orig: 146, 56
+  offset: 0, 0
+  index: -1

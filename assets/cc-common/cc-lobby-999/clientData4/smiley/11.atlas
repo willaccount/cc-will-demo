@@ -1,0 +1,118 @@
+
+11.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/bantay1
+  rotate: true
+  xy: 203, 74
+  size: 38, 35
+  orig: 38, 35
+  offset: 0, 0
+  index: -1
+images/bantay2
+  rotate: false
+  xy: 82, 38
+  size: 38, 34
+  orig: 38, 34
+  offset: 0, 0
+  index: -1
+images/bantay3
+  rotate: false
+  xy: 159, 39
+  size: 38, 31
+  orig: 38, 31
+  offset: 0, 0
+  index: -1
+images/bantay4
+  rotate: true
+  xy: 122, 38
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+images/bantay5
+  rotate: false
+  xy: 152, 72
+  size: 49, 40
+  orig: 49, 40
+  offset: 0, 0
+  index: -1
+images/bong
+  rotate: false
+  xy: 152, 114
+  size: 83, 12
+  orig: 83, 12
+  offset: 0, 0
+  index: -1
+images/cangtay1-1
+  rotate: false
+  xy: 134, 19
+  size: 35, 17
+  orig: 35, 17
+  offset: 0, 0
+  index: -1
+images/cangtay1-2
+  rotate: false
+  xy: 74, 2
+  size: 28, 34
+  orig: 28, 34
+  offset: 0, 0
+  index: -1
+images/cangtay2-1
+  rotate: false
+  xy: 134, 7
+  size: 36, 10
+  orig: 36, 10
+  offset: 0, 0
+  index: -1
+images/cangtay2-2
+  rotate: false
+  xy: 104, 2
+  size: 28, 34
+  orig: 28, 34
+  offset: 0, 0
+  index: -1
+images/chanmay1
+  rotate: false
+  xy: 171, 24
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+images/chanmay2
+  rotate: true
+  xy: 172, 2
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 48
+  size: 78, 78
+  orig: 78, 78
+  offset: 0, 0
+  index: -1
+images/mieng1
+  rotate: false
+  xy: 2, 3
+  size: 70, 43
+  orig: 70, 43
+  offset: 0, 0
+  index: -1
+images/mieng2
+  rotate: false
+  xy: 82, 74
+  size: 68, 52
+  orig: 68, 52
+  offset: 0, 0
+  index: -1
+images/nuocmat
+  rotate: false
+  xy: 237, 122
+  size: 5, 4
+  orig: 5, 4
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+3MoneyFall.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Guid_Back_Money
+  rotate: false
+  xy: 2, 2
+  size: 250, 105
+  orig: 250, 105
+  offset: 0, 0
+  index: -1
+Guid_Font_Money
+  rotate: false
+  xy: 254, 2
+  size: 250, 105
+  orig: 250, 105
+  offset: 0, 0
+  index: -1

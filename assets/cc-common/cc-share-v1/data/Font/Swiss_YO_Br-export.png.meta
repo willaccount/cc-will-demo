@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "42567c95-72af-49e2-93de-93967a3374fa",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Swiss_YO_Br-export": {
+      "ver": "1.0.4",
+      "uuid": "fad063ac-ab21-401f-bcf2-b44e6000efbb",
+      "rawTextureUuid": "42567c95-72af-49e2-93de-93967a3374fa",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0.19999999999998863,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 512,
+      "height": 511.6,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

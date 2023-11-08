@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="layout horizontal center-justified">
+        <h3>Chọn Game Clone</h3>
+    </div>
+    <div class="layout horizontal center-justified">
+        <h3>(Kéo thả hoặc chọn scene từ danh sách)</h3>
+    </div>
+
+    <ui-prop class="row layout horizontal center-justified" name="Scenes:">
+        <ui-select id="selectScene" class="wd-300" @change="onSelectScene">
+            <template v-for="item in scenes">
+                <option v-value="item.value" class="wd-300">{{ item.text }}</option>
+            </template>
+        </ui-select>
+    </ui-prop>
+    <ui-prop class="row layout horizontal center-justified" name="Scenes Clone:">
+        <ui-asset id="sceneAsset" class="wd-300" type="scene"></ui-asset>
+    </ui-prop>
+    <ui-prop class="row layout horizontal center-justified" name="Tên Folder:" tooltip="Folder game mới sẽ nằm ngang hàng folder game cũ">
+        <ui-input id="folderName" placeholder="Tên folder game clone" class="wd-300"></ui-input>
+    </ui-prop>
+    <ui-prop class="row layout horizontal center-justified" name="Game ID mới:">
+        <ui-input placeholder="1234" class="wd-300" id="gameID"></ui-input>
+    </ui-prop>
+
+    <ui-prop class="row layout horizontal center-justified" name="Thêm _FirstScene:" tooltip="Tự động thêm _FirstScene vào canvas sau khi clone xong">
+        <ui-checkbox tabindex="-1" v-value="isAutoAddFirstScene" class="wd-300"></ui-checkbox>
+    </ui-prop>
+
+    <ui-prop class="row layout horizontal center-justified" name="Mở lại cocos:" tooltip="Cocos creator sẽ tự khởi động lại sau khi clone xong">
+        <ui-checkbox tabindex="-1" v-value="isRelaunch" class="wd-300"></ui-checkbox>
+    </ui-prop>
+
+    <div class="layout horizontal center-justified">
+        <h3>{{ log }}</h3>
+    </div>
+
+    <div class="row layout horizontal center-justified">
+        <ui-button id="btnClone" class="blue " @confirm="onClickClone">Clone</ui-button>
+        <ui-button id="btnDebug" class="red" @confirm="onClickDebug">Debug</ui-button>
+    </div>
+</div>

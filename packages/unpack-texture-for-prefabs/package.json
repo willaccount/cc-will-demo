@@ -1,0 +1,19 @@
+{
+  "name": "unpack-textures-modify-prefab",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "Tools/unpack-textures-modify-prefab": {
+      "message": "unpack-textures-modify-prefab:open"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "unpack-textures-modify-prefab",
+    "width": 900,
+    "height": 1200
+  }
+}

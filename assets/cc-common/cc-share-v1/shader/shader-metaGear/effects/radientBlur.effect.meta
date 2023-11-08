@@ -1,0 +1,11 @@
+{
+  "ver": "1.0.15",
+  "uuid": "ac937efb-da68-472e-b6dc-1ed15af7b9fc",
+  "compiledShaders": [
+    {
+      "vert": "\n#define _IS_VERT_SHADER 1\n\nprecision highp float;\n\nuniform mat4 cc_matViewProj;\n\n#if _USE_MODEL\n  uniform mat4 cc_matWorld;\n#endif\n\nattribute vec3 a_position;\nattribute lowp vec4 a_color;\n\n#if USE_TEXTURE\n  attribute mediump vec2 a_uv0;\n  varying mediump vec2 v_uv0;\n#endif\n\nvarying lowp vec4 v_color;\n\nvoid main () {\n  mat4 mvp;\n  \n  #if _USE_MODEL\n    mvp = cc_matViewProj * cc_matWorld;\n  #else\n    mvp = cc_matViewProj;\n  #endif\n\n  #if USE_TEXTURE\n    v_uv0 = a_uv0;\n  #endif\n\n  v_color = a_color;\n\n  gl_Position = mvp * vec4(a_position, 1);\n}\n\n\n",
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\n\n#if USE_TEXTURE\n  uniform sampler2D texture;\n  varying mediump vec2 v_uv0;\n#endif\nuniform vec2 iCenter;\nuniform vec3 iResolution;\nuniform float threshold;\nuniform float strength;\nvarying lowp vec4 v_color;\n\nvoid mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    const int Samples = 64; \n    vec2 uv = fragCoord.xy;\n    \n    vec2 dir = (fragCoord.xy-iCenter.xy);\n\n    vec4 color = vec4(0.0,0.0,0.0,0.0);\n    \n    for (int i = 0; i < Samples; i += 2) \n    {\n        color += texture2D(texture,uv+float(i)/float(Samples)*dir*strength);\n        color += texture2D(texture,uv+float(i+1)/float(Samples)*dir*strength);\n    }   \n    \n    fragColor = color/float(Samples);\n}\n\nvoid normalImageProcess(){\n  vec4 color = v_color;\n\n  #if USE_TEXTURE\n    color *= texture2D(texture, v_uv0);\n    #if _USE_ETC1_TEXTURE\n      color.a *= texture2D(texture, v_uv0 + vec2(0, 0.5)).r;\n    #endif\n  #endif\n\n  gl_FragColor = color;\n}\nvoid main () {\n  if(threshold>=0.95){\n    normalImageProcess();\n  }else{\n    mainImage(gl_FragColor, v_uv0);\n  }\n}\n\n\n"
+    }
+  ],
+  "subMetas": {}
+}

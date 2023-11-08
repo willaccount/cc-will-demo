@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "nearwin",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.85,
+  "sample": 60,
+  "speed": 1.5,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "c2d6413a-a4b4-4cec-a662-d1faed5da0da"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "fb1188aa-2ff5-44f5-aa12-516b7d704331"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "54c1adf7-6fa3-4bc6-a0e9-cd36a3c5b7ee"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "bd50187a-0a1f-48df-a601-f8ef84b4fe9b"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "1543de56-475c-42ba-aeb8-65fbb4fbc830"
+            }
+          },
+          {
+            "frame": 0.8333333333333334,
+            "value": {
+              "__uuid__": "c2d6413a-a4b4-4cec-a662-d1faed5da0da"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

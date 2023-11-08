@@ -1,0 +1,90 @@
+
+10.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/aw
+  rotate: false
+  xy: 81, 14
+  size: 19, 13
+  orig: 19, 13
+  offset: 0, 0
+  index: -1
+images/bong
+  rotate: false
+  xy: 2, 95
+  size: 141, 31
+  orig: 141, 31
+  offset: 0, 0
+  index: -1
+images/giay
+  rotate: false
+  xy: 125, 51
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+images/giay2
+  rotate: true
+  xy: 145, 92
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+images/khuonmat
+  rotate: false
+  xy: 2, 16
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+images/mat
+  rotate: true
+  xy: 2, 2
+  size: 12, 20
+  orig: 12, 20
+  offset: 0, 0
+  index: -1
+images/mieng
+  rotate: false
+  xy: 81, 29
+  size: 42, 64
+  orig: 42, 64
+  offset: 0, 0
+  index: -1
+images/mieng2
+  rotate: true
+  xy: 201, 84
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+images/tay1
+  rotate: true
+  xy: 125, 22
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+images/tay2
+  rotate: false
+  xy: 190, 61
+  size: 50, 21
+  orig: 50, 21
+  offset: 0, 0
+  index: -1
+images/tay3
+  rotate: false
+  xy: 158, 19
+  size: 35, 27
+  orig: 35, 27
+  offset: 0, 0
+  index: -1
+images/tay4
+  rotate: true
+  xy: 161, 48
+  size: 42, 27
+  orig: 42, 27
+  offset: 0, 0
+  index: -1

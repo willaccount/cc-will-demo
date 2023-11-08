@@ -1,0 +1,19 @@
+{
+  "name": "pack-textures",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "Tools/pack-textures": {
+      "message": "pack-textures:open"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "pack-textures",
+    "width": 800,
+    "height": 600
+  }
+}
