@@ -102,6 +102,7 @@ cc.Class({
             TABLE_FORMAT_FREE: [4, 4, 4, 4, 4],
             MESSAGE_DIALOG: getMessageSlot(),
             PAY_LINE_ALLWAYS: true,
+            PAY_LINE_SYMBOL_POOL_LENGTH: 15,
             PAY_LINE_MATRIX: { },
             GAME_SPEED: {
                 NORMAL: 0,

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SymbolPrefab",
+    "_name": "SlotSymbolPaylinePrefab",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -35,7 +35,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 21
     },
     "_opacity": 255,
     "_color": {
@@ -146,7 +146,7 @@
     "node": {
       "__id__": 2
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
@@ -154,9 +154,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -210,8 +208,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 140,
-      "height": 140
+      "width": 142.2,
+      "height": 165.39
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -258,20 +256,20 @@
     "paused": false,
     "defaultSkin": "",
     "defaultAnimation": "",
-    "_preCacheMode": -1,
+    "_preCacheMode": 0,
     "_cacheMode": 0,
-    "loop": true,
-    "premultipliedAlpha": true,
+    "loop": false,
+    "premultipliedAlpha": false,
     "timeScale": 1,
     "_accTime": 0,
     "_playCount": 0,
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "",
+    "_animationName": "animation",
     "_animationQueue": [],
     "_headAniInfo": null,
-    "_playTimes": 0,
+    "_playTimes": 1,
     "_isAniComplete": true,
     "_N$skeletonData": null,
     "_N$_defaultCacheMode": 0,
@@ -457,8 +455,99 @@
     "winEffect": {
       "__id__": 8
     },
-    "spineList": [],
+    "spineList": [
+      {
+        "__id__": 12
+      },
+      {
+        "__id__": 13
+      },
+      {
+        "__id__": 14
+      },
+      {
+        "__id__": 15
+      },
+      {
+        "__id__": 16
+      },
+      {
+        "__id__": 17
+      },
+      {
+        "__id__": 18
+      },
+      {
+        "__id__": 19
+      },
+      {
+        "__id__": 20
+      }
+    ],
     "_id": ""
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "2",
+    "spine": {
+      "__uuid__": "e8309ae4-c3da-43d8-889f-c09c4547132a"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "3",
+    "spine": {
+      "__uuid__": "1f7529cc-9123-4620-b51e-64946b7023b1"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "4",
+    "spine": {
+      "__uuid__": "1a05af0d-3e6f-45e5-b2c6-d2198774c6f6"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "5",
+    "spine": {
+      "__uuid__": "74ecd438-e27e-4799-b922-dead23b4a9d4"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "6",
+    "spine": {
+      "__uuid__": "4743291b-e90b-4b31-81f0-0b755c4982dd"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "10",
+    "spine": {
+      "__uuid__": "3edf2093-3716-4ad5-bff2-7470dc031b9e"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "J",
+    "spine": {
+      "__uuid__": "12a2742f-de2d-4f70-85b8-26ff6e426588"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "A",
+    "spine": {
+      "__uuid__": "ebcc8490-6d5c-4799-858a-bfe1323a041a"
+    }
+  },
+  {
+    "__type__": "SymbolSpineDefine",
+    "name": "K",
+    "spine": {
+      "__uuid__": "2ca5bf0a-90f2-4d05-aeba-5239434615e0"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -12,7 +12,7 @@ cc.Class({
         paylineSpecialSymbols: {
             type: cc.Prefab,
             default: [],
-        }
+        },
     },
     onLoad() {
         this.node.hasPayline = false;
@@ -177,10 +177,9 @@ cc.Class({
         this.disableHighlightNormalPaylines();
         for (let col = 0; col < symbolCount; col++) {
             for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
-                if (this.paylinesMatrix[col][row].symbol.symbol == symbolId ||
-                    this.paylinesMatrix[col][row].symbol.symbol == "K") //remove hardcore K ?
+                if (this.paylinesMatrix[col][row].symbol.symbol == symbolId) //remove hardcore K ?
                 {
-                    this.paylinesMatrix[col][row].symbol.active = false;
+                    this.paylinesMatrix[col][row].symbol.active = true;
                     this.paylinesMatrix[col][row].paylineSymbol.enableHighlight();
                     this.paylinesMatrix[col][row].paylineSymbol.playAnimation();
                 }

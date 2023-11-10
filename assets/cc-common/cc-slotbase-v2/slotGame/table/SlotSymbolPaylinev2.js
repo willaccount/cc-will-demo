@@ -81,8 +81,11 @@ cc.Class({
             }
         } 
         else {
+            this.node.opacity = 255;
+            
             this.staticSymbol.opacity = 255;
             this.staticSymbol.active = true;
+            this.staticSymbol.scale = 1;
             this.spineNode.opacity = 0;
             const seq = cc.repeat(
                 cc.sequence(
