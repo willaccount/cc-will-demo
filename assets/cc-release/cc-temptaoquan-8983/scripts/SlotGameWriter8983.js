@@ -290,7 +290,6 @@ cc.Class({
     makeScriptSpinClick() {
         let { slotBetDataStore } = this.node.gSlotDataStore;
         let { currentBetData, steps, currentExtraBetData, extraSteps } = slotBetDataStore.data;
-        cc.log("spinning.")
         let listScript = [];
         listScript.push({
             command: "_showCutscene",
