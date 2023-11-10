@@ -1,0 +1,100 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "IntroFreeGameOption9983",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "MainView/Options": {
+        "props": {
+          "active": [
+            {
+              "frame": 2.3333333333333335,
+              "value": true
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 2.3333333333333335,
+              "value": 0
+            },
+            {
+              "frame": 2.5,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "ScrollView/BackgroundMain": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 1.5166666666666666,
+              "value": false
+            }
+          ]
+        }
+      },
+      "ScrollView/TQ_BG_expand": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 2.1333333333333333,
+              "value": false
+            }
+          ]
+        }
+      },
+      "ScrollView/BackgroundOption": {
+        "props": {
+          "active": []
+        }
+      }
+    },
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            0,
+            0,
+            0
+          ],
+          "curve": [
+            0.5585078534031414,
+            -0.04358638743455523,
+            0.4611256544502618,
+            1.050130890052356
+          ]
+        },
+        {
+          "frame": 2.3333333333333335,
+          "value": [
+            0,
+            -1561,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "frame": 2.3333333333333335,
+      "func": "onCompletedntroAnim",
+      "params": []
+    }
+  ]
+}

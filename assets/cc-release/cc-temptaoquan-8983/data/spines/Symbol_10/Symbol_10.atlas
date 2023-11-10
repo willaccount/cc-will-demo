@@ -1,0 +1,34 @@
+
+Symbol_10.png
+size: 147,120
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Canh_Hoa
+  rotate: false
+  xy: 2, 2
+  size: 8, 4
+  orig: 8, 4
+  offset: 0, 0
+  index: -1
+Dao
+  rotate: true
+  xy: 2, 8
+  size: 110, 130
+  orig: 110, 130
+  offset: 0, 0
+  index: -1
+Hoa_Dao_A
+  rotate: false
+  xy: 134, 108
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1
+Hoa_Dao_B
+  rotate: false
+  xy: 134, 96
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

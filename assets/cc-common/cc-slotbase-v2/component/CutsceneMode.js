@@ -7,7 +7,7 @@ cc.Class({
         this.node.on("HIDE",this.exit,this);
         this.node.on("INIT", this.init, this);
         this.node.on("SKIP", this.skip, this);
-        this.node.opacity = 0;
+        this.node.opacity = 255;
         this.node.active = false;
         this.node.fullDisplay = true;
     },

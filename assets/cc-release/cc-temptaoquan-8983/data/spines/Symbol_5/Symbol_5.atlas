@@ -1,0 +1,356 @@
+
+Symbol_5.png
+size: 465,326
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 144, 185
+  size: 82, 53
+  orig: 82, 53
+  offset: 0, 0
+  index: -1
+Border
+  rotate: false
+  xy: 2, 191
+  size: 140, 133
+  orig: 140, 133
+  offset: 0, 0
+  index: -1
+Border_Glow
+  rotate: false
+  xy: 2, 56
+  size: 140, 133
+  orig: 140, 133
+  offset: 0, 0
+  index: -1
+Bottle
+  rotate: false
+  xy: 236, 258
+  size: 55, 66
+  orig: 55, 66
+  offset: 0, 0
+  index: -1
+Bottle_Tie
+  rotate: true
+  xy: 409, 82
+  size: 14, 50
+  orig: 14, 50
+  offset: 0, 0
+  index: -1
+Hand
+  rotate: true
+  xy: 373, 39
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+Hand_Item
+  rotate: true
+  xy: 191, 20
+  size: 23, 54
+  orig: 23, 54
+  offset: 0, 0
+  index: -1
+Head/Face
+  rotate: false
+  xy: 144, 240
+  size: 90, 84
+  orig: 90, 84
+  offset: 0, 0
+  index: -1
+Head/Hat_1
+  rotate: true
+  xy: 433, 257
+  size: 67, 30
+  orig: 67, 30
+  offset: 0, 0
+  index: -1
+Head/Hat_2
+  rotate: false
+  xy: 142, 9
+  size: 47, 34
+  orig: 47, 34
+  offset: 0, 0
+  index: -1
+Head/LBrow
+  rotate: false
+  xy: 341, 15
+  size: 20, 10
+  orig: 20, 10
+  offset: 0, 0
+  index: -1
+Head/LEar1
+  rotate: true
+  xy: 191, 2
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+Head/LEar2
+  rotate: false
+  xy: 325, 8
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+Head/LEar3
+  rotate: false
+  xy: 448, 54
+  size: 15, 26
+  orig: 15, 26
+  offset: 0, 0
+  index: -1
+Head/LEye
+  rotate: true
+  xy: 215, 2
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+Head/LEyeBall
+  rotate: false
+  xy: 445, 220
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+Head/Mouth_Down
+  rotate: false
+  xy: 433, 231
+  size: 30, 24
+  orig: 30, 24
+  offset: 0, 0
+  index: -1
+Head/Mouth_Up
+  rotate: false
+  xy: 373, 12
+  size: 37, 25
+  orig: 37, 25
+  offset: 0, 0
+  index: -1
+Head/RBrow
+  rotate: true
+  xy: 289, 188
+  size: 30, 11
+  orig: 30, 11
+  offset: 0, 0
+  index: -1
+Head/REar1
+  rotate: false
+  xy: 439, 8
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+Head/REar2
+  rotate: true
+  xy: 231, 3
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+Head/REar3
+  rotate: true
+  xy: 294, 4
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
+Head/REye
+  rotate: true
+  xy: 448, 30
+  size: 22, 15
+  orig: 22, 15
+  offset: 0, 0
+  index: -1
+Head/REyeBall
+  rotate: false
+  xy: 433, 220
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+LArm
+  rotate: false
+  xy: 250, 2
+  size: 42, 44
+  orig: 42, 44
+  offset: 0, 0
+  index: -1
+RArm
+  rotate: false
+  xy: 413, 2
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+RUpArm
+  rotate: false
+  xy: 413, 40
+  size: 33, 40
+  orig: 33, 40
+  offset: 0, 0
+  index: -1
+Sparkle
+  rotate: false
+  xy: 409, 98
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Water/Water_00
+  rotate: true
+  xy: 2, 3
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_01
+  rotate: false
+  xy: 144, 115
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_02
+  rotate: true
+  xy: 293, 273
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_03
+  rotate: true
+  xy: 72, 3
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_04
+  rotate: true
+  xy: 363, 273
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_05
+  rotate: false
+  xy: 144, 45
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_06
+  rotate: false
+  xy: 197, 115
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_07
+  rotate: false
+  xy: 197, 115
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_08
+  rotate: false
+  xy: 197, 45
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_09
+  rotate: true
+  xy: 293, 220
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_10
+  rotate: true
+  xy: 363, 220
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_11
+  rotate: true
+  xy: 363, 220
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_12
+  rotate: false
+  xy: 236, 188
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_13
+  rotate: false
+  xy: 250, 118
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_14
+  rotate: false
+  xy: 250, 48
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_15
+  rotate: false
+  xy: 303, 150
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_16
+  rotate: false
+  xy: 303, 80
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_17
+  rotate: false
+  xy: 356, 150
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_18
+  rotate: false
+  xy: 356, 80
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_19
+  rotate: true
+  xy: 303, 27
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_20
+  rotate: false
+  xy: 409, 150
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+Water/Water_21
+  rotate: false
+  xy: 409, 150
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1

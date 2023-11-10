@@ -1,0 +1,39 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "FreeGameOptionNoIntro",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.016666666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            0,
+            -1339.09,
+            0
+          ]
+        },
+        {
+          "frame": 0.016666666666666666,
+          "value": [
+            0,
+            -1561,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "frame": 0.016666666666666666,
+      "func": "onCompletedntroAnim",
+      "params": []
+    }
+  ]
+}

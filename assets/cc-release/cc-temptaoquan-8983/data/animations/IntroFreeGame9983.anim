@@ -1,0 +1,105 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "IntroFreeGame9983",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2.5166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "Background": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 0.5166666666666667,
+              "value": 255
+            },
+            {
+              "frame": 2.0166666666666666,
+              "value": 255
+            },
+            {
+              "frame": 2.5166666666666666,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "CloudLeft": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -1484,
+                0,
+                0
+              ]
+            },
+            {
+              "frame": 1.5,
+              "value": [
+                1529,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      },
+      "CloudRight": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                1484,
+                0,
+                0
+              ]
+            },
+            {
+              "frame": 1.5,
+              "value": [
+                -1529,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      },
+      "Background/BGKing": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.8666666666666667,
+              "value": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 2,
+      "func": "onCompletedntroAnim",
+      "params": []
+    }
+  ]
+}

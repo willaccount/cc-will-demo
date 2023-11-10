@@ -1,0 +1,20 @@
+
+Symbol_6.png
+size: 166,102
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Gold
+  rotate: false
+  xy: 2, 2
+  size: 110, 98
+  orig: 110, 98
+  offset: 0, 0
+  index: -1
+eff_particle
+  rotate: false
+  xy: 114, 50
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

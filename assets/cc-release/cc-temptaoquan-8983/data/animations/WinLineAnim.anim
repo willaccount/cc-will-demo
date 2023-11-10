@@ -1,0 +1,151 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "WinLineAnim",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 40,
+  "speed": 0.62,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "TQ_VFX_WinLine_1": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "c11578fb-3b51-45b3-a433-65e0579aa26f"
+                }
+              },
+              {
+                "frame": 0.025,
+                "value": {
+                  "__uuid__": "a11b991d-0cc7-4edd-8055-71f2138aae25"
+                }
+              },
+              {
+                "frame": 0.05,
+                "value": {
+                  "__uuid__": "11bb9d63-64ae-47b2-ac76-d59ae1702076"
+                }
+              },
+              {
+                "frame": 0.075,
+                "value": {
+                  "__uuid__": "682464e5-1b00-4fd6-a54d-47aa7a12af2c"
+                }
+              },
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "0db6a9e5-1bae-46a0-bc48-b631486a8e71"
+                }
+              },
+              {
+                "frame": 0.125,
+                "value": {
+                  "__uuid__": "155cf548-4087-4374-8575-fb2d413bb085"
+                }
+              },
+              {
+                "frame": 0.15,
+                "value": {
+                  "__uuid__": "fd824d2d-8c83-4f8a-8f40-ffd48c6db811"
+                }
+              },
+              {
+                "frame": 0.175,
+                "value": {
+                  "__uuid__": "8086547c-3330-4039-ba67-0dbc0ca49221"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "73f2ec29-5e53-4c1e-af17-271977b7b319"
+                }
+              },
+              {
+                "frame": 0.225,
+                "value": {
+                  "__uuid__": "e1511ceb-0f84-4557-b0c0-b4e898cc3e06"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "TQ_VFX_WinLine_2": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "c11578fb-3b51-45b3-a433-65e0579aa26f"
+                }
+              },
+              {
+                "frame": 0.025,
+                "value": {
+                  "__uuid__": "a11b991d-0cc7-4edd-8055-71f2138aae25"
+                }
+              },
+              {
+                "frame": 0.05,
+                "value": {
+                  "__uuid__": "11bb9d63-64ae-47b2-ac76-d59ae1702076"
+                }
+              },
+              {
+                "frame": 0.075,
+                "value": {
+                  "__uuid__": "682464e5-1b00-4fd6-a54d-47aa7a12af2c"
+                }
+              },
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "0db6a9e5-1bae-46a0-bc48-b631486a8e71"
+                }
+              },
+              {
+                "frame": 0.125,
+                "value": {
+                  "__uuid__": "155cf548-4087-4374-8575-fb2d413bb085"
+                }
+              },
+              {
+                "frame": 0.15,
+                "value": {
+                  "__uuid__": "fd824d2d-8c83-4f8a-8f40-ffd48c6db811"
+                }
+              },
+              {
+                "frame": 0.175,
+                "value": {
+                  "__uuid__": "8086547c-3330-4039-ba67-0dbc0ca49221"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "73f2ec29-5e53-4c1e-af17-271977b7b319"
+                }
+              },
+              {
+                "frame": 0.225,
+                "value": {
+                  "__uuid__": "e1511ceb-0f84-4557-b0c0-b4e898cc3e06"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": []
+}

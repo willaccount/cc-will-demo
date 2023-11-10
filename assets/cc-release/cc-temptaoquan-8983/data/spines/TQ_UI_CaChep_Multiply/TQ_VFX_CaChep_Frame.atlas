@@ -1,0 +1,76 @@
+
+TQ_VFX_CaChep_Frame.png
+size: 590,205
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light_Ray
+  rotate: false
+  xy: 2, 8
+  size: 195, 195
+  orig: 195, 195
+  offset: 0, 0
+  index: -1
+cachep
+  rotate: true
+  xy: 199, 2
+  size: 79, 110
+  orig: 79, 110
+  offset: 0, 0
+  index: -1
+cachep1
+  rotate: true
+  xy: 311, 2
+  size: 79, 110
+  orig: 79, 110
+  offset: 0, 0
+  index: -1
+duoi
+  rotate: true
+  xy: 541, 147
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+duoi1
+  rotate: false
+  xy: 481, 11
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+glow
+  rotate: true
+  xy: 445, 60
+  size: 47, 142
+  orig: 47, 142
+  offset: 0, 0
+  index: -1
+hinhtron
+  rotate: false
+  xy: 445, 109
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+hinhtronvang
+  rotate: false
+  xy: 199, 83
+  size: 121, 120
+  orig: 121, 120
+  offset: 0, 0
+  index: -1
+hinhtronvang1
+  rotate: false
+  xy: 322, 83
+  size: 121, 120
+  orig: 121, 120
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 423, 2
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
