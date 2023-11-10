@@ -1,0 +1,67 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "CloudTransition9983",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.8333333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "CloudLeft": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -1484.729,
+                0,
+                0
+              ],
+              "curve": "cubicInOut"
+            },
+            {
+              "frame": 1.8333333333333333,
+              "value": [
+                1529.594,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      },
+      "CloudRight": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                1475.592,
+                0,
+                0
+              ],
+              "curve": "cubicInOut"
+            },
+            {
+              "frame": 1.8333333333333333,
+              "value": [
+                -1529.594,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.8333333333333334,
+      "func": "onCompletedntroAnim",
+      "params": []
+    }
+  ]
+}

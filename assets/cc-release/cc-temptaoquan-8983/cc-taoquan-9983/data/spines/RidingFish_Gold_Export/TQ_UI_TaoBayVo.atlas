@@ -1,0 +1,69 @@
+
+TQ_UI_TaoBayVo.png
+size: 962,450
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3OngTao1
+  rotate: false
+  xy: 768, 41
+  size: 120, 152
+  orig: 120, 152
+  offset: 0, 0
+  index: -1
+Ca01
+  rotate: true
+  xy: 2, 194
+  size: 254, 190
+  orig: 254, 190
+  offset: 0, 0
+  index: -1
+Ca011
+  rotate: false
+  xy: 2, 2
+  size: 254, 190
+  orig: 254, 190
+  offset: 0, 0
+  index: -1
+Ca02
+  rotate: true
+  xy: 194, 194
+  size: 254, 190
+  orig: 254, 190
+  offset: 0, 0
+  index: -1
+Ca03
+  rotate: false
+  xy: 258, 2
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+Ca04
+  rotate: true
+  xy: 386, 195
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+Ca05
+  rotate: false
+  xy: 513, 3
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+Ca06
+  rotate: true
+  xy: 578, 195
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+Ca07
+  rotate: true
+  xy: 770, 195
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1

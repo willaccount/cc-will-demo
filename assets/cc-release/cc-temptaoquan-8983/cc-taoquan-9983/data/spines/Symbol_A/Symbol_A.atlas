@@ -1,0 +1,118 @@
+
+Symbol_A.png
+size: 917,487
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light_Ray
+  rotate: false
+  xy: 413, 170
+  size: 315, 315
+  orig: 315, 315
+  offset: 0, 0
+  index: -1
+ao1
+  rotate: false
+  xy: 521, 2
+  size: 215, 63
+  orig: 215, 63
+  offset: 0, 0
+  index: -1
+ao2
+  rotate: true
+  xy: 501, 17
+  size: 27, 17
+  orig: 27, 17
+  offset: 0, 0
+  index: -1
+bg
+  rotate: true
+  xy: 738, 11
+  size: 142, 158
+  orig: 142, 158
+  offset: 0, 0
+  index: -1
+dau
+  rotate: true
+  xy: 550, 80
+  size: 88, 110
+  orig: 88, 110
+  offset: 0, 0
+  index: -1
+day1
+  rotate: true
+  xy: 413, 46
+  size: 19, 106
+  orig: 19, 106
+  offset: 0, 0
+  index: -1
+day2
+  rotate: true
+  xy: 304, 18
+  size: 26, 121
+  orig: 26, 121
+  offset: 0, 0
+  index: -1
+glow2_back
+  rotate: true
+  xy: 2, 46
+  size: 439, 409
+  orig: 439, 409
+  offset: 0, 0
+  index: -1
+item1
+  rotate: true
+  xy: 475, 12
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+item2
+  rotate: false
+  xy: 427, 12
+  size: 46, 32
+  orig: 46, 32
+  offset: 0, 0
+  index: -1
+khung
+  rotate: true
+  xy: 730, 321
+  size: 164, 185
+  orig: 164, 185
+  offset: 0, 0
+  index: -1
+khung1
+  rotate: true
+  xy: 730, 155
+  size: 164, 185
+  orig: 164, 185
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 662, 112
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+mux
+  rotate: false
+  xy: 413, 67
+  size: 135, 101
+  orig: 135, 101
+  offset: 0, 0
+  index: -1
+scatter
+  rotate: false
+  xy: 2, 5
+  size: 149, 39
+  orig: 149, 39
+  offset: 0, 0
+  index: -1
+scatter1
+  rotate: false
+  xy: 153, 5
+  size: 149, 39
+  orig: 149, 39
+  offset: 0, 0
+  index: -1

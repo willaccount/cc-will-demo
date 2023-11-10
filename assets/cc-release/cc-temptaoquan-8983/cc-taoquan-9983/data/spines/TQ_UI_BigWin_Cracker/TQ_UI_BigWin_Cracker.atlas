@@ -1,0 +1,286 @@
+
+TQ_UI_BigWin_Cracker.png
+size: 910,709
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bright
+  rotate: true
+  xy: 834, 196
+  size: 69, 70
+  orig: 69, 70
+  offset: 0, 0
+  index: -1
+Eff/A_0013_10
+  rotate: false
+  xy: 88, 203
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0014_9
+  rotate: true
+  xy: 192, 336
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0015_8
+  rotate: true
+  xy: 376, 336
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0016_7
+  rotate: true
+  xy: 560, 336
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0017_6
+  rotate: false
+  xy: 88, 19
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0018_5
+  rotate: true
+  xy: 319, 105
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0019_4
+  rotate: true
+  xy: 503, 105
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0020_3
+  rotate: true
+  xy: 319, 16
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0021_2
+  rotate: true
+  xy: 503, 16
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0022_1
+  rotate: false
+  xy: 687, 10
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Eff/A_0023_0
+  rotate: false
+  xy: 745, 241
+  size: 87, 182
+  orig: 87, 182
+  offset: 0, 0
+  index: -1
+Light
+  rotate: false
+  xy: 2, 19
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Spark
+  rotate: false
+  xy: 776, 114
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+Spark 2
+  rotate: false
+  xy: 834, 267
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+Spark 3
+  rotate: false
+  xy: 776, 32
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+Sparkle_Pur
+  rotate: false
+  xy: 745, 205
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_1
+  rotate: false
+  xy: 192, 567
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_10
+  rotate: false
+  xy: 760, 425
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_11
+  rotate: false
+  xy: 177, 194
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_12
+  rotate: false
+  xy: 319, 194
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_13
+  rotate: false
+  xy: 461, 194
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_14
+  rotate: false
+  xy: 603, 194
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_15
+  rotate: false
+  xy: 177, 52
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_2
+  rotate: false
+  xy: 192, 425
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_3
+  rotate: false
+  xy: 334, 567
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_4
+  rotate: false
+  xy: 334, 425
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_5
+  rotate: false
+  xy: 476, 567
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_6
+  rotate: false
+  xy: 476, 425
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_7
+  rotate: false
+  xy: 618, 567
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_8
+  rotate: false
+  xy: 618, 425
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+Sparkle_Wide/Sparkle_Wide_9
+  rotate: false
+  xy: 760, 567
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+T1
+  rotate: false
+  xy: 858, 178
+  size: 26, 16
+  orig: 26, 16
+  offset: 0, 0
+  index: -1
+T2
+  rotate: false
+  xy: 177, 26
+  size: 26, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+T3
+  rotate: false
+  xy: 54, 44
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+T4
+  rotate: true
+  xy: 2, 2
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+T5
+  rotate: true
+  xy: 177, 362
+  size: 23, 10
+  orig: 23, 10
+  offset: 0, 0
+  index: -1
+phao/dauphao
+  rotate: false
+  xy: 2, 71
+  size: 84, 636
+  orig: 84, 636
+  offset: 0, 0
+  index: -1
+phao/dm
+  rotate: false
+  xy: 88, 387
+  size: 102, 320
+  orig: 102, 320
+  offset: 0, 0
+  index: -1
+sparke2
+  rotate: true
+  xy: 834, 343
+  size: 80, 73
+  orig: 80, 73
+  offset: 0, 0
+  index: -1

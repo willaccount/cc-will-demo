@@ -1,0 +1,55 @@
+
+Symbol_4.png
+size: 772,317
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG
+  rotate: false
+  xy: 470, 166
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Frame
+  rotate: true
+  xy: 470, 6
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Frame_Bright
+  rotate: true
+  xy: 621, 6
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Light
+  rotate: false
+  xy: 2, 65
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+Light_Ray
+  rotate: false
+  xy: 254, 101
+  size: 214, 214
+  orig: 214, 214
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 630, 167
+  size: 148, 121
+  orig: 148, 121
+  offset: 0, 0
+  index: -1
+hat
+  rotate: true
+  xy: 254, 2
+  size: 97, 86
+  orig: 97, 86
+  offset: 0, 0
+  index: -1

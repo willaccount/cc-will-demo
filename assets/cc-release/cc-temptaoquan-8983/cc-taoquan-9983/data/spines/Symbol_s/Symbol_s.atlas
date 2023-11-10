@@ -1,0 +1,90 @@
+
+Symbol_s.png
+size: 444,270
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Frame
+  rotate: false
+  xy: 2, 112
+  size: 169, 156
+  orig: 169, 156
+  offset: 0, 0
+  index: -1
+Light Frame
+  rotate: false
+  xy: 242, 10
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: -1
+Loc
+  rotate: true
+  xy: 365, 163
+  size: 105, 54
+  orig: 105, 54
+  offset: 0, 0
+  index: -1
+Loc Bright
+  rotate: false
+  xy: 2, 56
+  size: 105, 54
+  orig: 105, 54
+  offset: 0, 0
+  index: -1
+Paper Blue
+  rotate: false
+  xy: 173, 157
+  size: 190, 111
+  orig: 190, 111
+  offset: 0, 0
+  index: -1
+Paper Red
+  rotate: false
+  xy: 173, 44
+  size: 190, 111
+  orig: 190, 111
+  offset: 0, 0
+  index: -1
+Scroll Blue
+  rotate: false
+  xy: 405, 3
+  size: 37, 158
+  orig: 37, 158
+  offset: 0, 0
+  index: -1
+Scroll Blue Bright
+  rotate: true
+  xy: 158, 5
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+Scroll Red
+  rotate: false
+  xy: 365, 2
+  size: 38, 159
+  orig: 38, 159
+  offset: 0, 0
+  index: -1
+Scroll Red Bright
+  rotate: true
+  xy: 200, 5
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+Tai
+  rotate: true
+  xy: 109, 11
+  size: 99, 47
+  orig: 99, 47
+  offset: 0, 0
+  index: -1
+Tai Bright
+  rotate: false
+  xy: 2, 7
+  size: 99, 47
+  orig: 99, 47
+  offset: 0, 0
+  index: -1

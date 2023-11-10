@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "d9b10e21-7af5-4ed7-be0d-3594dc977011",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "FishRoll_Green": {
+      "ver": "1.0.4",
+      "uuid": "5eb1df62-bf14-437e-a9d9-7a90fbde5dda_r",
+      "rawTextureUuid": "d9b10e21-7af5-4ed7-be0d-3594dc977011",
+      "trimType": "auto",
+      "trimThreshold": 0,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 158,
+      "height": 290,
+      "rawWidth": 158,
+      "rawHeight": 290,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

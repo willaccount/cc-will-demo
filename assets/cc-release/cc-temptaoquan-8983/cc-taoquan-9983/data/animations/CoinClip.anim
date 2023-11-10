@@ -1,0 +1,73 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "CoinClip",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.36666666666666664,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "1c51562e-33ac-4ca4-bebb-9fe6cb114955"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "4ff70a9b-44a5-49e3-8add-51339480d99f"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "ad230b05-5ef0-4b43-b352-87acd2050be3"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "bfecf3a3-f65e-4e16-ad90-f10ff85be3f7"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "7ba88499-22aa-4cfd-93f9-0408c80052b6"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "08d73620-6f4c-4f8e-840e-6f6bd87d0091"
+            }
+          },
+          {
+            "frame": 0.26666666666666666,
+            "value": {
+              "__uuid__": "08d73620-6f4c-4f8e-840e-6f6bd87d0091"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "a1bad678-ff7a-4140-9e8b-b8919132d222"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "1c51562e-33ac-4ca4-bebb-9fe6cb114955"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

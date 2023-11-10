@@ -1,0 +1,83 @@
+
+Symbol_2.png
+size: 791,306
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG
+  rotate: false
+  xy: 631, 155
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 470, 153
+  size: 159, 151
+  orig: 159, 151
+  offset: 0, 0
+  index: -1
+Frame
+  rotate: false
+  xy: 470, 2
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Frame_Bright
+  rotate: false
+  xy: 631, 4
+  size: 158, 149
+  orig: 158, 149
+  offset: 0, 0
+  index: -1
+Hair_Bund
+  rotate: false
+  xy: 356, 57
+  size: 20, 31
+  orig: 20, 31
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 254, 2
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+Light
+  rotate: false
+  xy: 2, 54
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+Light_Ray
+  rotate: false
+  xy: 254, 90
+  size: 214, 214
+  orig: 214, 214
+  offset: 0, 0
+  index: -1
+String_Left
+  rotate: true
+  xy: 2, 37
+  size: 15, 118
+  orig: 15, 118
+  offset: 0, 0
+  index: -1
+String_Right
+  rotate: false
+  xy: 342, 27
+  size: 12, 61
+  orig: 12, 61
+  offset: 0, 0
+  index: -1
+String_Shadow
+  rotate: false
+  xy: 2, 4
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
