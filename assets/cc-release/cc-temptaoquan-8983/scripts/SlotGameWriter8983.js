@@ -43,20 +43,20 @@ cc.Class({
         const { isAutoSpin, modeTurbo } = this.node.gSlotDataStore;
         this.isFastResult = false;
 
-        // if (type != 'freeGameOptionResult') {
+        if (type != 'freeGameOptionResult') {
             listScript.push({
                 command: "_setUpPaylines",
                 data: {matrix, payLines},
             });
-        // }
-        // else {
+        }
+        else {
             listScript.push({
                 command: "_hideCutscene",
                 data: {
                     name: "FreeGameOption",
                 }
             });
-        // }
+        }
 
         //TODO: jackpot
         if (isJackpotWin) {
