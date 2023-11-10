@@ -1,80 +1,80 @@
-2023-11-10T04:39:19.807Z - normal: Load ~/.CocosCreator/settings.json
-2023-11-10T04:39:19.843Z - normal: Initializing Asset Database
-2023-11-10T04:39:19.847Z - normal: checking language setting...
-2023-11-10T04:39:19.847Z - normal: Language: en
-2023-11-10T04:39:20.261Z - success: preview server running at http://localhost:7456
-2023-11-10T04:39:20.272Z - success: protocol editor-framework registered
-2023-11-10T04:39:20.272Z - success: protocol app registered
-2023-11-10T04:39:20.272Z - success: protocol theme registered
-2023-11-10T04:39:20.272Z - success: protocol packages registered
-2023-11-10T04:39:20.272Z - success: protocol uuid registerred
-2023-11-10T04:39:20.272Z - success: protocol db registerred
-2023-11-10T04:39:20.272Z - success: protocol thumbnail registerred
-2023-11-10T04:39:20.272Z - success: protocol unpack registerred
-2023-11-10T04:39:20.273Z - success: protocol disable-commonjs registerred
-2023-11-10T04:39:21.985Z - normal: connected!
-2023-11-10T04:39:21.986Z - normal: Check project /Users/fe-trungnghia/cc-will-demo
-2023-11-10T04:39:21.987Z - normal: Initializing project /Users/fe-trungnghia/cc-will-demo
-2023-11-10T04:39:22.230Z - normal: Initializing Cocos2d
-2023-11-10T04:39:22.655Z - normal: Initializing engine extends
-2023-11-10T04:39:22.715Z - success: alipay-adapter loaded
-2023-11-10T04:39:22.734Z - success: asset-db-debugger loaded
-2023-11-10T04:39:22.737Z - success: baidu-adapter loaded
-2023-11-10T04:39:22.740Z - success: color-picker loaded
-2023-11-10T04:39:22.841Z - success: fb-audience-network loaded
-2023-11-10T04:39:22.871Z - success: fb-live-stream loaded
-2023-11-10T04:39:22.873Z - success: google-play-instant loaded
-2023-11-10T04:39:22.876Z - success: huawei-runtime loaded
-2023-11-10T04:39:23.013Z - success: cpk-publish loaded
-2023-11-10T04:39:23.014Z - success: jsb-adapter loaded
-2023-11-10T04:39:23.016Z - success: oppo-runtime loaded
-2023-11-10T04:39:23.028Z - success: package-manager loaded
-2023-11-10T04:39:23.095Z - success: qqplay-adapter loaded
-2023-11-10T04:39:23.096Z - success: runtime-dev-tools loaded
-2023-11-10T04:39:23.109Z - success: sdkbox loaded
-2023-11-10T04:39:23.115Z - success: tester loaded
-2023-11-10T04:39:23.118Z - success: ui-kit-preview-extra loaded
-2023-11-10T04:39:23.122Z - success: ui-kit-preview loaded
-2023-11-10T04:39:23.134Z - success: ui-kit loaded
-2023-11-10T04:39:23.139Z - success: vivo-runtime loaded
-2023-11-10T04:39:23.139Z - success: weapp-adapter loaded
-2023-11-10T04:39:23.140Z - success: xiaomi-adapter loaded
-2023-11-10T04:39:23.141Z - success: alipay-minigame loaded
-2023-11-10T04:39:23.179Z - success: assets loaded
-2023-11-10T04:39:23.184Z - success: builder loaded
-2023-11-10T04:39:23.349Z - success: cocos-services loaded
-2023-11-10T04:39:23.356Z - success: console loaded
-2023-11-10T04:39:23.387Z - success: fb-instant-games loaded
-2023-11-10T04:39:23.400Z - success: game-window loaded
-2023-11-10T04:39:23.401Z - success: google-instant-games loaded
-2023-11-10T04:39:23.407Z - success: hierarchy loaded
-2023-11-10T04:39:23.419Z - success: inspector loaded
-2023-11-10T04:39:23.420Z - success: keystore loaded
-2023-11-10T04:39:23.434Z - success: node-library loaded
-2023-11-10T04:39:23.435Z - success: package-asset loaded
-2023-11-10T04:39:23.436Z - success: preferences loaded
-2023-11-10T04:39:23.441Z - success: project-exporter loaded
-2023-11-10T04:39:23.455Z - success: project-importer loaded
-2023-11-10T04:39:23.470Z - success: project-settings loaded
-2023-11-10T04:39:23.483Z - success: scene loaded
-2023-11-10T04:39:23.484Z - success: simulator-debugger loaded
-2023-11-10T04:39:23.485Z - success: sprite-editor loaded
-2023-11-10T04:39:23.498Z - success: store loaded
-2023-11-10T04:39:23.506Z - success: timeline loaded
-2023-11-10T04:39:23.516Z - success: xiaomi-runtime loaded
-2023-11-10T04:39:23.553Z - success: generate-loc-scene loaded
-2023-11-10T04:39:23.567Z - success: pack-textures loaded
-2023-11-10T04:39:23.587Z - normal: ===========Loaded rng-clone-games===========
-2023-11-10T04:39:23.599Z - success: rng-clone-games loaded
-2023-11-10T04:39:23.604Z - success: slot loaded
-2023-11-10T04:39:23.616Z - success: unpack-textures-modify-prefab loaded
-2023-11-10T04:39:27.869Z - info: Cocos Services load base data!
-2023-11-10T04:39:36.682Z - normal: Loading packages
-2023-11-10T04:39:36.688Z - normal: Watching packages
-2023-11-10T04:39:36.785Z - normal: Run Application
-2023-11-10T04:39:43.079Z - normal: VERSION GAME 1.0.0
-2023-11-10T04:39:43.146Z - normal: VERSION GAME 1.0.0
-2023-11-10T04:39:43.398Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
+2023-11-10T04:45:48.173Z - normal: Load ~/.CocosCreator/settings.json
+2023-11-10T04:45:48.207Z - normal: Initializing Asset Database
+2023-11-10T04:45:48.211Z - normal: checking language setting...
+2023-11-10T04:45:48.212Z - normal: Language: en
+2023-11-10T04:45:48.619Z - success: preview server running at http://localhost:7456
+2023-11-10T04:45:48.631Z - success: protocol editor-framework registered
+2023-11-10T04:45:48.631Z - success: protocol app registered
+2023-11-10T04:45:48.631Z - success: protocol theme registered
+2023-11-10T04:45:48.631Z - success: protocol packages registered
+2023-11-10T04:45:48.631Z - success: protocol uuid registerred
+2023-11-10T04:45:48.631Z - success: protocol db registerred
+2023-11-10T04:45:48.631Z - success: protocol thumbnail registerred
+2023-11-10T04:45:48.631Z - success: protocol unpack registerred
+2023-11-10T04:45:48.632Z - success: protocol disable-commonjs registerred
+2023-11-10T04:45:50.324Z - normal: connected!
+2023-11-10T04:45:50.325Z - normal: Check project /Users/fe-trungnghia/cc-will-demo
+2023-11-10T04:45:50.326Z - normal: Initializing project /Users/fe-trungnghia/cc-will-demo
+2023-11-10T04:45:50.566Z - normal: Initializing Cocos2d
+2023-11-10T04:45:50.979Z - normal: Initializing engine extends
+2023-11-10T04:45:50.997Z - success: alipay-adapter loaded
+2023-11-10T04:45:51.005Z - success: asset-db-debugger loaded
+2023-11-10T04:45:51.007Z - success: baidu-adapter loaded
+2023-11-10T04:45:51.012Z - success: color-picker loaded
+2023-11-10T04:45:51.101Z - success: fb-audience-network loaded
+2023-11-10T04:45:51.128Z - success: fb-live-stream loaded
+2023-11-10T04:45:51.130Z - success: google-play-instant loaded
+2023-11-10T04:45:51.132Z - success: huawei-runtime loaded
+2023-11-10T04:45:51.262Z - success: cpk-publish loaded
+2023-11-10T04:45:51.262Z - success: jsb-adapter loaded
+2023-11-10T04:45:51.265Z - success: oppo-runtime loaded
+2023-11-10T04:45:51.268Z - success: package-manager loaded
+2023-11-10T04:45:51.331Z - success: qqplay-adapter loaded
+2023-11-10T04:45:51.332Z - success: runtime-dev-tools loaded
+2023-11-10T04:45:51.335Z - success: sdkbox loaded
+2023-11-10T04:45:51.338Z - success: tester loaded
+2023-11-10T04:45:51.340Z - success: ui-kit-preview-extra loaded
+2023-11-10T04:45:51.342Z - success: ui-kit-preview loaded
+2023-11-10T04:45:51.344Z - success: ui-kit loaded
+2023-11-10T04:45:51.347Z - success: vivo-runtime loaded
+2023-11-10T04:45:51.348Z - success: weapp-adapter loaded
+2023-11-10T04:45:51.348Z - success: xiaomi-adapter loaded
+2023-11-10T04:45:51.350Z - success: alipay-minigame loaded
+2023-11-10T04:45:51.380Z - success: assets loaded
+2023-11-10T04:45:51.382Z - success: builder loaded
+2023-11-10T04:45:51.535Z - success: cocos-services loaded
+2023-11-10T04:45:51.540Z - success: console loaded
+2023-11-10T04:45:51.562Z - success: fb-instant-games loaded
+2023-11-10T04:45:51.565Z - success: game-window loaded
+2023-11-10T04:45:51.566Z - success: google-instant-games loaded
+2023-11-10T04:45:51.570Z - success: hierarchy loaded
+2023-11-10T04:45:51.572Z - success: inspector loaded
+2023-11-10T04:45:51.573Z - success: keystore loaded
+2023-11-10T04:45:51.576Z - success: node-library loaded
+2023-11-10T04:45:51.577Z - success: package-asset loaded
+2023-11-10T04:45:51.577Z - success: preferences loaded
+2023-11-10T04:45:51.579Z - success: project-exporter loaded
+2023-11-10T04:45:51.582Z - success: project-importer loaded
+2023-11-10T04:45:51.585Z - success: project-settings loaded
+2023-11-10T04:45:51.588Z - success: scene loaded
+2023-11-10T04:45:51.588Z - success: simulator-debugger loaded
+2023-11-10T04:45:51.589Z - success: sprite-editor loaded
+2023-11-10T04:45:51.592Z - success: store loaded
+2023-11-10T04:45:51.596Z - success: timeline loaded
+2023-11-10T04:45:51.598Z - success: xiaomi-runtime loaded
+2023-11-10T04:45:51.623Z - success: generate-loc-scene loaded
+2023-11-10T04:45:51.627Z - success: pack-textures loaded
+2023-11-10T04:45:51.634Z - normal: ===========Loaded rng-clone-games===========
+2023-11-10T04:45:51.634Z - success: rng-clone-games loaded
+2023-11-10T04:45:51.636Z - success: slot loaded
+2023-11-10T04:45:51.638Z - success: unpack-textures-modify-prefab loaded
+2023-11-10T04:45:59.871Z - normal: Loading packages
+2023-11-10T04:45:59.884Z - normal: Watching packages
+2023-11-10T04:46:00.012Z - normal: Run Application
+2023-11-10T04:46:00.343Z - info: Cocos Services load base data!
+2023-11-10T04:46:06.309Z - normal: VERSION GAME 1.0.0
+2023-11-10T04:46:06.378Z - normal: VERSION GAME 1.0.0
+2023-11-10T04:46:06.634Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
     at Module._resolveFilename (module.js:470:15)
     at Function.Module._resolveFilename [as _resolveFilenameVendor] (/Applications/CocosCreator.app/Contents/Resources/electron.asar/common/reset-search-paths.js:35:12)
     at Function.s._resolveFilename (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:941)
@@ -85,7 +85,7 @@
     at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:1:382
     at __define (/Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:8:24)
     at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:160:13
-2023-11-10T04:39:43.399Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
+2023-11-10T04:46:06.635Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
     at Module._resolveFilename (module.js:470:15)
     at Function.Module._resolveFilename [as _resolveFilenameVendor] (/Applications/CocosCreator.app/Contents/Resources/electron.asar/common/reset-search-paths.js:35:12)
     at Function.s._resolveFilename (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:941)
@@ -96,28 +96,3 @@
     at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:1:377
     at __define (/Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:8:24)
     at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:135:13
-2023-11-10T04:40:21.411Z - normal: VERSION GAME 1.0.0
-2023-11-10T04:40:21.428Z - normal: VERSION GAME 1.0.0
-2023-11-10T04:40:21.554Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
-    at Module._resolveFilename (module.js:470:15)
-    at Function.Module._resolveFilename [as _resolveFilenameVendor] (/Applications/CocosCreator.app/Contents/Resources/electron.asar/common/reset-search-paths.js:35:12)
-    at Function.s._resolveFilename (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:941)
-    at Function.Module._load (module.js:418:25)
-    at Module.require (module.js:498:17)
-    at require (internal/module.js:20:19)
-    at Object.cc.require (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:589)
-    at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:1:382
-    at __define (/Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:8:24)
-    at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Broadcaster.js:160:13
-2023-11-10T04:40:21.554Z - failed: load script [livekit-client] failed : Error: Cannot find module 'livekit-client'
-    at Module._resolveFilename (module.js:470:15)
-    at Function.Module._resolveFilename [as _resolveFilenameVendor] (/Applications/CocosCreator.app/Contents/Resources/electron.asar/common/reset-search-paths.js:35:12)
-    at Function.s._resolveFilename (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:941)
-    at Function.Module._load (module.js:418:25)
-    at Module.require (module.js:498:17)
-    at require (internal/module.js:20:19)
-    at Object.cc.require (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/project-scripts.js:1:589)
-    at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:1:377
-    at __define (/Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:8:24)
-    at /Users/fe-trungnghia/cc-will-demo/temp/quick-scripts/assets/cc-slot-base-test/Streaming/scripts/Player.js:135:13
-2023-11-10T04:43:13.444Z - info: shutdown preview server
