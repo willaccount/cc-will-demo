@@ -4,7 +4,7 @@ cc.Class({
     extends: SlotGameWriter,
 
     makeScriptResultReceive() {
-        const {matrix, jpInfo} = this.node.gSlotDataStore.lastEvent;
+        const { matrix, jpInfo } = this.node.gSlotDataStore.lastEvent;
 
         let listScript = [];
 
@@ -13,7 +13,7 @@ cc.Class({
                 command: "_pauseUpdateJP"
             });
         }
-        
+
         listScript.push({
             command: "_resultReceive",
             data: matrix,
@@ -33,9 +33,9 @@ cc.Class({
             bonusGame, freeGame
         } = this.node.gSlotDataStore.lastEvent;
 
-        const {winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount} = this.node.gSlotDataStore.playSession;
-        const {fsor: freeSpinOption} = this.node.gSlotDataStore.playSession.extend;
-        const {currentBetData} = this.node.gSlotDataStore.slotBetDataStore.data;
+        const { winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount } = this.node.gSlotDataStore.playSession;
+        const { fsor: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
+        const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
         const isSessionEnded = !bonusGame && !freeGameRemain;
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !isJackpotWin;
@@ -46,7 +46,7 @@ cc.Class({
         if (type != 'freeGameOptionResult') {
             listScript.push({
                 command: "_setUpPaylines",
-                data: {matrix, payLines},
+                data: { matrix, payLines },
             });
         }
         else {
@@ -66,7 +66,7 @@ cc.Class({
             });
             listScript.push({
                 command: "_showUnskippedCutscene",
-                data:{
+                data: {
                     name: "JackpotWin",
                     content: {
                         winAmount: winJackpotAmount,
@@ -78,10 +78,8 @@ cc.Class({
                 command: "_resumeUpdateJP",
             });
         }
-        else
-        {
-            if (isBigwin)
-            {
+        else {
+            if (isBigwin) {
                 if (isSessionEnded && modeTurbo && !isAutoSpin && !this.isFastResult) {
                     this.isFastResult = true;
                     listScript.push({
@@ -106,11 +104,10 @@ cc.Class({
         }
 
         if (type == "normalGame") {
-            const {spinTimes} = this.node.gSlotDataStore;
+            const { spinTimes } = this.node.gSlotDataStore;
             if (bonusGame && bonusGame > 0) {
-                listScript.push({command: '_updateLastWin', data:false});
-                if (winAmount && winAmount > 0)
-                {
+                listScript.push({ command: '_updateLastWin', data: false });
+                if (winAmount && winAmount > 0) {
                     listScript.push({
                         command: '_updateWinningAmount',
                         data: {
@@ -128,11 +125,11 @@ cc.Class({
                 });
                 listScript.push({
                     command: "_newGameMode",
-                    data: {name: "bonusGame",},
+                    data: { name: "bonusGame", },
                 });
                 listScript.push({
                     command: "_resumeGameMode",
-                    data: {name: "normalGame",},
+                    data: { name: "normalGame", },
                 });
                 if (!freeGame && spinTimes && spinTimes > 0) {
                     listScript.push({
@@ -141,9 +138,9 @@ cc.Class({
                     });
                 }
             }
-            
+
             if ((freeSpinOption && freeSpinOption > 0) || (freeGame && freeGame > 0)) {
-                const {spinTimes} = this.node.gSlotDataStore;
+                const { spinTimes } = this.node.gSlotDataStore;
                 listScript.push({
                     command: '_updateLastWin',
                     data: false
@@ -152,7 +149,7 @@ cc.Class({
                     if (winAmountPlaySession && winAmountPlaySession > 0) {
                         listScript.push({
                             command: '_updateWinningAmount',
-                            data: {winAmount: winAmountPlaySession, time: 10}
+                            data: { winAmount: winAmountPlaySession, time: 10 }
                         });
                     } else {
                         listScript.push({
@@ -173,11 +170,11 @@ cc.Class({
                 }
                 listScript.push({
                     command: "_newGameMode",
-                    data: {name: "freeGame", data: matrix},
+                    data: { name: "freeGame", data: matrix },
                 });
                 listScript.push({
                     command: "_resumeGameMode",
-                    data: {name: "normalGame",},
+                    data: { name: "normalGame", },
                 });
 
                 if (spinTimes && spinTimes > 0) {
@@ -195,10 +192,8 @@ cc.Class({
                 //     });
                 // }
             }
-            if (payLines && payLines.length > 0)
-            {
-                if (!isBigwin)
-                {
+            if (payLines && payLines.length > 0) {
+                if (!isBigwin) {
                     listScript.push({
                         command: "_blinkAllPaylines",
                     });
@@ -207,8 +202,7 @@ cc.Class({
                     command: "_showNormalPayline",
                 });
             }
-            else
-            {
+            else {
                 listScript.push({
                     command: "_clearPaylines",
                 });
@@ -230,12 +224,10 @@ cc.Class({
     },
 
     scriptUpdateWinAmount(listScript) {
-        const {winAmount: winAmountPlaySession} = this.node.gSlotDataStore.playSession;
-        const {winAmount} = this.node.gSlotDataStore.lastEvent;
-        if (winAmount && winAmount > 0)
-        {
-            if (winAmountPlaySession == winAmount)
-            {
+        const { winAmount: winAmountPlaySession } = this.node.gSlotDataStore.playSession;
+        const { winAmount } = this.node.gSlotDataStore.lastEvent;
+        if (winAmount && winAmount > 0) {
+            if (winAmountPlaySession == winAmount) {
                 listScript.push({
                     command: "_clearWinAmount"
                 });
@@ -246,15 +238,15 @@ cc.Class({
             }
             listScript.push({
                 command: "_updateWinningAmount",
-                data: {winAmount: winAmountPlaySession, time: 300}
+                data: { winAmount: winAmountPlaySession, time: 300 }
             });
         }
     },
 
     makeScriptGameRestart() {
         const listScript = [];
-        const {freeGameRemain} = this.node.gSlotDataStore.playSession;
-        const {spinTimes, promotion, promotionRemain} = this.node.gSlotDataStore;
+        const { freeGameRemain } = this.node.gSlotDataStore.playSession;
+        const { spinTimes, promotion, promotionRemain } = this.node.gSlotDataStore;
 
         this.scriptUpdateWinAmount(listScript);
         if (promotion && promotion > 0) {
@@ -268,11 +260,11 @@ cc.Class({
         }
 
         if (spinTimes && spinTimes > 0) {
-            if(freeGameRemain && freeGameRemain > 0){
+            if (freeGameRemain && freeGameRemain > 0) {
                 listScript.push({
                     command: "_runAutoSpin"
                 });
-            }else if(!promotion){
+            } else if (!promotion) {
                 listScript.push({
                     command: "_runAutoSpin"
                 });
@@ -294,4 +286,23 @@ cc.Class({
         }
         return listScript;
     },
+
+    makeScriptSpinClick() {
+        let { slotBetDataStore } = this.node.gSlotDataStore;
+        let { currentBetData, steps, currentExtraBetData, extraSteps } = slotBetDataStore.data;
+        cc.log("spinning.")
+        let listScript = [];
+        listScript.push({
+            command: "_showCutscene",
+            data: {
+                name: "WinEffect",
+                content: {
+                    winAmount: 10000000,
+                    currentBetData,
+                }
+            }
+        });
+        return listScript
+    }
+
 });
