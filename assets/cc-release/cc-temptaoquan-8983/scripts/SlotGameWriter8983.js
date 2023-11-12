@@ -201,6 +201,8 @@ cc.Class({
                 listScript.push({
                     command: "_showNormalPayline",
                 });
+
+                this.makeScriptShowWildMultiplier(listScript);
             }
             else {
                 listScript.push({
@@ -223,85 +225,52 @@ cc.Class({
         return listScript;
     },
 
-    scriptUpdateWinAmount(listScript) {
-        const { winAmount: winAmountPlaySession } = this.node.gSlotDataStore.playSession;
-        const { winAmount } = this.node.gSlotDataStore.lastEvent;
-        if (winAmount && winAmount > 0) {
-            if (winAmountPlaySession == winAmount) {
+    makeScriptShowWildMultiplier(listScript) {
+        const { payLines, winAmount, jpInfo, nwm, matrix } = this.node.gSlotDataStore.lastEvent;
+        const winAmountPlaySession = this.node.gSlotDataStore.playSession.winAmount;
+        const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
+        const { spinTimes, gameSpeed } = this.node.gSlotDataStore;
+        const isFTR = gameSpeed === this.node.config.GAME_SPEED.INSTANTLY;
+        const showBigWin = winAmount && winAmount >= currentBetData * 10 && !jpInfo;
+
+        if (showBigWin) {
+            listScript.push({
+                command: "_showAllPayLine",
+            });
+            if (nwm && nwm > 1) {
                 listScript.push({
-                    command: "_clearWinAmount"
-                });
-                listScript.push({
-                    command: "_updateLastWin",
-                    data: false
+                    command: "_showWildMultiplier",
+                    data: {
+                        name: "WildTransition",
+                        content: {
+                            matrix,
+                            isNormal: true,
+                            nwm,
+                            isShowBigwin: showBigWin
+                        }
+                    }
                 });
             }
-            listScript.push({
-                command: "_updateWinningAmount",
-                data: { winAmount: winAmountPlaySession, time: 300 }
-            });
         }
-    },
-
-    makeScriptGameRestart() {
-        const listScript = [];
-        const { freeGameRemain } = this.node.gSlotDataStore.playSession;
-        const { spinTimes, promotion, promotionRemain } = this.node.gSlotDataStore;
-
-        this.scriptUpdateWinAmount(listScript);
-        if (promotion && promotion > 0) {
-            listScript.push({
-                command: "_showTrialButtons",
-                data: false,
-            });
-            listScript.push({
-                command: "_resetPromotionButtons"
-            });
-        }
-
-        if (spinTimes && spinTimes > 0) {
-            if (freeGameRemain && freeGameRemain > 0) {
+        else {
+            if (nwm && nwm > 1) {
                 listScript.push({
-                    command: "_runAutoSpin"
-                });
-            } else if (!promotion) {
-                listScript.push({
-                    command: "_runAutoSpin"
+                    command: "_showWildMultiplier",
+                    data: {
+                        name: "WildTransition",
+                        content: {
+                            matrix,
+                            isNormal: true,
+                            nwm,
+                            isShowBigwin: showBigWin
+                        }
+                    }
                 });
             }
-        } else {
-            if (!promotionRemain || promotionRemain <= 0) {
-                listScript.push({
-                    command: '_enableBet'
-                });
-                listScript.push({
-                    command: "_exitPromotionMode"
-                });
-                listScript.push({
-                    command: "_showTrialButtons",
-                    data: true
-                });
-            }
-
         }
-        return listScript;
-    },
-
-    makeScriptSpinClick() {
-        let { slotBetDataStore } = this.node.gSlotDataStore;
-        let { currentBetData, steps, currentExtraBetData, extraSteps } = slotBetDataStore.data;
-        let listScript = [];
         listScript.push({
-            command: "_showCutscene",
-            data: {
-                name: "WinEffect",
-                content: {
-                    winAmount: 10000000,
-                    currentBetData,
-                }
-            }
+            command: "_showEachPayLine",
         });
-        return listScript
-    }
 
+    },
 });
