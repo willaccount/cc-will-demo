@@ -43,7 +43,7 @@
                 "children": [
                   "scene"
                 ],
-                "height": 525,
+                "height": 523.984375,
                 "type": "panel",
                 "width": 856
               },
@@ -54,7 +54,7 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 404,
+                "height": 405,
                 "type": "panel",
                 "width": 856
               }

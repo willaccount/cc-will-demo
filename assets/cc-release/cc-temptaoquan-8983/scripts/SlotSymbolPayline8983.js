@@ -15,17 +15,35 @@ cc.Class({
             }
         }
         else {
-            this.node.opacity = 255;
-
             this.staticSymbol.opacity = 255;
             this.staticSymbol.active = true;
             this.staticSymbol.scale = 1;
             this.spineNode.opacity = 0;
+            this.node.opacity = 255;
+            this.displayWinEffect();
             cc.tween(this.staticSymbol)
                 .to(0.5, { scale: 1.1 })
                 .to(0.5, { scale: 1 })
                 .repeatForever()
                 .start();
         }
+    },
+
+    stopAnimation() {
+        this.staticSymbol.stopAllActions();
+        this.staticSymbol.scale = 1;
+        this.staticSymbol.active = false;
+        this.spineNode.active = false;
+
+        this.hideWinEffect();
+    },
+
+    displayWinEffect() {
+        this.winEffect.active = true;
+        this.winEffect.playAnimation("WinLineAnim");
+    },
+
+    hideWinEffect() {
+        this.winEffect.active = false;
     },
 });
