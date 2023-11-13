@@ -159,7 +159,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 345.54413610999103
+      "z": 413.9601430089617
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -28229,6 +28229,8 @@
     "pageViewNode": {
       "__id__": 606
     },
+    "infoPanel": null,
+    "infoPanelIndex": 5,
     "_id": "65uhfl5xZHdbgczkPGF5ET"
   },
   {
@@ -35786,6 +35788,7 @@
       "__id__": 176
     },
     "bonusGame": null,
+    "gameText": null,
     "gameTrialSupport": false,
     "realWalletAmount": null,
     "trialWalletAmount": null,
@@ -35794,6 +35797,7 @@
     "jackpotHistory": {
       "__id__": 300
     },
+    "betHistory": null,
     "backgroundLoading": null,
     "tutorialData": null,
     "tutorialMgr": null,
