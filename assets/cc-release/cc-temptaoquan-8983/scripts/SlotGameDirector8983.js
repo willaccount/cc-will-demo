@@ -25,4 +25,16 @@ cc.Class({
         this._super(script);
         this.wildMultiplier.emit('HIDE_MULTIPLIER');
     },
+
+    _showResultFreeGameOption(script, data) {
+        const { name, content } = data;
+        if (this.node.mainDirector) {
+            this.node.mainDirector.showCutscene(name, content, () => {
+                this.executeNextScript(script);
+            });
+        } else {
+            cc.error('There is no main Director to play cutscenes');
+            this.executeNextScript(script);
+        }
+    },
 });

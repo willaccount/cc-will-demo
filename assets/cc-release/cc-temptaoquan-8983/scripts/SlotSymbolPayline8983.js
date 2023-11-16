@@ -6,7 +6,7 @@ cc.Class({
         if (this.havingAnim) {
             this.spineNode.opacity = 255;
             this.spineNode.active = true;
-            this.staticSymbol.opacity = 0;
+            this.staticSymbol.opacity = 0
             if (this.animation.findAnimation("animation")) {
                 this.animation.setAnimation(0, "animation", isNearWin);
                 this.animation.timeScale = NORMAL_DURATION / duration;
@@ -40,7 +40,7 @@ cc.Class({
 
     displayWinEffect() {
         this.winEffect.active = true;
-        this.winEffect.playAnimation("WinLineAnim");
+        this.winEffect.getComponent(cc.Animation).play("WinLineAnim");
     },
 
     hideWinEffect() {

@@ -62,6 +62,10 @@ cc.Class({
             SYMBOL_SMALL_NAME_LIST: ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q'],
             SYMBOL_WIDTH: 160,
             SYMBOL_HEIGHT: 161,
+
+            SYMBOL_MYTHICAL_WIDTH: 120,
+            SYMBOL_MYTHICAL_HEIGHT: 90,
+
             SYMBOL_MARGIN_RIGHT: 0,
             GAME_ID: '9983',
             JP_PREFIX_EVENT: 'TQUAN_JP_',

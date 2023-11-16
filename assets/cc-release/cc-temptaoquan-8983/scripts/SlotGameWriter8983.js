@@ -30,11 +30,13 @@ cc.Class({
     makeScriptShowResults() {
         const {
             type, matrix, winAmount, payLines, payLineJackPot,
-            bonusGame, freeGame
+            bonusGame, freeGame, freeGameOption, freeSpinOptionID
         } = this.node.gSlotDataStore.lastEvent;
 
+        const { spinAmount, spinAmountIndex, multiplierIndex } = this.node.gSlotDataStore.lastEvent.freeSpinOptionID;
+
         const { winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount } = this.node.gSlotDataStore.playSession;
-        const { fsor: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
+        const { fgo: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
         const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
         const isSessionEnded = !bonusGame && !freeGameRemain;
@@ -51,11 +53,17 @@ cc.Class({
         }
         else {
             listScript.push({
-                command: "_hideCutscene",
+                command: "_showResultFreeGameOption",
                 data: {
                     name: "FreeGameOption",
+                    content: {
+                        spinAmount,
+                        spinAmountIndex,
+                        multiplierIndex
+                    },
                 }
             });
+            debugger;
         }
 
         //TODO: jackpot
@@ -105,61 +113,61 @@ cc.Class({
 
         if (type == "normalGame") {
             const { spinTimes } = this.node.gSlotDataStore;
-            if (bonusGame && bonusGame > 0) {
-                listScript.push({ command: '_updateLastWin', data: false });
-                if (winAmount && winAmount > 0) {
-                    listScript.push({
-                        command: '_updateWinningAmount',
-                        data: {
-                            winAmount: winAmountPlaySession,
-                            time: 300
-                        }
-                    });
-                } else {
-                    listScript.push({
-                        command: '_clearWinAmount'
-                    });
-                }
-                listScript.push({
-                    command: "_showBonusPayLine",
-                });
-                listScript.push({
-                    command: "_newGameMode",
-                    data: { name: "bonusGame", },
-                });
-                listScript.push({
-                    command: "_resumeGameMode",
-                    data: { name: "normalGame", },
-                });
-                if (!freeGame && spinTimes && spinTimes > 0) {
-                    listScript.push({
-                        command: "_resumeSpinTime",
-                        data: spinTimes,
-                    });
-                }
-            }
+            // if (bonusGame && bonusGame > 0) {
+            //     listScript.push({ command: '_updateLastWin', data: false });
+            //     if (winAmount && winAmount > 0) {
+            //         listScript.push({
+            //             command: '_updateWinningAmount',
+            //             data: {
+            //                 winAmount: winAmountPlaySession,
+            //                 time: 300
+            //             }
+            //         });
+            //     } else {
+            //         listScript.push({
+            //             command: '_clearWinAmount'
+            //         });
+            //     }
+            //     listScript.push({
+            //         command: "_showBonusPayLine",
+            //     });
+            //     listScript.push({
+            //         command: "_newGameMode",
+            //         data: { name: "bonusGame", },
+            //     });
+            //     listScript.push({
+            //         command: "_resumeGameMode",
+            //         data: { name: "normalGame", },
+            //     });
+            //     if (!freeGame && spinTimes && spinTimes > 0) {
+            //         listScript.push({
+            //             command: "_resumeSpinTime",
+            //             data: spinTimes,
+            //         });
+            //     }
+            // }
 
             if ((freeSpinOption && freeSpinOption > 0) || (freeGame && freeGame > 0)) {
-                const { spinTimes } = this.node.gSlotDataStore;
-                listScript.push({
-                    command: '_updateLastWin',
-                    data: false
-                });
-                if (!bonusGame) {
-                    if (winAmountPlaySession && winAmountPlaySession > 0) {
-                        listScript.push({
-                            command: '_updateWinningAmount',
-                            data: { winAmount: winAmountPlaySession, time: 10 }
-                        });
-                    } else {
-                        listScript.push({
-                            command: '_clearWinAmount'
-                        });
-                    }
-                }
-                listScript.push({
-                    command: "_showScatterPayLine",
-                });
+                // const { spinTimes } = this.node.gSlotDataStore;
+                // listScript.push({
+                //     command: '_updateLastWin',
+                //     data: false
+                // });
+                // if (!bonusGame) {
+                //     if (winAmountPlaySession && winAmountPlaySession > 0) {
+                //         listScript.push({
+                //             command: '_updateWinningAmount',
+                //             data: { winAmount: winAmountPlaySession, time: 10 }
+                //         });
+                //     } else {
+                //         listScript.push({
+                //             command: '_clearWinAmount'
+                //         });
+                //     }
+                // }
+                // listScript.push({
+                //     command: "_showScatterPayLine",
+                // });
                 if (freeSpinOption && freeSpinOption > 0) {
                     listScript.push({
                         command: "_showCutscene",
@@ -168,21 +176,21 @@ cc.Class({
                         }
                     });
                 }
-                listScript.push({
-                    command: "_newGameMode",
-                    data: { name: "freeGame", data: matrix },
-                });
-                listScript.push({
-                    command: "_resumeGameMode",
-                    data: { name: "normalGame", },
-                });
+                // listScript.push({
+                //     command: "_newGameMode",
+                //     data: { name: "freeGame", data: matrix },
+                // });
+                // listScript.push({
+                //     command: "_resumeGameMode",
+                //     data: { name: "normalGame", },
+                // });
 
-                if (spinTimes && spinTimes > 0) {
-                    listScript.push({
-                        command: "_resumeSpinTime",
-                        data: spinTimes,
-                    });
-                }
+                // if (spinTimes && spinTimes > 0) {
+                //     listScript.push({
+                //         command: "_resumeSpinTime",
+                //         data: spinTimes,
+                //     });
+                // }
             }
             if (!isAutoSpin && !this.isFastResult) {
                 // if (!isBigwin || !isSessionEnded || !modeTurbo) {

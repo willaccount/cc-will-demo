@@ -14,7 +14,7 @@ cc.Class({
         this.initBase();
     },
     start(){
-        this.localizeText();
+        // this.localizeText();
     },
     localizeText() {
         if (this.node.config.MESSAGE_DIALOG) {
