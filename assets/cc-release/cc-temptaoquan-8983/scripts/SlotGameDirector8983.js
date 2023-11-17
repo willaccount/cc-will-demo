@@ -37,4 +37,15 @@ cc.Class({
             this.executeNextScript(script);
         }
     },
+
+    _hideCutScene(script, { name }) {
+        if (this.node.mainDirector) {
+            this.node.mainDirector.hideCutscene(name, () => {
+                this.executeNextScript(script);
+            });
+        } else {
+            cc.error('There is no main Director to play cutscenes');
+            this.executeNextScript(script);
+        }
+    },
 });

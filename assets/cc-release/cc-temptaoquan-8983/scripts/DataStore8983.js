@@ -6,24 +6,23 @@ cc.Class({
         this.node.gSlotDataStore.playSession = playSession;
         let lastEvent;
 
-        const {normalGameResult, freeGameResult, bonusGameResult, freeSpinOptionResult, freeSpinOptionID} = playSession.lastEvent;
+        const {normalGameResult, freeGameResult, bonusGameResult, freeSpinOptionResult} = playSession.lastEvent;
         const {bonusGameRemain, extend, bonusGameMatrix} = playSession;
         let tableFormat = TABLE_FORMAT;
 
-        if (bonusGameResult) {
-            lastEvent = bonusGameResult;
-            lastEvent.type = "bonusGame";
-        } 
-        else if (freeSpinOptionResult) {
+        if (freeSpinOptionResult) {
+            const { fsoi: freeSpinOptionID } = playSession.lastEvent.freeSpinOptionResult;
             lastEvent = freeSpinOptionResult;
             lastEvent.type = "freeGameOptionResult";
             if(freeSpinOptionID) {
-                let freeSpinOptionResults = freeSpinOptionResult.split(';')
-                lastEvent.freeSpinOptionResult = {
-                    spinAmount: freeSpinOptionResults[0],
-                    spinAmountIndex: freeSpinOptionResults[1],
-                    multiplierIndex: freeSpinOptionResults[2],
+                let selectedInfo = freeSpinOptionID.split(';');
+
+                const optionResult = {
+                    spinAmount: Number(selectedInfo[0]),
+                    spinAmountIndex: Number(selectedInfo[1]),
+                    multiplierIndex: Number(selectedInfo[2]),
                 };
+                lastEvent.optionResult = optionResult;
             }
         }
         else if (freeGameResult) {
@@ -42,8 +41,6 @@ cc.Class({
                 tableFormat = normalGameTableFormat;
         }
 
-        lastEvent = this._mapNewKeys(lastEvent);
-
         if (lastEvent.matrix) {
             lastEvent.matrix = this.node.gSlotDataStore.convertSlotMatrix(lastEvent.matrix, tableFormat);
         }
@@ -59,6 +56,8 @@ cc.Class({
                 if (it > 0) this.node.gSlotDataStore.playSession.currentBonusCredits += it;
             });
         }
+
+        lastEvent = this._mapNewKeys(lastEvent);
 
         this.node.gSlotDataStore.lastEvent = lastEvent;
         cc.warn("%c data-update ", "color: red", this.node.gSlotDataStore.playSession);

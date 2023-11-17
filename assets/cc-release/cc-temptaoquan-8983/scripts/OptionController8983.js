@@ -17,8 +17,8 @@ cc.Class({
     onLoad() {
         this.spinAmountReel.active = true;
         this.multiplierReel.active = true;
-        this.spinAmountReel.opacity = 255;
-        this.multiplierReel.opacity = 255;
+        this.spinAmountReel.opacity = 0;
+        this.multiplierReel.opacity = 0;
 
         this.node.on("START_SPINNING_MYSTERY_REELS", this.startSpinningMysteryReels, this);
         this.node.on("STOP_SPINNING_MYSTERY_REELS", this.stopSpinningMysteryReel, this);
@@ -52,12 +52,13 @@ cc.Class({
         this.multiplierReel.emit('START_REEL_SPINNING');
     },
 
-    stopSpinningMysteryReel(content) {
-        const callback = () => {
-            this.exit();
+    stopSpinningMysteryReel(content, callback) {
+        const onComplete = () => {
+            this.reset();
+            callback && callback();
         }
-        cc.log('stopSpinningMysteryReel');
-        this.spinAmountReel.emit('STOP_REEL_SPINNING', 0, content, callback);
-        this.multiplierReel.emit('STOP_REEL_SPINNING');
+
+        this.spinAmountReel.emit('STOP_REEL_SPINNING', 0, content, null);
+        this.multiplierReel.emit('STOP_REEL_SPINNING', 0, content, onComplete, true);
     }
 });

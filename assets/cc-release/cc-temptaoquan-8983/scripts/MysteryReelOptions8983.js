@@ -1,6 +1,6 @@
 const lodash = require('lodash');
 
-const OPTION = [0, 1, 2, 3, 4, 5];
+const OPTION = [0, 1, 2, 3, 4, 5];//
 
 cc.Class({
     extends: require('SlotReelv2'),
@@ -8,6 +8,7 @@ cc.Class({
     properties: {
         symbolPrefab: cc.Prefab,
         amountSymbolDisplay: 1,
+        isMultiplierReel: false,
     },
 
     onLoad() {
@@ -20,20 +21,23 @@ cc.Class({
             cc.log("can init in reeloption");
             this.init(this.node.config);
         }
-       
+
     },
 
     init(gameConfig) {
         this.config = gameConfig;
         this.optionList = OPTION;
+        this.showNumber = 1;
         this.totalNumber = this.amountSymbolDisplay + this.config.TABLE_SYMBOL_BUFFER.TOP + this.config.TABLE_SYMBOL_BUFFER.BOT;
         this.symbolStartY = -1 * (this.config.TABLE_SYMBOL_BUFFER.BOT * this.config.SYMBOL_MYTHICAL_HEIGHT);
+        this.symbols = [];
         for (let i = 0; i < this.totalNumber; ++i) {
             const symbol = cc.instantiate(this.symbolPrefab);
             symbol.name = "Symbol_" + i;
             symbol.parent = this.reel;
             symbol.setPosition(0, this.symbolStartY + i * this.config.SYMBOL_MYTHICAL_HEIGHT);
-            symbol.getComponent("SlotSymbol8983").changeToOption(i);
+            symbol.getComponent("SymbolOptions8983").changeToSymbol(i);
+            this.symbols.push(symbol);
         }
         this.mode = 'FAST';
         this.index = 0;
@@ -74,36 +78,47 @@ cc.Class({
         });
     },
 
-    stopSpinning(delay = 0, content, callback) {
-        let matrixResult = [1,content,1];
-        this.callback = callback;
-        cc.director.getScheduler().unschedule(this.setStepToStop,this);
+    stopSpinning(delay = 0, content, callback, isMultiplier = false) {
+        this.callbackStopReel = callback ? callback : () => { };
+        this.changeOption(content, isMultiplier);
+        cc.director.getScheduler().unschedule(this.setStepToStop, this);
         cc.director.getScheduler().schedule(this.setStepToStop, this, 0, 0, this.config.REEL_DELAY_STOP, false);
+    },
+
+    changeOption(content, isMultiplier) {
+        const { spinAmountIndex, multiplierIndex } = content;
+        for (let i = 0; i < this.totalNumber; ++i) {
+            if (!isMultiplier) {
+                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(spinAmountIndex - 1);
+            } else {
+                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(multiplierIndex - 1);
+            }
+        }
     },
 
     runSpinningAnimation(callback) {
         let time = this.currentSpeed + this.currentSpeed * this.stop / 4;
         const action0 = cc.sequence(
             cc.moveBy(time, 0, -1 * this.config.SYMBOL_MYTHICAL_HEIGHT),
-            cc.callFunc(this.circularSymbols,this),
+            cc.callFunc(this.circularSymbols, this),
             cc.callFunc(callback)
         );
         this.reel.runAction(action0);
     },
 
     circularSymbols() {
-        const lastSymbol = this.reel.children[this.index%(this.totalNumber)];
-        if (!this.showResult) {
-            lastSymbol.getComponent("SlotSymbol8983").changeToBlurOption(this.getRandomOptionIndex());
+        const lastSymbol = this.reel.children[this.index % (this.totalNumber)];
+        if (this.showResult) {
+            lastSymbol.getComponent("SymbolOptions8983").changeToBlurSymbol(this.getRandomOptionIndex());
         } else if (this.stop < this.totalNumber) {
             let isRealSymbol = this.stop >= this.config.TABLE_SYMBOL_BUFFER.TOP && this.stop < this.showNumber + this.config.TABLE_SYMBOL_BUFFER.TOP;
             this.step = this.totalNumber + this.showNumber - (this.stop + this.config.TABLE_SYMBOL_BUFFER.BOT);
             if (isRealSymbol) {
-                lastSymbol.getComponent("SlotSymbol8983").changeToOption(this.stop);
+                lastSymbol.getComponent("SymbolOptions8983").changeToSymbol(this.stop);
                 this.usingMotionBlur && lastSymbol.stopBlur();
                 this.showSymbols.unshift(lastSymbol);
             } else {
-                lastSymbol.getComponent("SlotSymbol8983").changeToBlurOption(this.stop);
+                lastSymbol.getComponent("SymbolOptions8983").changeToBlurSymbol(this.stop);
             }
             this.stop++;
         }
@@ -123,12 +138,14 @@ cc.Class({
             cc.moveBy(timer, 0, indexNearWin),
             cc.callFunc(() => {
                 this.reset();
-                this.callbackStopReel();
+
+                this.displayFreeOptionResult();
+
 
                 cc.log("something");
                 /// stop schedule when reel is stopped
-                cc.director.getScheduler().unschedule(this.setStepToStop,this);
-                this.currentSpeed = this.curentConfig.TIME;  
+                cc.director.getScheduler().unschedule(this.setStepToStop, this);
+                this.currentSpeed = this.curentConfig.TIME;
 
                 cc.log('end reel');
                 this.callback && this.callback();
@@ -136,5 +153,18 @@ cc.Class({
             })
         );
         this.reel.runAction(action3);
+    },
+
+    displayFreeOptionResult() {
+
+        this.tweenDisplayResult = cc.tween(this.node)
+            .delay(2)
+            .call(() => {
+                this.callbackStopReel && this.callbackStopReel();
+                this.callbackStopReel = null;
+                this.tweenDisplayResult = null;
+                this.reset();
+            });
+        this.tweenDisplayResult.start();
     },
 });

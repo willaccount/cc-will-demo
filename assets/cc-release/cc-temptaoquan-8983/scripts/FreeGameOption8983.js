@@ -6,7 +6,7 @@ cc.Class({
 
     properties: {
         optionPrefabs: [cc.Node],
-        mysteryIndex: 6,
+        mysteryIndex: 7,
     },
 
     init(mainDirector) {
@@ -18,24 +18,39 @@ cc.Class({
         if (this.content) {
             cc.log('show result free game option');
             this.isShowingResult = true;
-            this.optionPrefabs[this.mysteryIndex].emit("STOP_SPINNING_MYSTERY_REELS", this.content);
+            this.optionPrefabs[this.mysteryIndex - 1].emit("STOP_SPINNING_MYSTERY_REELS", this.content, () => {
+                cc.log("log");
+                this.exit();
+            });
         } else {
             this.isShowingResult = false;
             cc.log('enter free game option');
+
+            this.onCompleteFreeGameOption = this.callback;
         }
     },
 
     onOptionSelected(touchEvent, customData) {
         this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
-        if (customData === this.mysteryIndex.toString()) {
+        if(customData === this.mysteryIndex.toString()) {
             this.getRandomMysteryChoices(customData);
-        }
-        else {
-            cc.log(customData);
+        } else {
+            this.node.emit("STOP");
         }
     },
 
-    getRandomMysteryChoices(index) {
-        this.optionPrefabs[index].emit("START_SPINNING_MYSTERY_REELS");
+    getRandomMysteryChoices() {
+        this.optionPrefabs[this.mysteryIndex - 1].emit("START_SPINNING_MYSTERY_REELS");
     },
+
+    exit() {
+        if (this.callback && typeof this.callback == "function") {
+            this.node.emit("STOP");
+            this.callback();
+        }
+
+        this.onCompleteFreeGameOption && this.onCompleteFreeGameOption();
+        this.onCompleteFreeGameOption = null;
+        this.node.active = false;
+    }
 });
