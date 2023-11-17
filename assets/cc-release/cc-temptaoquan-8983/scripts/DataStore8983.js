@@ -18,7 +18,7 @@ cc.Class({
                 let selectedInfo = freeSpinOptionID.split(';');
 
                 const optionResult = {
-                    spinAmount: Number(selectedInfo[0]),
+                    spinAmount: selectedInfo[0],
                     spinAmountIndex: Number(selectedInfo[1]),
                     multiplierIndex: Number(selectedInfo[2]),
                 };

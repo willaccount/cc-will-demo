@@ -13,7 +13,9 @@ cc.Class({
                 command: "_showResultFreeGameOption",
                 data: {
                     name: "FreeGameOption",
-                    content: optionResult,
+                    content: {
+                        optionResult: optionResult,
+                    },
                 }
             });
         } else {
@@ -48,36 +50,43 @@ cc.Class({
         const { fgo: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
         const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
-        const isSessionEnded = !bonusGame && !freeGameRemain;
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !isJackpotWin;
         const isJackpotWin = winJackpotAmount && winJackpotAmount > 0;
-        const { isAutoSpin, modeTurbo } = this.node.gSlotDataStore;
-        this.isFastResult = false;
 
-
-        if ((freeSpinOption && freeSpinOption > 0) || (freeGame && freeGame > 0)) {
-            if (freeSpinOption && freeSpinOption > 0) {
-                listScript.push({
-                    command: "_showCutscene",
-                    data: {
-                        name: "FreeGameOption"
-                    }
-                });
-            }
-        }
-        listScript.push({
-            command: "_newGameMode",
-            data: {
-                name: "freeGame",
+        // if jackpot { do later}
+        // else if bigwin {do later}
+        // else
+        // ----
+        if (freeSpinOption && freeSpinOption > 0) {
+            listScript.push({
+                command: "_setUpPaylines",
+                data: { matrix, payLines },
+            });
+            listScript.push({
+                command: "_showScatterPayLine",
+            });
+            listScript.push({
+                command: "_showCutscene",
                 data: {
-                    matrix: matrix,
+                    name: "FreeGameOption"
                 }
-            },
-        });
-        listScript.push({
-            command: "_resumeGameMode",
-            data: { name: "normalGame", },
-        });
+            });
+            listScript.push({
+                command: "_newGameMode",
+                data: {
+                    name: "freeGame",
+                    data: {
+                        matrix: matrix,
+                    }
+                },
+            });
+            listScript.push({
+                command: "_resumeGameMode",
+                data: { name: "normalGame", },
+            });
+
+        }
+        // -----
 
         if (payLines && payLines.length > 0) {
             if (!isBigwin) {
@@ -101,20 +110,17 @@ cc.Class({
         listScript.push({
             command: "_gameFinish"
         });
-        if (!this.isFastResult) {
-            listScript.push({
-                command: "_gameRestart"
-            });
-        }
+        listScript.push({
+            command: "_gameRestart"
+        });
         return listScript;
 
     },
 
     excuseScriptShowWildMultiplier(listScript) {
-        const { payLines, winAmount, jpInfo, nwm, matrix } = this.node.gSlotDataStore.lastEvent;
-        const winAmountPlaySession = this.node.gSlotDataStore.playSession.winAmount;
+        const { winAmount, jpInfo, nwm, matrix } = this.node.gSlotDataStore.lastEvent;
         const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
-        const { spinTimes, gameSpeed } = this.node.gSlotDataStore;
+        const { gameSpeed } = this.node.gSlotDataStore;
         const isFTR = gameSpeed === this.node.config.GAME_SPEED.INSTANTLY;
         const showBigWin = winAmount && winAmount >= currentBetData * 10 && !jpInfo;
 

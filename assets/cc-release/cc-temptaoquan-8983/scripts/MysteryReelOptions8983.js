@@ -1,6 +1,14 @@
 const lodash = require('lodash');
 
-const OPTION = [0, 1, 2, 3, 4, 5];//
+const OPTION = [0, 1, 2, 3, 4, 5];
+const SPIN_AMOUNT = {
+    "25" : 0,
+    "20" : 1,
+    "15" : 2,
+    "13" : 3,
+    "10" : 4,
+    "6" : 5
+}
 
 cc.Class({
     extends: require('SlotReelv2'),
@@ -18,10 +26,8 @@ cc.Class({
         this.node.on("STOP_REEL_SPINNING", this.stopSpinning.bind(this));
 
         if (this.node.config) {
-            cc.log("can init in reeloption");
             this.init(this.node.config);
         }
-
     },
 
     init(gameConfig) {
@@ -86,10 +92,10 @@ cc.Class({
     },
 
     changeOption(content, isMultiplier) {
-        const { spinAmountIndex, multiplierIndex } = content;
+        const { spinAmount, multiplierIndex } = content;
         for (let i = 0; i < this.totalNumber; ++i) {
             if (!isMultiplier) {
-                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(spinAmountIndex - 1);
+                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(SPIN_AMOUNT[spinAmount]);
             } else {
                 this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(multiplierIndex - 1);
             }
@@ -138,16 +144,10 @@ cc.Class({
             cc.moveBy(timer, 0, indexNearWin),
             cc.callFunc(() => {
                 this.reset();
-
                 this.displayFreeOptionResult();
 
-
-                cc.log("something");
-                /// stop schedule when reel is stopped
                 cc.director.getScheduler().unschedule(this.setStepToStop, this);
                 this.currentSpeed = this.curentConfig.TIME;
-
-                cc.log('end reel');
                 this.callback && this.callback();
 
             })

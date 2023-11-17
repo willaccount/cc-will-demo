@@ -1,6 +1,5 @@
-const skinMapping = ["chep_bac", "chep_do", "chep_den", "chep_xanhduong", "chep_vang", "chep_xanhla", "chep_tim"];
-const flySkinMapping = ["Ca_Bac", "Ca_Do", "Ca_Den", "Ca_XanhDuong", "Ca_Vang", "Ca_XanhLa", "Ca_Tim"];
 
+const mythicalOption = 7;
 cc.Class({
     extends: require('CutsceneMode'),
 
@@ -15,32 +14,48 @@ cc.Class({
     },
 
     enter() {
-        if (this.content) {
-            cc.log('show result free game option');
-            this.isShowingResult = true;
-            this.optionPrefabs[this.mysteryIndex - 1].emit("STOP_SPINNING_MYSTERY_REELS", this.content, () => {
-                cc.log("log");
-                this.exit();
-            });
-        } else {
+        if (!this.content) {
             this.isShowingResult = false;
-            cc.log('enter free game option');
-
             this.onCompleteFreeGameOption = this.callback;
+        } else {
+            let { optionResult } = this.content;
+            this.showResultFreeSpinOption(optionResult);
         }
     },
 
     onOptionSelected(touchEvent, customData) {
-        this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
-        if(customData === this.mysteryIndex.toString()) {
-            this.getRandomMysteryChoices(customData);
-        } else {
-            this.node.emit("STOP");
+        if(this.optionPrefabs[customData].getComponent("OptionController8983").getCanClick()) {
+            for(let i = 0; i < this.optionPrefabs.length; ++i) {
+                if(i === customData) {
+                    this.optionPrefabs[i].getComponent("OptionController8983").onOptionSelected(true);
+                } else {
+                    this.optionPrefabs[i].getComponent("OptionController8983").onOptionSelected(false);
+                }
+            }
+            if (customData === this.mysteryIndex.toString()) {
+                this.getRandomMysteryChoices(customData);
+            }
+            this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
         }
     },
 
     getRandomMysteryChoices() {
         this.optionPrefabs[this.mysteryIndex - 1].emit("START_SPINNING_MYSTERY_REELS");
+    },
+
+    showResultFreeSpinOption(optionResult) {
+        this.isShowingResult = true;
+        let { spinAmount, spinAmountIndex, multiplierIndex } = optionResult
+
+        if (mythicalOption == spinAmountIndex) {
+            this.optionPrefabs[this.mysteryIndex - 1].emit("STOP_SPINNING_MYSTERY_REELS", this.content, () => {
+
+                this.exit();
+            });
+        } else {
+
+            this.exit();
+        }
     },
 
     exit() {
