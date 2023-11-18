@@ -42,7 +42,7 @@ cc.Class({
             symbol.name = "Symbol_" + i;
             symbol.parent = this.reel;
             symbol.setPosition(0, this.symbolStartY + i * this.config.SYMBOL_MYTHICAL_HEIGHT);
-            symbol.getComponent("SymbolOptions8983").changeToSymbol(i);
+            symbol.emit("CHANGE_TO_SYMBOL", i);
             this.symbols.push(symbol);
         }
         this.mode = 'FAST';
@@ -92,14 +92,11 @@ cc.Class({
     },
 
     changeOption(content, isMultiplier) {
-        const { spinAmount, multiplierIndex } = content;
-        for (let i = 0; i < this.totalNumber; ++i) {
-            if (!isMultiplier) {
-                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(SPIN_AMOUNT[spinAmount]);
-            } else {
-                this.symbols[i].getComponent("SymbolOptions8983").changeToSymbol(multiplierIndex - 1);
-            }
-        }
+        const { spinAmount, multiplierIndex } = content.optionResult;
+        const optionIndex = isMultiplier ? (multiplierIndex - 1) : SPIN_AMOUNT[spinAmount];
+        this.symbols.forEach(symbol => {
+                symbol.emit("CHANGE_TO_SYMBOL", optionIndex);
+        });
     },
 
     runSpinningAnimation(callback) {
@@ -115,16 +112,16 @@ cc.Class({
     circularSymbols() {
         const lastSymbol = this.reel.children[this.index % (this.totalNumber)];
         if (this.showResult) {
-            lastSymbol.getComponent("SymbolOptions8983").changeToBlurSymbol(this.getRandomOptionIndex());
+            lastSymbol.emit("CHANGE_TO_BLUR_SYMBOL", this.getRandomOptionIndex());
         } else if (this.stop < this.totalNumber) {
             let isRealSymbol = this.stop >= this.config.TABLE_SYMBOL_BUFFER.TOP && this.stop < this.showNumber + this.config.TABLE_SYMBOL_BUFFER.TOP;
             this.step = this.totalNumber + this.showNumber - (this.stop + this.config.TABLE_SYMBOL_BUFFER.BOT);
             if (isRealSymbol) {
-                lastSymbol.getComponent("SymbolOptions8983").changeToSymbol(this.stop);
+                lastSymbol.emit("CHANGE_TO_SYMBOL", this.stop);
                 this.usingMotionBlur && lastSymbol.stopBlur();
                 this.showSymbols.unshift(lastSymbol);
             } else {
-                lastSymbol.getComponent("SymbolOptions8983").changeToBlurSymbol(this.stop);
+                lastSymbol.emit("CHANGE_TO_BLUR_SYMBOL", this.stop);
             }
             this.stop++;
         }

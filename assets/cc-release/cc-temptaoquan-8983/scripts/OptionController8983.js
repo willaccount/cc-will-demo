@@ -28,11 +28,11 @@ cc.Class({
             this.multiplierReel.opacity = 0;
         }
 
-        if (this.dimOpion) {
+        if (this.dimOption) {
             if (this.canClick) {
-                this.dimOpion.active = false;
+                this.dimOption.active = false;
             } else {
-                this.dimOpion.active = true;
+                this.dimOption.active = true;
             }
         }
     },
@@ -40,12 +40,15 @@ cc.Class({
     setupOptionMessages() {
         this.node.on("START_SPINNING_MYSTERY_REELS", this.startSpinningMysteryReels, this);
         this.node.on("STOP_SPINNING_MYSTERY_REELS", this.stopSpinningMysteryReel, this);
+        this.node.on("SELECT_OPTION", this.onOptionSelected, this);
     },
 
-    onOptionSelected(isSelected) {
-        this.canClick = false;
-        if (!isSelected && this.dimOpion) {
-            this.dimOpion.active = true;
+    onOptionSelected(isHighligth) {
+        if (this.canClick) {
+            this.canClick = false;
+            if (!isHighligth) {
+                this.dimOption.active = true;
+            }
         }
     },
 
@@ -57,9 +60,10 @@ cc.Class({
     },
 
     reset() {
-        this.canClick = false;
+        this.canClick = true;
         this.mask.height = START_HEIGHT;
         this.node.opacity = 255;
+        this.dimOption.active = false;
     },
 
     startSpinningMysteryReels() {
@@ -67,8 +71,8 @@ cc.Class({
         this.spinAmount.opacity = 0;
         this.spinAmountReel.opacity = 255;
         this.multiplierReel.opacity = 255;
-        this.spinAmountReel.emit('START_REEL_SPINNING');
-        this.multiplierReel.emit('START_REEL_SPINNING');
+        this.spinAmountReel.emit("START_REEL_SPINNING");
+        this.multiplierReel.emit("START_REEL_SPINNING");
     },
 
     stopSpinningMysteryReel(content, callback) {
@@ -77,11 +81,7 @@ cc.Class({
             callback && callback();
         }
 
-        this.spinAmountReel.emit('STOP_REEL_SPINNING', 0, content, null);
-        this.multiplierReel.emit('STOP_REEL_SPINNING', 0, content, onComplete, true);
-    },
-
-    getCanClick() {
-        return this.canClick;
+        this.spinAmountReel.emit("STOP_REEL_SPINNING", 0, content, null);
+        this.multiplierReel.emit("STOP_REEL_SPINNING", 0, content, onComplete, true);
     },
 });

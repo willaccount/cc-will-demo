@@ -4,6 +4,8 @@ cc.Class({
     onLoad() {
         this._super();
 
+        this.node.on("CHANGE_TO_BLUR_SYMBL", this.changeToBlurSymbol, this);
+        
         this.staticSymbolSprite = this.staticSymbol.getComponent(cc.Sprite);
     },
 

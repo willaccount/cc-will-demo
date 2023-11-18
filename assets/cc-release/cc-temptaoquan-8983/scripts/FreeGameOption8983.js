@@ -24,19 +24,17 @@ cc.Class({
     },
 
     onOptionSelected(touchEvent, customData) {
-        if(this.optionPrefabs[customData].getComponent("OptionController8983").getCanClick()) {
-            for(let i = 0; i < this.optionPrefabs.length; ++i) {
-                if(i === customData) {
-                    this.optionPrefabs[i].getComponent("OptionController8983").onOptionSelected(true);
-                } else {
-                    this.optionPrefabs[i].getComponent("OptionController8983").onOptionSelected(false);
-                }
-            }
-            if (customData === this.mysteryIndex.toString()) {
-                this.getRandomMysteryChoices(customData);
-            }
-            this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
+        const optionIndexSelected = Number(customData) - 1;
+        const isMysteryOption = customData === this.mysteryIndex.toString();
+
+        for (let i = 0; i < this.optionPrefabs.length; ++i) {
+            const isOptionSelected = i === optionIndexSelected;
+            this.optionPrefabs[i].emit("SELECT_OPTION", isOptionSelected);
         }
+        if (isMysteryOption) {
+            this.getRandomMysteryChoices(customData);
+        }
+        this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
     },
 
     getRandomMysteryChoices() {
