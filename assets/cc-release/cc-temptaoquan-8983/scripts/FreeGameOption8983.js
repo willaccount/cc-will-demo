@@ -47,12 +47,18 @@ cc.Class({
 
         if (mythicalOption == spinAmountIndex) {
             this.optionPrefabs[this.mysteryIndex - 1].emit("STOP_SPINNING_MYSTERY_REELS", this.content, () => {
-
                 this.exit();
+                this.resetAllOptions();
             });
         } else {
-
             this.exit();
+            this.tweenReset = cc.tween(this.node);
+            this.tweenReset
+                .delay(2)
+                .call(() => {
+                    this.resetAllOptions();
+                })
+                .start();
         }
     },
 
@@ -65,5 +71,11 @@ cc.Class({
         this.onCompleteFreeGameOption && this.onCompleteFreeGameOption();
         this.onCompleteFreeGameOption = null;
         this.node.active = false;
+    },
+
+    resetAllOptions() {
+        this.optionPrefabs.forEach(option => {
+            option.emit("RESET_OPTION");
+        });
     }
 });

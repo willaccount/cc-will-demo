@@ -73,11 +73,5 @@ cc.Class({
 
             }
         }
-
-        // let data = {
-        //     paylineSymbol: paylineObj.paylineSymbol,
-        // };
-        // data.paylineSymbol
-
     },
 });

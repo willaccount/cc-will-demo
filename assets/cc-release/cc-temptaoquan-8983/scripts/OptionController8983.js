@@ -41,6 +41,7 @@ cc.Class({
         this.node.on("START_SPINNING_MYSTERY_REELS", this.startSpinningMysteryReels, this);
         this.node.on("STOP_SPINNING_MYSTERY_REELS", this.stopSpinningMysteryReel, this);
         this.node.on("SELECT_OPTION", this.onOptionSelected, this);
+        this.node.on("RESET_OPTION", this.reset, this);
     },
 
     onOptionSelected(isHighligth) {
@@ -61,7 +62,6 @@ cc.Class({
 
     reset() {
         this.canClick = true;
-        this.mask.height = START_HEIGHT;
         this.node.opacity = 255;
         this.dimOption.active = false;
     },

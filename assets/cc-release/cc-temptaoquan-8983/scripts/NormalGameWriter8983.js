@@ -4,7 +4,7 @@ cc.Class({
     extends: SlotGameWriter,
 
     makeScriptResultReceive() {
-        const { type, matrix, jpInfo, freeSpinOptionID } = this.node.gSlotDataStore.lastEvent;
+        const { type, matrix, jpInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
         let { optionResult } = this.node.gSlotDataStore.lastEvent;
         let listScript = [];
 
@@ -26,7 +26,11 @@ cc.Class({
             }
             listScript.push({
                 command: "_resultReceive",
-                data: matrix,
+                data: {
+                    matrix,
+                    subSymbol1,
+                    subSymbol2
+                },
             });
             listScript.push({
                 command: "_showResult",
@@ -126,7 +130,7 @@ cc.Class({
 
         if (showBigWin) {
             listScript.push({
-                command: "_showAllPayLine",
+                command: "_showAllPayLines",
             });
             if (nwm && nwm > 1) {
                 listScript.push({

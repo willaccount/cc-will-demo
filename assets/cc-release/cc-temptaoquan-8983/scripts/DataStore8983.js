@@ -72,7 +72,9 @@ cc.Class({
             wAmt: 'winAmount',
             jpInfo: 'jackpotJnfo',
             fgo: 'freeGameOption',
-            fsoi: 'freeSpinOptionID'
+            fsoi: 'freeSpinOptionID',
+            subSym1: 'subSymbol1',
+            subSym2: 'subSymbol2'
         };
 
         Object.keys(lastEvent).forEach(key => {
