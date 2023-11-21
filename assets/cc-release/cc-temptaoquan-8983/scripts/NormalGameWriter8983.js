@@ -43,7 +43,7 @@ cc.Class({
     makeScriptShowResults() {
         const {
             type, matrix, winAmount, payLines, payLineJackPot,
-            bonusGame, freeGame, freeGameOption, freeSpinOptionID
+             freeGame, freeGameOption, freeSpinOptionID, subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
 
         if (this.node.gSlotDataStore.lastEvent.freeSpinOptionID) {
@@ -61,6 +61,11 @@ cc.Class({
         // else if bigwin {do later}
         // else
         // ----
+        if(subSymbol1 || subSymbol2) {
+            listScript.push({
+                command: "_showSmallSubSymbols",
+            });
+        }
         if (freeSpinOption && freeSpinOption > 0) {
             listScript.push({
                 command: "_setUpPaylines",

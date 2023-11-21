@@ -1,27 +1,10 @@
 cc.Class({
     extends: require('SlotReelv2'),
 
-    init(showNumber, gameConfig, col, symbolPrefab, isFreeMode) {
+    init(showNumber, gameConfig, col, symbolPrefab, isFreeMode = false) {
         this._super(showNumber, gameConfig, col, symbolPrefab, isFreeMode);
 
-        this.subSymbolCount = 0;
-        if(isFreeMode){
-            this.tempMatrix = [
-                [2,1,0,-1],
-                [6,5,4,3],
-                [10,9,8,7],
-                [14,13,12,11],
-                [17,16,15,-1]
-            ];
-        } else {
-            this.tempMatrix = [
-                [2,1,0],
-                [5,4,3],
-                [8,7,6],
-                [11,10,9],
-                [14,13,12]
-            ];
-        }
+        this.subSymbolList = [];
     },
 
     setStepToStop() {
@@ -32,57 +15,60 @@ cc.Class({
         this.step = (this.curentConfig.STEP_STOP * 2) - (this.totalNumber + bufferStepFreeGame);
     },
 
-    stopSpinningWithDelay(delay, matrix = [], data = {}, callback) {
-        const {dataMatrix, subSymbol1, subSymbol2} = data;
+    stopSpinningWithDelay(delay, matrix = [], subSymbolsMatrix = [], callback) {
         this.delayIndex = delay;
         this.showSymbols = [];
         this.matrix = matrix;
-        this.callbackStopReel = callback ? callback : () => {};
+        this.subSymbolsMatrix = subSymbolsMatrix;
+        this.callbackStopReel = callback ? callback : () => { };
         let reelDelayStop = delay * this.curentConfig.REEL_DELAY_STOP;
         this.isNearWin = false;
-        
+
         this.delay = delay;
-        if(subSymbol1){
-            this.subSymbol1 = subSymbol1;
-        }
-        if(data.subSymbol2){
-            this.subSymbol2 = subSymbol2;
-        }
         cc.director.getScheduler().schedule(this.setStepToStop, this, 0, 0, reelDelayStop, false);
 
         this.matrix.unshift(this.getRandomSymbolNameWithException('A'));
-        if (this.node.config.TABLE_SYMBOL_BUFFER.BOT > 0) {
-            this.matrix.push(this.getRandomSymbolNameWithException('R'));
-        }
+        if (this.config.TABLE_SYMBOL_BUFFER.BOT > 0)
+            this.matrix.push(this.getRandomSymbolNameWithException('A'));
+
+        this.subSymbolsMatrix.unshift(this.getRandomSymbolNameWithException('A'));
+        if (this.config.TABLE_SYMBOL_BUFFER.BOT > 0)
+            this.subSymbolsMatrix.push(this.getRandomSymbolNameWithException('A'));
     },
 
     circularSymbols() {
-        const symbolIndex = this.index % (this.totalNumber);
-        const lastSymbol = this.reel.children[symbolIndex];
-        lastSymbol.emit("REMOVE_SUB_SYMBOL");
-
+        const lastSymbol = this.reel.children[this.index % (this.totalNumber)];
+        lastSymbol.removeSubSymbol();
         if (!this.showResult) {
-            lastSymbol.changeToBlurSymbol(this.getRandomSymbolNameWithException(["s1", "s2"]));
+            lastSymbol.changeToBlurSymbol(this.getRandomSymbolName());
         } else if (this.stop < this.totalNumber) {
-            let isRealSymbol = this.stop >= this.node.config.TABLE_SYMBOL_BUFFER.TOP && this.stop < (this.showNumber + this.node.config.TABLE_SYMBOL_BUFFER.TOP);
-            let symbolValue = this.matrix[this.stop++];
+            let isRealSymbol = this.stop >= this.config.TABLE_SYMBOL_BUFFER.TOP && this.stop < this.showNumber + this.config.TABLE_SYMBOL_BUFFER.TOP;
+            let symbolValue = this.matrix[this.stop];
+            let subSymbolValue = this.subSymbolsMatrix[this.stop];
             this.step = this.totalNumber + this.showNumber - (this.stop + this.config.TABLE_SYMBOL_BUFFER.BOT);
-
             if (isRealSymbol) {
                 lastSymbol.changeToSymbol(symbolValue);
-
-                if (this.subSymbol1 && this.subSymbol1.indexOf(this.tempMatrix[this.col][this.stop - 1]) >= 0) {
-                    lastSymbol.emit("ADD_SUB_SYMBOL", "s1");
-                } else if (this.subSymbol2 && this.subSymbol2.indexOf(this.tempMatrix[this.col][this.stop - 1]) >= 0) {
-                    lastSymbol.emit("ADD_SUB_SYMBOL", "s2");
-                } else {
-                    lastSymbol.emit("REMOVE_SUB_SYMBOL");
+                if (subSymbolValue == 1) {
+                    lastSymbol.showSubSymbol("s1");
+                } else if (subSymbolValue == 2) {
+                    lastSymbol.showSubSymbol("s2");
                 }
+                this.usingMotionBlur && lastSymbol.stopBlur();
+                this.showSymbols.unshift(lastSymbol);
             } else {
                 lastSymbol.changeToBlurSymbol(symbolValue);
             }
+            this.stop++;
         }
-        lastSymbol.y = lastSymbol.y + this.node.config.SYMBOL_HEIGHT*(this.totalNumber);
+        lastSymbol.y = lastSymbol.y + this.config.SYMBOL_HEIGHT * (this.totalNumber);
         this.index++;
     },
+
+    showSmallSubSymbols() {
+        this.reel.children.forEach((child) => {
+            child.showSmallSubSymbol();
+        });
+    },
+
+    resetSubSymbol() {},
 });

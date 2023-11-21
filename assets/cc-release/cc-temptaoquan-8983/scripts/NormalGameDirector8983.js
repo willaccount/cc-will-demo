@@ -48,4 +48,31 @@ cc.Class({
             this.executeNextScript(script);
         }
     },
+
+    _resultReceive(script,data) {
+        if (!this.fsm.can('resultReceive')) return;
+        this.fsm.resultReceive();
+        this.buttons.emit('FAST_TO_RESULT_ENABLE');
+        this.buttons.emit('ENABLE_PROMOTION_STOP_SPIN');
+        if(this.node.mainDirector.trialMode && this.node.gSlotDataStore.currentGameMode !== "normalGame"){
+            this._showTrialButtons(null, true);
+        }
+        //Check if we have table to show or not.... or should we use base interface????
+        //Anyways,... I can decoupling table from game mode, thats good enough for v2
+        if (!this.hasTable) {
+            this.executeNextScript(script);
+            return;
+        }
+        this.table.emit("CONVERT_SUB_SYMBOLS_INDEX", data);
+        this.table.emit("STOP_SPINNING",data,() => {
+            this.node.mainDirector.onIngameEvent("SPIN_STOPPED");
+            this.isStopRunning = true;
+            this.executeNextScript(script);
+        });
+    },
+
+    _showSmallSubSymbols(script) {
+        this.table.emit("SHOW_SMALL_SUB_SYMBOLS");
+        this.executeNextScript(script);
+    }
 });

@@ -103,7 +103,7 @@ cc.Class({
                 TOP: 1,
                 BOT: 1,
             },
-            TABLE_FORMAT_FREE: [4, 4, 4, 4, 4],
+            TABLE_FORMAT_FREE: [3, 4, 4, 4, 3],
             MESSAGE_DIALOG: getMessageSlot(),
             PAY_LINE_ALLWAYS: true,
             PAY_LINE_SYMBOL_POOL_LENGTH: 15,
