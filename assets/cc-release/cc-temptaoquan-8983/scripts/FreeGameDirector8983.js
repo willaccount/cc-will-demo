@@ -51,4 +51,9 @@ cc.Class({
     getRandomSymbolName() {
         return this.symbolList[Math.floor(Math.random()*this.symbolList.length)];
     },
+
+    _showEachPayLine(script) {
+        this.table.emit("SHOW_ALL_FREE_PAYLINES");
+        this.executeNextScript(script);
+    },
 });

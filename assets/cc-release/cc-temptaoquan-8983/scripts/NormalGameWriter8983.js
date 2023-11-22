@@ -43,7 +43,7 @@ cc.Class({
     makeScriptShowResults() {
         const {
             type, matrix, winAmount, payLines, payLineJackPot,
-             freeGame, freeGameOption, freeSpinOptionID, subSymbol1, subSymbol2
+            freeGame, freeGameOption, freeSpinOptionID, subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
 
         if (this.node.gSlotDataStore.lastEvent.freeSpinOptionID) {
@@ -57,20 +57,57 @@ cc.Class({
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !isJackpotWin;
         const isJackpotWin = winJackpotAmount && winJackpotAmount > 0;
 
-        // if jackpot { do later}
-        // else if bigwin {do later}
-        // else
-        // ----
-        if(subSymbol1 || subSymbol2) {
+        if (type != 'freeGameOptionResult') {
+            listScript.push({
+                command: "_setUpPaylines",
+                data: {
+                    matrix,
+                    payLines,
+                },
+            });
+        } else {
+            listScript.push({
+                command: "_hideCutscene",
+                data: {
+                    name: "FreeGameOption",
+                }
+            });
+        }
+
+        if (isJackpotWin) {
+            listScript.push({
+                command: "_showJackpotPayLine",
+                data: {
+                    subSymbol1,
+                    subSymbol2
+                },
+            });
+            listScript.push({
+                command: "_showUnskippedCutscene",
+                data: {
+                    name: "JackpotWin",
+                    content: {
+                        winAmount: winJackpotAmount,
+                        currentBetData,
+                        subSymbol1,
+                        subSymbol2
+                    }
+                }
+            });
+            listScript.push({
+                command: "_resumeUpdateJP",
+            });
+        }
+        if (subSymbol1 || subSymbol2) {
             listScript.push({
                 command: "_showSmallSubSymbols",
             });
         }
         if (freeSpinOption && freeSpinOption > 0) {
-            listScript.push({
-                command: "_setUpPaylines",
-                data: { matrix, payLines },
-            });
+            // listScript.push({
+            //     command: "_setUpPaylines",
+            //     data: { matrix, payLines },
+            // });
             listScript.push({
                 command: "_showScatterPayLine",
             });
@@ -93,9 +130,7 @@ cc.Class({
                 command: "_resumeGameMode",
                 data: { name: "normalGame", },
             });
-
         }
-        // -----
 
         if (payLines && payLines.length > 0) {
             if (!isBigwin) {

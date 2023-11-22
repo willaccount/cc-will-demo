@@ -3,6 +3,32 @@ const SlotGameWriter = require('SlotGameWriter');
 cc.Class({
     extends: SlotGameWriter,
 
+    makeScriptResultReceive() {
+        const { type, matrix, jpInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
+        let { optionResult } = this.node.gSlotDataStore.lastEvent;
+        let listScript = [];
+
+        if (jpInfo) {
+            listScript.push({
+                command: "_pauseUpdateJP"
+            });
+        }
+        listScript.push({
+            command: "_resultReceive",
+            data: {
+                matrix,
+                subSymbol1,
+                subSymbol2
+            },
+        });
+        listScript.push({
+            command: "_showResult",
+        });
+
+
+        return listScript;
+    },
+
     makeScriptResume() {
         const {
             normalGameTableFormat, bonusGameMatrix, normalGameMatrix, normalGamePayLines, bonusGameRemain, freeGameRemain,
@@ -111,12 +137,12 @@ cc.Class({
     makeScriptShowResults() {
         const {
             type, matrix, winAmount, payLines, payLineJackPot,
-            bonusGame, freeGame
+            bonusGame, subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
 
-        const {winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount} = this.node.gSlotDataStore.playSession;
-        const {fsor: freeSpinOption} = this.node.gSlotDataStore.playSession.extend;
-        const {currentBetData} = this.node.gSlotDataStore.slotBetDataStore.data;
+        const { winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount } = this.node.gSlotDataStore.playSession;
+        const { fsor: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
+        const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
         const isSessionEnded = !bonusGame && !freeGameRemain;
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !isJackpotWin;
@@ -127,7 +153,7 @@ cc.Class({
         if (type != 'freeGameOptionResult') {
             listScript.push({
                 command: "_setUpPaylines",
-                data: {matrix, payLines},
+                data: { matrix, payLines },
             });
         }
         else {
@@ -147,7 +173,7 @@ cc.Class({
             });
             listScript.push({
                 command: "_showUnskippedCutscene",
-                data:{
+                data: {
                     name: "JackpotWin",
                     content: {
                         winAmount: winJackpotAmount,
@@ -159,10 +185,8 @@ cc.Class({
                 command: "_resumeUpdateJP",
             });
         }
-        else
-        {
-            if (isBigwin)
-            {
+        else {
+            if (isBigwin) {
                 if (isSessionEnded && modeTurbo && !isAutoSpin && !this.isFastResult) {
                     this.isFastResult = true;
                     listScript.push({
@@ -185,7 +209,13 @@ cc.Class({
                 });
             }
         }
-        
+
+        if (subSymbol1 || subSymbol2) {
+            listScript.push({
+                command: "_showSmallSubSymbols",
+            });
+        }
+
         if (type == "freeGame") {
             this.excuseScriptShowWildMultiplier(listScript);
 
@@ -193,16 +223,17 @@ cc.Class({
                 listScript.push({
                     command: "_blinkAllPaylines",
                 });
+                listScript.push({
+                    command: "_showNormalPayline",
+                });
+
+                this.excuseScriptShowWildMultiplier(listScript);
             }
-            else
-            {
+            else {
                 listScript.push({
                     command: "_clearPaylines",
                 });
             }
-            listScript.push({
-                command: "_gameEnd"
-            });
 
             if (!freeGameRemain || freeGameRemain <= 0) {
                 if (winAmountPlaySession && winAmountPlaySession > 0) {
@@ -224,6 +255,9 @@ cc.Class({
                         name: "TotalWinPanel",
                         content: {}
                     }
+                });
+                listScript.push({
+                    command: "_gameEnd"
                 });
                 listScript.push({
                     command: "_gameExit",

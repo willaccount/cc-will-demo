@@ -6,6 +6,7 @@ cc.Class({
 
         this.node.on("CONVERT_SUB_SYMBOLS_INDEX", this.convertSubSymbolIndexToMatrix, this);
         this.node.on("SHOW_SMALL_SUB_SYMBOLS", this.showSmallSubSymbols, this);
+        this.node.on("SHOW_SUB_SYMBOL_ANIMS", this.showSubSymbolAnims, this);
     },
 
     init() {
@@ -31,7 +32,7 @@ cc.Class({
     convertSubSymbolIndexToMatrix(data) {
         const { subSymbol1, subSymbol2 } = data;
         
-        this.subsymbolMatrix = []; // reset
+        this.subsymbolMatrix = [];
         let offsetIndex = 0;
         for (let col = 0; col < this.tableFormat.length; ++col) {
             this.subsymbolMatrix[col] = [];
@@ -39,10 +40,10 @@ cc.Class({
                 let currentIndex = offsetIndex + row;
                 this.subsymbolMatrix[col][row] = 0;
                 if (subSymbol1 && subSymbol1.indexOf(currentIndex) >=0) {
-                    this.subsymbolMatrix[col][row] = 1; // subsymbol 1
+                    this.subsymbolMatrix[col][row] = 1;
                 }
                 if (subSymbol2 && subSymbol2.indexOf(currentIndex) >=0) {
-                    this.subsymbolMatrix[col][row] = 2; // subsymbol 2
+                    this.subsymbolMatrix[col][row] = 2;
                 }
             }
             offsetIndex += this.tableFormat[col];
@@ -99,5 +100,18 @@ cc.Class({
         }
 
         this.subsymbolMatrix = [];
+    },
+
+    showSubSymbolAnims(subSymbols) {
+        const { subSymbol1, subSymbol2 } = subSymbols;
+        if(subSymbol1) {
+            for (let col = 0; col < this.node.reels.length; ++col) {
+                this.node.reels[col].showSubSymbolAnims("Tai");
+            }
+        } else if(subSymbol2) {
+            for (let col = 0; col < this.node.reels.length; ++col) {
+                this.node.reels[col].showSubSymbolAnims("Loc");
+            }
+        }
     },
 });

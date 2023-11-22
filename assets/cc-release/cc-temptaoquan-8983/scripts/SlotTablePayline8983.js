@@ -11,9 +11,67 @@ cc.Class({
         this.createPaylineSymbolPools();
     },
 
+    setupPaylines(matrix, payLines) {
+        this.node.curentConfig = this.node.config.STATS[this.node.mode];
+        this.config = this.node.config;
+        this.paylineHolderNode.active = true;
+        this.payLineNormals = payLines;
+        this.paylinesMatrix = [];
+        this.scatterHolderNode = [];
+        this.bonusHolderNode = [];
+        this.wildHolderNode = [];
+        this.jackpotHolderNode = [];
+        this.subSymbolHolderNode = [];
+        this.subSymbol1 = [];
+        this.subSymbol2 = [];
+        this.subsymbolMatrix = [];
+        this.isSubSymbol = false;
+        this.tableFormat = this.isFreeMode ? this.config.TABLE_FORMAT_FREE : this.node.config.TABLE_FORMAT;
+
+        for (let col = 0; col < this.node.reels.length; ++col) {
+            this.paylinesMatrix[col] = [];
+            for (let row = 0; row < this.node.reels[col].showSymbols.length; ++row) {
+                const symbol = this.node.reels[col].showSymbols[row];
+                const paylineSymbol = this.createPaylineSymbol(this.node.reels[col], symbol.symbol, col, row);
+                const payline = {
+                    symbol, paylineSymbol,
+                };
+                this.paylinesMatrix[col][row] = payline;
+
+                if (symbol.symbol == "A") {
+                    this.scatterHolderNode.push(payline);
+                } else if (symbol.symbol == "K") {
+                    this.wildHolderNode.push(payline);
+                }
+                if (this.isSubSymbol) {
+                    this.subSymbolHolderNode.push(payline);
+                }
+            }
+        }
+        this.paylineHolderNode.opacity = 0;
+    },
+
+    convertSubSymbolIndexToMatrix() {
+        let offsetIndex = 0;
+        for (let col = 0; col < this.tableFormat.length; ++col) {
+            this.subsymbolMatrix[col] = [];
+            for (let row = 0; row < this.tableFormat[col]; row++) {
+                let currentIndex = offsetIndex + row;
+                this.subsymbolMatrix[col][row] = 0;
+                if (this.subSymbol1 && this.subSymbol1.indexOf(currentIndex) >= 0) {
+                    this.subsymbolMatrix[col][row] = 1;
+                }
+                if (this.subSymbol2 && this.subSymbol2.indexOf(currentIndex) >= 0) {
+                    this.subsymbolMatrix[col][row] = 2;
+                }
+            }
+            offsetIndex += this.tableFormat[col];
+        }
+    },
+
     createPaylineSymbolPools() {
         this.paylineSymbolPool = new cc.NodePool();
-        for (let i = 0; i < this.node.config.PAY_LINE_SYMBOL_POOL_LENGTH; ++i) {
+        for (let i = 0; i < this.node.config.PAYLINE_SYMBOLS_LENGTH; ++i) {
             let paylineSymbol = cc.instantiate(this.paylineNormalSymbol);
             paylineSymbol.parent = this.paylineHolderNode;
             paylineSymbol.active = true;
@@ -58,6 +116,9 @@ cc.Class({
         this.wildHolderNode = [];
         this.jackpotHolderNode = [];
         this.tablePaylineInfo.emit('HIDE_PAYLINE');
+        this.subsymbolMatrix = [];
+        this.subSymbol1 = [];
+        this.subSymbol2 = [];
     },
 
     recallPaylineSymbol() {
@@ -70,8 +131,10 @@ cc.Class({
                         this.paylineSymbolPool.put(payline);
                     }
                 }
-
             }
         }
+    },
+
+    showJackpotPayLine(callback) {
     },
 });

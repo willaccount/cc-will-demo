@@ -49,12 +49,12 @@ cc.Class({
         }
     },
 
-    _resultReceive(script,data) {
+    _resultReceive(script, data) {
         if (!this.fsm.can('resultReceive')) return;
         this.fsm.resultReceive();
         this.buttons.emit('FAST_TO_RESULT_ENABLE');
         this.buttons.emit('ENABLE_PROMOTION_STOP_SPIN');
-        if(this.node.mainDirector.trialMode && this.node.gSlotDataStore.currentGameMode !== "normalGame"){
+        if (this.node.mainDirector.trialMode && this.node.gSlotDataStore.currentGameMode !== "normalGame") {
             this._showTrialButtons(null, true);
         }
         //Check if we have table to show or not.... or should we use base interface????
@@ -64,7 +64,7 @@ cc.Class({
             return;
         }
         this.table.emit("CONVERT_SUB_SYMBOLS_INDEX", data);
-        this.table.emit("STOP_SPINNING",data,() => {
+        this.table.emit("STOP_SPINNING", data, () => {
             this.node.mainDirector.onIngameEvent("SPIN_STOPPED");
             this.isStopRunning = true;
             this.executeNextScript(script);
@@ -74,5 +74,20 @@ cc.Class({
     _showSmallSubSymbols(script) {
         this.table.emit("SHOW_SMALL_SUB_SYMBOLS");
         this.executeNextScript(script);
-    }
+    },
+
+    _setUpPaylines(script, { matrix, payLines }) {
+        this.hasPayline = true;
+        this.table.emit("SETUP_PAYLINES", matrix, payLines);
+        this.executeNextScript(script);
+    },
+
+    _showJackpotPayLine(script, subSymbols) {
+        if (!this.hasPayline) {
+            this.executeNextScript(script);
+            return;
+        }
+        this.table.emit("SHOW_SUB_SYMBOL_ANIMS", subSymbols);
+        this.executeNextScript(script);
+    },
 });

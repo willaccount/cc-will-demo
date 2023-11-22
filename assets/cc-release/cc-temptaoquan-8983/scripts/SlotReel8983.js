@@ -71,4 +71,10 @@ cc.Class({
     },
 
     resetSubSymbol() {},
+
+    showSubSymbolAnims(subSymbolSkin) {
+        this.reel.children.forEach((child) => {
+            child.showSubSymbolAnim(subSymbolSkin);
+        });
+    },
 });
