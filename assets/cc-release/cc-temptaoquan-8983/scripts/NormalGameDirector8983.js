@@ -8,7 +8,6 @@ cc.Class({
 
     _showWildMultiplier(script, { name, content }) {
         const color = 7;
-        const { isFinished } = this.node.gSlotDataStore.playSession;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
         this.wildMultiplier.emit('ACTIVE_MULTIPLIER', content.nwm, color, isAutoSpin, () => {
@@ -87,7 +86,13 @@ cc.Class({
             this.executeNextScript(script);
             return;
         }
-        this.table.emit("SHOW_SUB_SYMBOL_ANIMS", subSymbols);
-        this.executeNextScript(script);
+        this.table.emit("SHOW_SUB_SYMBOL_ANIMS", subSymbols, () => {
+            this.executeNextScript(script);
+        });
     },
+
+    _resetSymbolPayline(script) {
+        this.table.emit("RESET_SYMBOL_PAYLINES");
+        this.executeNextScript(script);
+    }
 });

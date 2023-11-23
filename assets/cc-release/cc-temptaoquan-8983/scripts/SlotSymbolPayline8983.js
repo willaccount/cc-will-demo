@@ -7,6 +7,7 @@ cc.Class({
             this.spineNode.opacity = 255;
             this.spineNode.active = true;
             this.staticSymbol.opacity = 0
+            this.displayWinEffect();
             if (this.animation.findAnimation("animation")) {
                 this.animation.setAnimation(0, "animation", isNearWin);
                 this.animation.timeScale = NORMAL_DURATION / duration;
@@ -45,5 +46,11 @@ cc.Class({
 
     hideWinEffect() {
         this.winEffect.active = false;
+    },
+
+    blinkHighlight() {
+        this.winEffect.opacity = 255;
+        this.node.opacity = 255;
+        this.displayWinEffect();
     },
 });

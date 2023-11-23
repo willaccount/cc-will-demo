@@ -74,7 +74,11 @@ cc.Class({
             fgo: 'freeGameOption',
             fsoi: 'freeSpinOptionID',
             subSym1: 'subSymbol1',
-            subSym2: 'subSymbol2'
+            subSym2: 'subSymbol2',
+            fSubSym1: 'freeSubSymbol1',
+            fSubSym2: 'freeSubSymbol2',
+            wm: 'wildMultiplier',
+            fwm: 'freeWildMultiplier'
         };
 
         Object.keys(lastEvent).forEach(key => {

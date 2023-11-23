@@ -56,4 +56,56 @@ cc.Class({
         this.table.emit("SHOW_ALL_FREE_PAYLINES");
         this.executeNextScript(script);
     },
+
+    _resultReceive(script, data) {
+        if (!this.fsm.can('resultReceive')) return;
+        this.fsm.resultReceive();
+        this.buttons.emit('FAST_TO_RESULT_ENABLE');
+        this.buttons.emit('ENABLE_PROMOTION_STOP_SPIN');
+        if (this.node.mainDirector.trialMode && this.node.gSlotDataStore.currentGameMode !== "normalGame") {
+            this._showTrialButtons(null, true);
+        }
+        if (!this.hasTable) {
+            this.executeNextScript(script);
+            return;
+        }
+        this.table.emit("CONVERT_SUB_SYMBOLS_INDEX", data);
+        this.table.emit("STOP_SPINNING", data, () => {
+            this.node.mainDirector.onIngameEvent("SPIN_STOPPED");
+            this.isStopRunning = true;
+            this.executeNextScript(script);
+        });
+    },
+
+    _showSmallSubSymbols(script) {
+        this.table.emit("SHOW_SMALL_SUB_SYMBOLS");
+        this.executeNextScript(script);
+    },
+
+    _showFreeSymbolPayLine(script,payLines) {
+        if (!this.hasPayline) {
+            this.executeNextScript(script);
+            return;
+        }
+        this.table.emit("BLINK_ALL_NORMAL_PAYLINES",() => {
+            this.table.emit("SHOW_ALL_FREE_PAYLINES",payLines);
+            this.executeNextScript(script);
+        });
+    },
+
+    _showWildPayline(script, content) {
+        this.table.emit("SHOW_WILD_PAYLINE",() => {
+            this.executeNextScript(script);
+            // this._showWildMultiplier(script, content);
+        });
+    },
+
+    _showWildMultiplier(script, content ) {
+        const color = 7;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+
+        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', content.freeWildMutiplier, color, isAutoSpin, () => {
+            this.executeNextScript(script);
+        });
+    },
 });

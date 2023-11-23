@@ -42,13 +42,9 @@ cc.Class({
 
     makeScriptShowResults() {
         const {
-            type, matrix, winAmount, payLines, payLineJackPot,
+            type, matrix, winAmount, payLines, payLineJackPot, wildMutiplier,
             freeGame, freeGameOption, freeSpinOptionID, subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
-
-        if (this.node.gSlotDataStore.lastEvent.freeSpinOptionID) {
-            const { spinAmount, spinAmountIndex, multiplierIndex } = this.node.gSlotDataStore.lastEvent.freeSpinOptionID;
-        }
 
         const { winAmount: winAmountPlaySession, freeGameRemain, winJackpotAmount } = this.node.gSlotDataStore.playSession;
         const { fgo: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
@@ -57,19 +53,12 @@ cc.Class({
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !isJackpotWin;
         const isJackpotWin = winJackpotAmount && winJackpotAmount > 0;
 
-        if (type != 'freeGameOptionResult') {
+        if (payLines) {
             listScript.push({
                 command: "_setUpPaylines",
                 data: {
                     matrix,
                     payLines,
-                },
-            });
-        } else {
-            listScript.push({
-                command: "_hideCutscene",
-                data: {
-                    name: "FreeGameOption",
                 }
             });
         }
@@ -103,16 +92,40 @@ cc.Class({
                 command: "_showSmallSubSymbols",
             });
         }
+
+        if (isBigwin) {
+            // if (nwm && nwm > 1) {
+            //     listScript.push({
+            //         command: "_showWildMultiplier",
+            //         data: {
+            //             name: "WildTransition",
+            //             content: {
+            //                 nwm,
+            //             }
+            //         }
+            //     });
+            // }
+            listScript.push({
+                command: "_blinkAllPaylines",
+            });
+            listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "WinEffect",
+                    content: {
+                        winAmount,
+                        currentBetData
+                    }
+                }
+            });
+        }
+
         if (freeSpinOption && freeSpinOption > 0) {
-            // listScript.push({
-            //     command: "_setUpPaylines",
-            //     data: { matrix, payLines },
-            // });
             listScript.push({
                 command: "_showScatterPayLine",
             });
             listScript.push({
-                command: "_showCutscene",
+                command: "_showUnskippedCutscene",
                 data: {
                     name: "FreeGameOption"
                 }
@@ -131,23 +144,41 @@ cc.Class({
                 data: { name: "normalGame", },
             });
         }
-
-        if (payLines && payLines.length > 0) {
-            if (!isBigwin) {
-                listScript.push({
-                    command: "_blinkAllPaylines",
-                });
-            }
+        if(payLines && payLines.length > 0) {
+            listScript.push({
+                command: "_resetSymbolPayline",
+            });
+        }
+        if (isBigwin) {
             listScript.push({
                 command: "_showNormalPayline",
             });
-
-            this.excuseScriptShowWildMultiplier(listScript);
         } else {
-            listScript.push({
-                command: "_clearPaylines",
-            });
+            if (wildMutiplier && wildMutiplier > 1) {
+                // listScript.push({
+                //     command: "_showWildMultiplier",
+                //     data: {
+                //         name: "WildTransition",
+                //         content: {
+                //             wildMutiplier,
+                //         }
+                //     }
+                // });
+            }
+            if (payLines && payLines.length > 0) {
+                listScript.push({
+                    command: "_blinkAllPaylines",
+                });
+                listScript.push({
+                    command: "_showNormalPayline",
+                });
+            } else {
+                listScript.push({
+                    command: "_clearPaylines",
+                });
+            }
         }
+
         listScript.push({
             command: "_gameEnd"
         });
@@ -161,51 +192,4 @@ cc.Class({
 
     },
 
-    excuseScriptShowWildMultiplier(listScript) {
-        const { winAmount, jpInfo, nwm, matrix } = this.node.gSlotDataStore.lastEvent;
-        const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
-        const { gameSpeed } = this.node.gSlotDataStore;
-        const isFTR = gameSpeed === this.node.config.GAME_SPEED.INSTANTLY;
-        const showBigWin = winAmount && winAmount >= currentBetData * 10 && !jpInfo;
-
-        if (showBigWin) {
-            listScript.push({
-                command: "_showAllPayLines",
-            });
-            if (nwm && nwm > 1) {
-                listScript.push({
-                    command: "_showWildMultiplier",
-                    data: {
-                        name: "WildTransition",
-                        content: {
-                            matrix,
-                            isNormal: true,
-                            nwm,
-                            isShowBigwin: showBigWin
-                        }
-                    }
-                });
-            }
-        }
-        else {
-            if (nwm && nwm > 1) {
-                listScript.push({
-                    command: "_showWildMultiplier",
-                    data: {
-                        name: "WildTransition",
-                        content: {
-                            matrix,
-                            isNormal: true,
-                            nwm,
-                            isShowBigwin: showBigWin
-                        }
-                    }
-                });
-            }
-        }
-        listScript.push({
-            command: "_showEachPayLine",
-        });
-
-    },
 });

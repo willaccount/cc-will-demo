@@ -1,6 +1,10 @@
 cc.Class({
     extends: require('SlotTablePaylinev2'),
 
+    properties: {
+        scatterNode: cc.Node,
+    },
+
     initProperties() {
         this.paylineSymbolPool = null;
     },
@@ -9,6 +13,8 @@ cc.Class({
         this.initProperties();
         this._super();
         this.createPaylineSymbolPools();
+        
+        this.node.on("RESET_SYMBOL_PAYLINE", this.resetSymbolPaylines, this);
     },
 
     setupPaylines(matrix, payLines) {
@@ -40,6 +46,7 @@ cc.Class({
 
                 if (symbol.symbol == "A") {
                     this.scatterHolderNode.push(payline);
+                    paylineSymbol.parent = this.scatterNode; 
                 } else if (symbol.symbol == "K") {
                     this.wildHolderNode.push(payline);
                 }
@@ -70,7 +77,7 @@ cc.Class({
     },
 
     createPaylineSymbolPools() {
-        this.paylineSymbolPool = new cc.NodePool();
+        this.paylineSymbolPool = new cc.NodePool("poolPayline8983");
         for (let i = 0; i < this.node.config.PAYLINE_SYMBOLS_LENGTH; ++i) {
             let paylineSymbol = cc.instantiate(this.paylineNormalSymbol);
             paylineSymbol.parent = this.paylineHolderNode;
@@ -93,7 +100,11 @@ cc.Class({
         paylineSymbol.active = true;
 
         paylineSymbol.x = this.getXPosition(col);
-        paylineSymbol.y = ((reel.showNumber / 2 - row - 0.5)) * this.node.config.SYMBOL_HEIGHT;
+        if(reel.showNumber == 4) {
+            paylineSymbol.y = ((reel.showNumber / 2 - row - 0.5)) * this.node.config.SYMBOL_HEIGHT + 80;
+        } else {
+            paylineSymbol.y = ((reel.showNumber / 2 - row - 0.5)) * this.node.config.SYMBOL_HEIGHT;
+        }
         paylineSymbol.changeToSymbol(symbol);
         paylineSymbol.disableHighlight();
         return paylineSymbol;
@@ -137,4 +148,16 @@ cc.Class({
 
     showJackpotPayLine(callback) {
     },
+
+    // disableHighlightNormalPaylines() {
+    //     for (let col = 0; col < this.paylinesMatrix.length; ++col) {
+    //         for (let row = 0; row < this.paylinesMatrix[col].length; ++row) {
+    //             this.paylinesMatrix[col][row].symbol.active = true;
+    //             this.paylinesMatrix[col][row].symbol.disableHighlight();
+    //             this.paylinesMatrix[col][row].symbol.stopAnimation();
+    //             this.paylinesMatrix[col][row].paylineSymbol.disableHighlight();
+    //             this.paylinesMatrix[col][row].paylineSymbol.stopAnimation();
+    //         }
+    //     }
+    // },
 });

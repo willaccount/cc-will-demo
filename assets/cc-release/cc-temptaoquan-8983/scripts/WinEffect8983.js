@@ -22,6 +22,14 @@ cc.Class({
         this.bigWinType = 0;
     },
 
+    enter() {
+        this.node.stopAllActions();
+        let modeTurbo = false;
+        if (this.node.gSlotDataStore) modeTurbo = this.node.gSlotDataStore.modeTurbo;   
+        this.showEffectWin();
+        this.node.fullDisplay = !modeTurbo;
+    },
+
     initValue() {
         this.winInfo.scale = 1;
         this.currentValue = 0;
@@ -74,13 +82,6 @@ cc.Class({
         this.startUpdateWinAmount();
     },
 
-    enter() {
-        this.node.stopAllActions();
-        let modeTurbo = false;
-        if (this.node.gSlotDataStore) modeTurbo = this.showEffectWin();
-        this.node.fullDisplay = !modeTurbo;
-    },
-
     startParticle() {
         this.phaoHoaLeft.active = true;
         this.phaoHoaRight.active = true;
@@ -90,26 +91,17 @@ cc.Class({
     },
 
     stopParticle() {
-        cc.tween(this.phaoHoaLeft)
-        .to(1, {opacity: 0}, {easing: "sineInOut"})
-        .call(() => {
-            this.phaoHoaLeft.active = false;
-        })
-        .start();
+        // cc.tween(this.phaoHoaLeft)
+        // .to(1, {opacity: 0}, {easing: "sineInOut"})
+        // .start();
 
-        cc.tween(this.phaoHoaRight)
-        .to(1, {opacity: 0}, {easing: "sineInOut"})
-        .call(() => {
-            this.phaoHoaRight.active = false;
-        })
-        .start();
+        // cc.tween(this.phaoHoaRight)
+        // .to(1, {opacity: 0}, {easing: "sineInOut"})
+        // .start();
 
-        cc.tween(this.fireWork)
-        .to(1, {opacity: 0}, {easing: "sineInOut"})
-        .call(() => {
-            this.fireWork.active = false;
-        })
-        .start();
+        // cc.tween(this.fireWork)
+        // .to(1, {opacity: 0}, {easing: "sineInOut"})
+        // .start();
     },
 
     changeTitle(index) {
@@ -170,6 +162,14 @@ cc.Class({
                 this.exit(); // exit cutscene
             })
         ));
+    },
+
+    exit(){
+        this._super();
+
+        this.phaoHoaLeft.active = false;
+        this.phaoHoaRight.active = false;
+        this.fireWork.active = false;
     },
 
     onDisable() {
