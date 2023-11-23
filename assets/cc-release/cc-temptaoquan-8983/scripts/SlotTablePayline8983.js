@@ -149,15 +149,19 @@ cc.Class({
     showJackpotPayLine(callback) {
     },
 
-    // disableHighlightNormalPaylines() {
-    //     for (let col = 0; col < this.paylinesMatrix.length; ++col) {
-    //         for (let row = 0; row < this.paylinesMatrix[col].length; ++row) {
-    //             this.paylinesMatrix[col][row].symbol.active = true;
-    //             this.paylinesMatrix[col][row].symbol.disableHighlight();
-    //             this.paylinesMatrix[col][row].symbol.stopAnimation();
-    //             this.paylinesMatrix[col][row].paylineSymbol.disableHighlight();
-    //             this.paylinesMatrix[col][row].paylineSymbol.stopAnimation();
-    //         }
-    //     }
-    // },
+    showNormalPaylineAllLine({symbolId, symbolCount}) {
+        this.disableHighlightNormalPaylines();
+        for (let col = 0; col < symbolCount; col++) {
+            for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
+                const isNormalSymbol = (this.paylinesMatrix[col][row].symbol.symbol == symbolId) && 
+                                    (this.paylinesMatrix[col][row].symbol.symbol != 'A')
+                if (isNormalSymbol) //remove hardcore K ?
+                {
+                    this.paylinesMatrix[col][row].symbol.active = true;
+                    this.paylinesMatrix[col][row].paylineSymbol.enableHighlight();
+                    this.paylinesMatrix[col][row].paylineSymbol.playAnimation();
+                }
+            }
+        }
+    },
 });

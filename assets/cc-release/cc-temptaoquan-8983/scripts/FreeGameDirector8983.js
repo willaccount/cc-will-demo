@@ -7,6 +7,7 @@ cc.Class({
 
     properties: {
         symbolPrefab: cc.Prefab,
+        wildMultiplier: cc.Node
     },
 
     ready(data) {
@@ -52,6 +53,11 @@ cc.Class({
         return this.symbolList[Math.floor(Math.random()*this.symbolList.length)];
     },
 
+    _spinClick(script) {
+        this._super(script);
+        this.wildMultiplier.emit('HIDE_MULTIPLIER');
+    },
+
     _showEachPayLine(script) {
         this.table.emit("SHOW_ALL_FREE_PAYLINES");
         this.executeNextScript(script);
@@ -93,18 +99,18 @@ cc.Class({
         });
     },
 
-    _showWildPayline(script, content) {
+    _showWildPayline(script, { name, content}) {
         this.table.emit("SHOW_WILD_PAYLINE",() => {
-            this.executeNextScript(script);
-            // this._showWildMultiplier(script, content);
+            this._showWildMultiplier(script, content);
         });
     },
 
     _showWildMultiplier(script, content ) {
         const color = 7;
+        const { wildMultiplier } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
-        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', content.freeWildMutiplier, color, isAutoSpin, () => {
+        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
             this.executeNextScript(script);
         });
     },

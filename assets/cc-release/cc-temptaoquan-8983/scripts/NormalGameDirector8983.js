@@ -94,5 +94,21 @@ cc.Class({
     _resetSymbolPayline(script) {
         this.table.emit("RESET_SYMBOL_PAYLINES");
         this.executeNextScript(script);
-    }
+    },
+
+    _showWildPayline(script, { name, content}) {
+        this.table.emit("SHOW_WILD_PAYLINE",() => {
+            this._showWildMultiplier(script, content);
+        });
+    },
+
+    _showWildMultiplier(script, content ) {
+        const color = 7;
+        const { wildMultiplier } = content;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+
+        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
+            this.executeNextScript(script);
+        });
+    },
 });

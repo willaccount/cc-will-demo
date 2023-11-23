@@ -77,8 +77,8 @@ cc.Class({
             subSym2: 'subSymbol2',
             fSubSym1: 'freeSubSymbol1',
             fSubSym2: 'freeSubSymbol2',
-            wm: 'wildMultiplier',
-            fwm: 'freeWildMultiplier'
+            nwm: 'normalWildMultiplier',
+            fwm: 'freeWildMultiplier',
         };
 
         Object.keys(lastEvent).forEach(key => {
