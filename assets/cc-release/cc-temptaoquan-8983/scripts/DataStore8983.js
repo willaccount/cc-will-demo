@@ -87,6 +87,7 @@ cc.Class({
             fSubSym2: 'freeSubSymbol2',
             nwm: 'normalWildMultiplier',
             fwm: 'freeWildMultiplier',
+            fsor: 'freeSpinOptionRemain'
         };
 
         Object.keys(lastEvent).forEach(key => {

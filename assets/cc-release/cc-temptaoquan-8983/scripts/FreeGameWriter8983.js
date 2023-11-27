@@ -87,7 +87,7 @@ cc.Class({
     makeScriptShowResults() {
         const {
             type, freeSpinMatrix, winAmount, payLines, jackpotInfo,
-            freeSubSymbol1, freeSubSymbol2
+            freeSubSymbol1, freeSubSymbol2, freeSpinOptionRemain
         } = this.node.gSlotDataStore.lastEvent;
 
         const { freeWildMultiplier: wildMultiplier } = this.node.gSlotDataStore.lastEvent;
@@ -167,6 +167,19 @@ cc.Class({
                 command: "_resetSymbolPayline",
             });
         }
+        if (freeSpinOptionRemain) {
+            if (!freeGameRemain || freeGameRemain <= 0) {
+                listScript.push({
+                    command: "_updateOptionRemain",
+                    data: freeSpinOptionRemain - 1,
+                });
+            } else {
+                listScript.push({
+                    command: "_updateOptionRemain",
+                    data: freeSpinOptionRemain,
+                });
+            }
+        }
         if (isBigwin) {
             listScript.push({
                 command: "_showNormalPayline",
@@ -208,6 +221,10 @@ cc.Class({
                 });
                 listScript.push({
                     command: "_updateSpinTimeFreeGameOption",
+                });
+                listScript.push({
+                    command: "_updateOptionRemain",
+                    data: freeSpinOptionRemain,
                 });
                 listScript.push({
                     command: "_delayTimeScript",

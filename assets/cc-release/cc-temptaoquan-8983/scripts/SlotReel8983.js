@@ -77,4 +77,12 @@ cc.Class({
             child.showSubSymbolAnim(subSymbolSkin);
         });
     },
+
+    fastStopSpinning() {
+        if (this.step === this.MAX_STEP) return;
+        this.isFastToResult = true;
+        cc.director.getScheduler().unschedule(this.setStepToStop,this);
+        this.showResult = 1;
+        this.currentSpeed = this.currentSpeed/3;
+    },
 });

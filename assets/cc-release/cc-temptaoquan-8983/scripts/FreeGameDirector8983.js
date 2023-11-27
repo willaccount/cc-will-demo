@@ -7,15 +7,15 @@ cc.Class({
 
     properties: {
         symbolPrefab: cc.Prefab,
-        wildMultiplier: cc.Node
+        wildMultiplier: cc.Node,
+        optionRemain: cc.Node,
     },
 
     ready(data) {
-        const { isResume, freeSpinMatrix } = data;
+        const { isResume, freeSpinMatrix, freeSpinOptionRemain } = data;
         const { winAmount, freeGameRemain } = this.node.gSlotDataStore.playSession;
         const { fgoi: freeGameOptionID } = this.node.gSlotDataStore.playSession.extend;
         const hasFreegame = freeGameRemain && freeGameRemain > 0;
-
 
         if (isResume && !hasFreegame && freeGameOptionID) {
             this.updateWildType(freeGameOptionID);
@@ -33,6 +33,9 @@ cc.Class({
         }
         if (data && freeGameOptionID) {
             this.updateWildType(freeGameOptionID);
+        }
+        if(freeSpinOptionRemain) {
+            this.updateOptionRemain(freeSpinOptionRemain);
         }
         if (!winAmount || (winAmount && winAmount == 0)) {
             this.winAmount.emit("RESET_NUMBER");
@@ -175,5 +178,19 @@ cc.Class({
         // this.fsm.gameRestart();
         this.fsm.gameResume();
         this.executeNextScript(script);
-    }
+    },
+
+    updateOptionRemain(data) {
+        if(data && data != 0) {
+            this.optionRemain.parent.active = true;
+            this.optionRemain.getComponent(cc.Label).string = '+'+data;
+        } else {
+            this.optionRemain.parent.active = false;
+        }
+    },
+
+    _updateOptionRemain(script, data) {
+        this.updateOptionRemain(data);
+        this.executeNextScript(script);
+    },
 });

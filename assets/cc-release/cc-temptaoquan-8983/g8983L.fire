@@ -8913,7 +8913,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "AdditionFreeGameNode",
+    "_name": "FreeGameOptionRemain",
     "_objFlags": 0,
     "_parent": {
       "__id__": 122
@@ -8926,7 +8926,7 @@
         "__id__": 204
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 4,
     "_components": [],
     "_prefab": null,
@@ -8974,7 +8974,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label",
+    "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
       "__id__": 201
@@ -9088,8 +9088,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 50.4
+      "width": 66.25,
+      "height": 100
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9098,7 +9098,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": 85,
       "y": 0,
       "z": 0
     },
@@ -9121,24 +9121,36 @@
     "_id": "dacLXMD3JKiYjCgmIkohtM"
   },
   {
-    "__type__": "cc.RichText",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 204
     },
     "_enabled": true,
-    "_fontFamily": "Arial",
-    "_isSystemFontUsed": true,
-    "_N$string": "",
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_useOriginalSize": true,
+    "_string": "+5\n",
+    "_N$string": "+5\n",
+    "_fontSize": 40,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": {
+      "__uuid__": "e3f6f250-284e-41fa-9c9b-dfc982679794"
+    },
+    "_isSystemFontUsed": false,
+    "_spacingX": 0,
+    "_batchAsBitmap": false,
     "_N$horizontalAlign": 0,
-    "_N$fontSize": 40,
-    "_N$font": null,
-    "_N$maxWidth": 0,
-    "_N$lineHeight": 40,
-    "_N$imageAtlas": null,
-    "_N$handleTouchEvent": true,
-    "_id": "3ega5GcV5CZKOXNzeOS9/E"
+    "_N$verticalAlign": 0,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0,
+    "_N$cacheMode": 0,
+    "_id": "1cpIlAyS1Lc6Jgw7BINpxg"
   },
   {
     "__type__": "dadf1/AbQlJZqMxIZrTaZ/4",
@@ -9190,6 +9202,9 @@
     },
     "wildMultiplier": {
       "__id__": 197
+    },
+    "optionRemain": {
+      "__id__": 204
     },
     "_id": "6ekSj5rSpP5IsoF1p7o5E3"
   },

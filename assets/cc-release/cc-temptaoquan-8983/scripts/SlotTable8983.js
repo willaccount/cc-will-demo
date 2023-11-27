@@ -128,4 +128,14 @@ cc.Class({
     resetSymbolPayline() {
         this.node.emit("RESET_SYMBOL_PAYLINE");
     },
+
+    fastToResult() {
+        if (this.stopSpinningCallbackCount < this.node.reels.length) {
+            this.isFastToResult = true;
+            
+            this.node.reel.forEach(reel => {
+                reel.fastStopSpinning();
+            });
+        }
+    },
 });
