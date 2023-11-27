@@ -9,19 +9,11 @@ cc.Class({
         let lastEvent;
 
         const { normalGameResult, freeGameResult, freeSpinOptionResult } = playSession.lastEvent;
-        // const { jpInfo } = freeGameResult;
         const { bonusGameRemain, extend, bonusGameMatrix } = playSession;
+        const { normalGameTableFormat, normalGameMatrix } = this.node.gSlotDataStore.playSession;
+        const { freeGameTableFormat, freeGameMatrix } = this.node.gSlotDataStore.playSession;
+
         let tableFormat = TABLE_FORMAT;
-
-        // if(jpInfo) {
-        //     let jackpotProperties = jpInfo.split(',');
-        //     const properties = {
-        //         jackpotType: Number(jackpotProperties[0]),
-        //         jackpotWon: Number(jackpotProperties[1]),
-        //     }
-
-        //     lastEvent.jackpotProperties = properties;
-        // }
         if (freeSpinOptionResult) {
             const { fsoi: freeSpinOptionID } = playSession.lastEvent.freeSpinOptionResult;
             lastEvent = freeSpinOptionResult;
@@ -41,10 +33,6 @@ cc.Class({
             lastEvent = freeGameResult;
             lastEvent.type = "freeGame";
 
-            const { freeGameTableFormat } = this.node.gSlotDataStore.playSession;
-            if (freeGameTableFormat)
-                tableFormat = freeGameTableFormat;
-
             const { jpInfo } = freeGameResult;
             if (jpInfo) {
                 let jackpotProperties = jpInfo.split(';');
@@ -57,21 +45,14 @@ cc.Class({
         } else {
             lastEvent = normalGameResult;
             lastEvent.type = "normalGame";
-
-            const { normalGameTableFormat } = this.node.gSlotDataStore.playSession;
-            if (normalGameTableFormat)
-                tableFormat = normalGameTableFormat;
         }
 
-        if (lastEvent.matrix && freeGameResult) {
-            lastEvent.matrix = this.node.gSlotDataStore.convertSlotMatrix(lastEvent.matrix, tableFormat);
-            const freeSpinMatrix = lastEvent.matrix;
+        if (freeGameResult) {
+            const freeSpinMatrix = this.node.gSlotDataStore.convertSlotMatrix(freeGameMatrix, freeGameTableFormat);
             lastEvent.freeSpinMatrix = freeSpinMatrix;
-        } else if (lastEvent.matrix) {
-            lastEvent.matrix = this.node.gSlotDataStore.convertSlotMatrix(lastEvent.matrix, tableFormat);
-            const normalSpinMatrix = lastEvent.matrix;
-            lastEvent.normalSpinMatrix = normalSpinMatrix;
         }
+        const normalSpinMatrix = this.node.gSlotDataStore.convertSlotMatrix(normalGameMatrix, normalGameTableFormat);
+        lastEvent.normalSpinMatrix = normalSpinMatrix;
 
         if (lastEvent.payLines) {
             lastEvent.payLines = this.node.gSlotDataStore.convertPayLine(lastEvent.payLines);

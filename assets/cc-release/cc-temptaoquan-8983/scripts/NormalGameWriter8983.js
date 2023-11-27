@@ -4,11 +4,11 @@ cc.Class({
     extends: SlotGameWriter,
 
     makeScriptResume() {
-        const {  normalGamePayLines, freeGameRemain, normalGameMatrix,
+        const {  normalGamePayLines, freeGameRemain,
             winAmount, betId, currentBonusCredits, isFinished
         } = this.node.gSlotDataStore.playSession;
         const { normalWildMultiplier: wildMultiplier } = this.node.gSlotDataStore.lastEvent;
-        const { matrix, freeGameOption, freeSpinMatrix } = this.node.gSlotDataStore.lastEvent;
+        const { freeGameOption, freeSpinMatrix, normalSpinMatrix } = this.node.gSlotDataStore.lastEvent;
         const { fgoi: freeGameOptionID } = this.node.gSlotDataStore.playSession.extend;
         const normalPayLines = this.node.gSlotDataStore.convertPayLine(normalGamePayLines);
         const { steps } = this.node.gSlotDataStore.slotBetDataStore.data;
@@ -42,13 +42,13 @@ cc.Class({
         listScript.push({
             command: "_updateMatrix",
             data: { 
-                matrix: matrix 
+                matrix: normalSpinMatrix 
             },
         });
         listScript.push({
             command: "_setUpPaylines",
             data: {
-                matrix: matrix,
+                matrix: normalSpinMatrix,
                 payLines: normalPayLines
             },
         });
@@ -98,7 +98,7 @@ cc.Class({
                 data: {
                     name: "freeGame",
                     data: {
-                        normalSpinMatrix: matrix,
+                        freeSpinMatrix: normalSpinMatrix,
                         isResume: false,
                     }
                 },
@@ -118,7 +118,7 @@ cc.Class({
                 data: {
                     name: "freeGame",
                     data: {
-                        freeSpinMatrix: matrix,
+                        freeSpinMatrix: freeSpinMatrix,
                         isResume: false,
                     },
                 },
@@ -135,9 +135,15 @@ cc.Class({
                 data: {
                     name: "freeGame",
                     data: {
-                        freeSpinMatrix: matrix,
+                        freeSpinMatrix: freeSpinMatrix,
                         isResume: true,
                     },
+                },
+            });
+            listScript.push({
+                command: "_resumeGameMode",
+                data: { 
+                    name: "normalGame", 
                 },
             });
         }
@@ -185,7 +191,7 @@ cc.Class({
     },
 
     makeScriptResultReceive() {
-        const { type, matrix, jackpotInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
+        const { type, normalSpinMatrix, jackpotInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
         let { optionResult } = this.node.gSlotDataStore.lastEvent;
         let listScript = [];
 
@@ -208,7 +214,7 @@ cc.Class({
             listScript.push({
                 command: "_resultReceive",
                 data: {
-                    matrix,
+                    matrix: normalSpinMatrix,
                     subSymbol1,
                     subSymbol2
                 },
@@ -223,7 +229,7 @@ cc.Class({
 
     makeScriptShowResults() {
         const {
-            type, matrix, winAmount, payLines, jackpotInfo,
+            type, normalSpinMatrix, winAmount, payLines, jackpotInfo,
             subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
 
@@ -238,7 +244,7 @@ cc.Class({
             listScript.push({
                 command: "_setUpPaylines",
                 data: {
-                    matrix,
+                    normalSpinMatrix,
                     payLines,
                 }
             });
@@ -316,7 +322,7 @@ cc.Class({
                 data: {
                     name: "freeGame",
                     data: {
-                        matrix: matrix,
+                        freeSpinMatrix: normalSpinMatrix,
                     }
                 },
             });

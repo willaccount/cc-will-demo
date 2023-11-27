@@ -101,7 +101,7 @@ cc.Class({
     },
 
     _showWildMultiplier(script, content ) {
-        const color = 7;
+        const color = 1;
         const { wildMultiplier } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
 

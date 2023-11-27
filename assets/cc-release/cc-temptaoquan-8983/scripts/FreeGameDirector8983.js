@@ -130,11 +130,10 @@ cc.Class({
     },
 
     _showWildMultiplier(script, content) {
-        const color = 7;
-        const { wildMultiplier } = content;
+        const { wildMultiplier, freeGameOptionID } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
-        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
+        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, freeGameOptionID, isAutoSpin, () => {
             this.executeNextScript(script);
         });
     },
@@ -142,12 +141,6 @@ cc.Class({
     _resetSymbolPayline(script) {
         this.table.emit("RESET_SYMBOL_PAYLINES");
         this.executeNextScript(script);
-    },
-
-    _showWildPayline(script, { name, content }) {
-        this.table.emit("SHOW_WILD_PAYLINE", () => {
-            this._showWildMultiplier(script, content);
-        });
     },
 
     _showResultFreeGameOption(script, data) {
@@ -164,6 +157,7 @@ cc.Class({
 
     _updateSpinTimeFreeGameOption(script) {
         const { optionResult } = this.node.gSlotDataStore.lastEvent;
+        this.node.gSlotDataStore.isAutoSpin = true;
 
         if (optionResult) {
             const { spinAmount } = optionResult;
@@ -176,4 +170,10 @@ cc.Class({
         this.node.mainDirector.updateValueJackpot(data.isGrand, data.value);
         this.executeNextScript(script);
     },
+
+    _forceState(script) {
+        // this.fsm.gameRestart();
+        this.fsm.gameResume();
+        this.executeNextScript(script);
+    }
 });

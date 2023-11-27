@@ -13,7 +13,7 @@ cc.Class({
         this.initProperties();
         this._super();
         this.createPaylineSymbolPools();
-        
+
         this.node.on("RESET_SYMBOL_PAYLINE", this.resetSymbolPaylines, this);
     },
 
@@ -46,7 +46,7 @@ cc.Class({
 
                 if (symbol.symbol == "A") {
                     this.scatterHolderNode.push(payline);
-                    paylineSymbol.parent = this.scatterNode; 
+                    paylineSymbol.parent = this.scatterNode;
                 } else if (symbol.symbol == "K") {
                     this.wildHolderNode.push(payline);
                 }
@@ -100,7 +100,7 @@ cc.Class({
         paylineSymbol.active = true;
 
         paylineSymbol.x = this.getXPosition(col);
-        if(reel.showNumber == 4) {
+        if (reel.showNumber == 4) {
             paylineSymbol.y = ((reel.showNumber / 2 - row - 0.5)) * this.node.config.SYMBOL_HEIGHT + 80;
         } else {
             paylineSymbol.y = ((reel.showNumber / 2 - row - 0.5)) * this.node.config.SYMBOL_HEIGHT;
@@ -149,30 +149,46 @@ cc.Class({
     showJackpotPayLine(callback) {
     },
 
-    showNormalPaylineAllLine({symbolId, symbolCount}) {
+    showNormalPaylineAllLine({ symbolId, symbolCount }) {
         this.disableHighlightNormalPaylines();
         for (let col = 0; col < symbolCount; col++) {
             for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
-                const isNormalSymbol = (this.paylinesMatrix[col][row].symbol.symbol == symbolId) && 
-                                    (this.paylinesMatrix[col][row].symbol.symbol != 'A')
-                if (isNormalSymbol)
-                {
-                    this.paylinesMatrix[col][row].symbol.active = true;
-                    this.paylinesMatrix[col][row].paylineSymbol.enableHighlight();
-                    this.paylinesMatrix[col][row].paylineSymbol.playAnimation();
+                const { symbol, paylineSymbol } = this.paylinesMatrix[col][row];
+                const isNormalSymbol = (symbol.symbol == symbolId) &&
+                    (symbol.symbol != 'A') && (symbol.symbol != 'K');
+
+                if (isNormalSymbol) {
+                    symbol.active = true;
+                    paylineSymbol.enableHighlight();
+                    paylineSymbol.playAnimation();
                 }
             }
         }
     },
 
-    blinkNormalPaylineAllline({symbolId, symbolCount}) {
+    blinkNormalPaylineAllline({ symbolId, symbolCount }) {
         for (let col = 0; col < symbolCount; col++) {
             for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
-                if (this.paylinesMatrix[col][row].symbol.symbol == symbolId ||
-                    this.paylinesMatrix[col][row].symbol.symbol == "K")
-                {
-                    this.paylinesMatrix[col][row].symbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
-                    this.paylinesMatrix[col][row].paylineSymbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
+                const { symbol, paylineSymbol } = this.paylinesMatrix[col][row];
+                if (symbol.symbol == symbolId || symbol.symbol == "K") {
+                    symbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
+                    paylineSymbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
+                }
+            }
+        }
+    },
+
+    disableHighlightNormalPaylines() {
+        for (let col = 0; col < this.paylinesMatrix.length; ++col) {
+            for (let row = 0; row < this.paylinesMatrix[col].length; ++row) {
+                const { symbol, paylineSymbol } = this.paylinesMatrix[col][row];
+
+                if (symbol.symbol != 'K') {
+                    symbol.active = true;
+                    symbol.disableHighlight();
+                    symbol.stopAnimation();
+                    paylineSymbol.disableHighlight();
+                    paylineSymbol.stopAnimation();
                 }
             }
         }
