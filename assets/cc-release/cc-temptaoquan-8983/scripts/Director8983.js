@@ -30,4 +30,8 @@ cc.Class({
             }
         }
     },
+
+    updateValueJackpot(isGrand = true, value = 0) {
+        this.jackpot.emit("UPDATE_VALUE_JACKPOT", isGrand, value);
+    }
 });

@@ -22,7 +22,7 @@ cc.Class({
     },
 
     makeScriptResultReceive() {
-        const { type, matrix, subSymbol1, subSymbol2, jackpotProperties } = this.node.gSlotDataStore.lastEvent;
+        const { type, matrix, freeSubSymbol1, freeSubSymbol2, jackpotProperties } = this.node.gSlotDataStore.lastEvent;
         let { optionResult } = this.node.gSlotDataStore.lastEvent;
         const { freeGameRemain } = this.node.gSlotDataStore.playSession;
         let listScript = [];
@@ -58,8 +58,8 @@ cc.Class({
                 command: "_resultReceive",
                 data: {
                     matrix,
-                    subSymbol1,
-                    subSymbol2
+                    subSymbol1: freeSubSymbol1,
+                    subSymbol2: freeSubSymbol2
                 },
             });
             listScript.push({
@@ -96,8 +96,8 @@ cc.Class({
             listScript.push({
                 command: "_showJackpotPayLine",
                 data: {
-                    freeSubSymbol1,
-                    freeSubSymbol2
+                    subSymbol1: freeSubSymbol1,
+                    subSymbol2: freeSubSymbol2
                 },
             });
             listScript.push({
@@ -107,8 +107,8 @@ cc.Class({
                     content: {
                         winAmount,
                         currentBetData,
-                        freeSubSymbol1,
-                        freeSubSymbol2
+                        subSymbol1: freeSubSymbol1,
+                        subSymbol2: freeSubSymbol2
                     }
                 }
             });
