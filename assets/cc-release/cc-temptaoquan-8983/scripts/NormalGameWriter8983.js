@@ -4,22 +4,24 @@ cc.Class({
     extends: SlotGameWriter,
 
     makeScriptResume() {
-        const {
-            normalGameTableFormat, normalGameMatrix, normalGamePayLines, freeGameRemain,
-            freeGameMatrix, winAmount, betId, freeGameTableFormat, currentBonusCredits, isFinished
+        const {  normalGamePayLines, freeGameRemain, normalGameMatrix,
+            winAmount, betId, currentBonusCredits, isFinished
         } = this.node.gSlotDataStore.playSession;
-
         const { normalWildMultiplier: wildMultiplier } = this.node.gSlotDataStore.lastEvent;
-        const { fgo: freeGameOption } = this.node.gSlotDataStore.playSession.extend;
-        const normalSpinMatrix = this.node.gSlotDataStore.convertSlotMatrix(normalGameMatrix, normalGameTableFormat);
+        const { matrix, freeGameOption, freeSpinMatrix } = this.node.gSlotDataStore.lastEvent;
+        const { fgoi: freeGameOptionID } = this.node.gSlotDataStore.playSession.extend;
         const normalPayLines = this.node.gSlotDataStore.convertPayLine(normalGamePayLines);
         const { steps } = this.node.gSlotDataStore.slotBetDataStore.data;
+        const { promotion, promotionRemain, promotionTotal } = this.node.gSlotDataStore;
+
         const listBet = String(betId).split('');
         const betIndex = listBet[0];
         const betValue = steps[betIndex];
         const isFreeGame = (freeGameRemain && freeGameRemain > 0) || false;
-        const { promotion, promotionRemain, promotionTotal } = this.node.gSlotDataStore;
-
+        const isFreeGameOption = (freeGameOption && freeGameOption > 0) || false;
+        const hasNormalPayline = (normalGamePayLines && normalGamePayLines.length > 0) || false;
+        const updatedWinAmount = winAmount - (betValue * currentBonusCredits);
+        
         let listScript = [];
 
         listScript.push({
@@ -39,13 +41,19 @@ cc.Class({
         });
         listScript.push({
             command: "_updateMatrix",
-            data: { matrix: normalSpinMatrix },
+            data: { 
+                matrix: matrix 
+            },
         });
         listScript.push({
             command: "_setUpPaylines",
-            data: { matrix: normalSpinMatrix, payLines: normalPayLines },
+            data: {
+                matrix: matrix,
+                payLines: normalPayLines
+            },
         });
-        if (normalGamePayLines && normalGamePayLines.length > 0) {
+
+        if (hasNormalPayline) {
             if (wildMultiplier && wildMultiplier > 1) {
                 listScript.push({
                     command: "_showWildMultiplier",
@@ -58,19 +66,24 @@ cc.Class({
                 });
             }
         }
+
         if (!isFinished) {
             listScript.push({
                 command: "_hideAnimIntro",
             });
         }
-        const updatedWinAmount = winAmount - (betValue * currentBonusCredits);
+
         if (updatedWinAmount && updatedWinAmount > 0) {
             listScript.push({
                 command: "_updateWinningAmount",
-                data: { winAmount: updatedWinAmount, time: 0 }
+                data: { 
+                    winAmount: updatedWinAmount, 
+                    time: 0 
+                }
             });
         }
-        if (freeGameOption && freeGameOption > 0) {
+
+        if (isFreeGameOption) {
             listScript.push({
                 command: "_showScatterPayLine",
             });
@@ -85,31 +98,50 @@ cc.Class({
                 data: {
                     name: "freeGame",
                     data: {
-                        matrix: normalSpinMatrix,
+                        normalSpinMatrix: matrix,
+                        isResume: false,
                     }
                 },
             });
             listScript.push({
                 command: "_resumeGameMode",
-                data: { name: "normalGame", },
+                data: { 
+                    name: "normalGame", 
+                },
             });
         } else if (isFreeGame) {
-            let freeSpinMatrix = normalSpinMatrix;
-            if (freeGameMatrix) {
-                freeSpinMatrix = this.node.gSlotDataStore.convertSlotMatrix(freeGameMatrix, freeGameTableFormat);
-            }
             listScript.push({
                 command: "_showScatterPayLine",
             });
             listScript.push({
                 command: "_newGameMode",
-                data: { name: "freeGame", data: freeSpinMatrix, },
+                data: {
+                    name: "freeGame",
+                    data: {
+                        freeSpinMatrix: matrix,
+                        isResume: false,
+                    },
+                },
             });
             listScript.push({
                 command: "_resumeGameMode",
-                data: { name: "normalGame", },
+                data: { 
+                    name: "normalGame", 
+                },
+            });
+        } else if(!isFreeGame && freeSpinMatrix) {
+            listScript.push({
+                command: "_newGameMode",
+                data: {
+                    name: "freeGame",
+                    data: {
+                        freeSpinMatrix: matrix,
+                        isResume: true,
+                    },
+                },
             });
         }
+
         if (normalGamePayLines && normalGamePayLines.length > 0) {
             if (wildMultiplier && wildMultiplier > 1) {
                 listScript.push({
@@ -153,7 +185,7 @@ cc.Class({
     },
 
     makeScriptResultReceive() {
-        const { type, matrix, jpInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
+        const { type, matrix, jackpotInfo, freeSpinOptionID, subSymbol1, subSymbol2 } = this.node.gSlotDataStore.lastEvent;
         let { optionResult } = this.node.gSlotDataStore.lastEvent;
         let listScript = [];
 
@@ -168,7 +200,7 @@ cc.Class({
                 }
             });
         } else {
-            if (jpInfo) {
+            if (jackpotInfo) {
                 listScript.push({
                     command: "_pauseUpdateJP"
                 });
@@ -191,7 +223,7 @@ cc.Class({
 
     makeScriptShowResults() {
         const {
-            type, matrix, winAmount, payLines, jackpotJnfo,
+            type, matrix, winAmount, payLines, jackpotInfo,
             subSymbol1, subSymbol2
         } = this.node.gSlotDataStore.lastEvent;
 
@@ -200,7 +232,7 @@ cc.Class({
         const { fgo: freeSpinOption } = this.node.gSlotDataStore.playSession.extend;
         const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
-        const isBigwin = winAmount && winAmount >= currentBetData * 20;
+        const isBigwin = winAmount && winAmount >= currentBetData * 20 && !jackpotInfo;
 
         if (payLines) {
             listScript.push({
@@ -211,7 +243,7 @@ cc.Class({
                 }
             });
         }
-        if (jackpotJnfo) {
+        if (jackpotInfo) {
             listScript.push({
                 command: "_showJackpotPayLine",
                 data: {
@@ -319,7 +351,7 @@ cc.Class({
                     command: "_blinkAllPaylines",
                 });
                 listScript.push({
-                    command: "_showNormalPayline",
+                    command: "_showEachPayLine",
                 });
             } else {
                 listScript.push({

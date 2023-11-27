@@ -1,20 +1,32 @@
+const { jp } = require('../../../cc-common/cc-slotbase-v2/game-state/MsgKeyMapping');
+
 cc.Class({
     extends: require('DataStorev2'),
 
     formatData(playSession) {
-        const {TABLE_FORMAT} = this.node.config;
+        const { TABLE_FORMAT } = this.node.config;
         this.node.gSlotDataStore.playSession = playSession;
         let lastEvent;
 
-        const {normalGameResult, freeGameResult, bonusGameResult, freeSpinOptionResult} = playSession.lastEvent;
-        const {bonusGameRemain, extend, bonusGameMatrix} = playSession;
+        const { normalGameResult, freeGameResult, freeSpinOptionResult } = playSession.lastEvent;
+        // const { jpInfo } = freeGameResult;
+        const { bonusGameRemain, extend, bonusGameMatrix } = playSession;
         let tableFormat = TABLE_FORMAT;
 
+        // if(jpInfo) {
+        //     let jackpotProperties = jpInfo.split(',');
+        //     const properties = {
+        //         jackpotType: Number(jackpotProperties[0]),
+        //         jackpotWon: Number(jackpotProperties[1]),
+        //     }
+
+        //     lastEvent.jackpotProperties = properties;
+        // }
         if (freeSpinOptionResult) {
             const { fsoi: freeSpinOptionID } = playSession.lastEvent.freeSpinOptionResult;
             lastEvent = freeSpinOptionResult;
             lastEvent.type = "freeGameOptionResult";
-            if(freeSpinOptionID) {
+            if (freeSpinOptionID) {
                 let selectedInfo = freeSpinOptionID.split(';');
 
                 const optionResult = {
@@ -29,20 +41,36 @@ cc.Class({
             lastEvent = freeGameResult;
             lastEvent.type = "freeGame";
 
-            const {freeGameTableFormat} = this.node.gSlotDataStore.playSession;
+            const { freeGameTableFormat } = this.node.gSlotDataStore.playSession;
             if (freeGameTableFormat)
                 tableFormat = freeGameTableFormat;
+
+            const { jpInfo } = freeGameResult;
+            if (jpInfo) {
+                let jackpotProperties = jpInfo.split(';');
+                const properties = {
+                    jackpotType: Number(jackpotProperties[0]),
+                    jackpotWon: Number(jackpotProperties[1]),
+                }
+                lastEvent.jackpotProperties = properties;
+            }
         } else {
             lastEvent = normalGameResult;
             lastEvent.type = "normalGame";
 
-            const {normalGameTableFormat} = this.node.gSlotDataStore.playSession;
+            const { normalGameTableFormat } = this.node.gSlotDataStore.playSession;
             if (normalGameTableFormat)
                 tableFormat = normalGameTableFormat;
         }
 
-        if (lastEvent.matrix) {
+        if (lastEvent.matrix && freeGameResult) {
             lastEvent.matrix = this.node.gSlotDataStore.convertSlotMatrix(lastEvent.matrix, tableFormat);
+            const freeSpinMatrix = lastEvent.matrix;
+            lastEvent.freeSpinMatrix = freeSpinMatrix;
+        } else if (lastEvent.matrix) {
+            lastEvent.matrix = this.node.gSlotDataStore.convertSlotMatrix(lastEvent.matrix, tableFormat);
+            const normalSpinMatrix = lastEvent.matrix;
+            lastEvent.normalSpinMatrix = normalSpinMatrix;
         }
 
         if (lastEvent.payLines) {
@@ -50,8 +78,7 @@ cc.Class({
         }
 
         this.node.gSlotDataStore.playSession.currentBonusCredits = 0;
-        if (bonusGameRemain > 0 && bonusGameRemain != extend.cfPlayBonus && bonusGameMatrix)
-        {
+        if (bonusGameRemain > 0 && bonusGameRemain != extend.cfPlayBonus && bonusGameMatrix) {
             this.node.gSlotDataStore.playSession.bonusGameMatrix.forEach(it => {
                 if (it > 0) this.node.gSlotDataStore.playSession.currentBonusCredits += it;
             });
@@ -70,7 +97,7 @@ cc.Class({
             bg: 'bonusGame',
             fg: 'freeGame',
             wAmt: 'winAmount',
-            jpInfo: 'jackpotJnfo',
+            jpInfo: 'jackpotInfo',
             fgo: 'freeGameOption',
             fsoi: 'freeSpinOptionID',
             subSym1: 'subSymbol1',

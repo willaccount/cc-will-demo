@@ -56,8 +56,6 @@ cc.Class({
         if (this.node.mainDirector.trialMode && this.node.gSlotDataStore.currentGameMode !== "normalGame") {
             this._showTrialButtons(null, true);
         }
-        //Check if we have table to show or not.... or should we use base interface????
-        //Anyways,... I can decoupling table from game mode, thats good enough for v2
         if (!this.hasTable) {
             this.executeNextScript(script);
             return;
@@ -110,5 +108,10 @@ cc.Class({
         this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
             this.executeNextScript(script);
         });
+    },
+    
+    _updateValueJP(script, data) {
+        this.node.mainDirector.updateValueJackpot(data.isGrand, data.value);
+        this.executeNextScript(script);
     },
 });

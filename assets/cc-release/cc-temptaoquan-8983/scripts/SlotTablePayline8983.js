@@ -155,11 +155,24 @@ cc.Class({
             for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
                 const isNormalSymbol = (this.paylinesMatrix[col][row].symbol.symbol == symbolId) && 
                                     (this.paylinesMatrix[col][row].symbol.symbol != 'A')
-                if (isNormalSymbol) //remove hardcore K ?
+                if (isNormalSymbol)
                 {
                     this.paylinesMatrix[col][row].symbol.active = true;
                     this.paylinesMatrix[col][row].paylineSymbol.enableHighlight();
                     this.paylinesMatrix[col][row].paylineSymbol.playAnimation();
+                }
+            }
+        }
+    },
+
+    blinkNormalPaylineAllline({symbolId, symbolCount}) {
+        for (let col = 0; col < symbolCount; col++) {
+            for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
+                if (this.paylinesMatrix[col][row].symbol.symbol == symbolId ||
+                    this.paylinesMatrix[col][row].symbol.symbol == "K")
+                {
+                    this.paylinesMatrix[col][row].symbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
+                    this.paylinesMatrix[col][row].paylineSymbol.blinkHighlight(this.node.curentConfig.BLINK_DURATION, this.node.curentConfig.BLINKS);
                 }
             }
         }

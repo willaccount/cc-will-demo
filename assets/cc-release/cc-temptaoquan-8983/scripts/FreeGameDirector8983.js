@@ -11,24 +11,32 @@ cc.Class({
     },
 
     ready(data) {
-        let { optionResult } = this.node.gSlotDataStore.lastEvent;
-        this.table.active = true;
-        this.gameConfig = this.node.config;
-        if (data && data.matrix) {
-            let freeGameMatrix = this.addingFreeGameSymbols(data.matrix);
-            this.table.emit("CHANGE_MATRIX", { matrix: freeGameMatrix });
-        }
-        if(data && data.optionResult) {
-            this.updateWildType(data.optionResult);
-        } else if(optionResult) {
-            this.updateWildType(optionResult.spinAmountIndex);
+        const { isResume, freeSpinMatrix } = data;
+        const { winAmount, freeGameRemain } = this.node.gSlotDataStore.playSession;
+        const { fgoi: freeGameOptionID } = this.node.gSlotDataStore.playSession.extend;
+        const hasFreegame = freeGameRemain && freeGameRemain > 0;
+
+
+        if (isResume && !hasFreegame && freeGameOptionID) {
+            this.updateWildType(freeGameOptionID);
+            this.scheduleOnce(() => {
+                this.runAction('Resume');
+            }, 1);
+            return;
         }
 
-        const { winAmount, freeGameRemain } = this.node.gSlotDataStore.playSession;
+        this.table.active = true;
+        this.gameConfig = this.node.config;
+        if (data && freeSpinMatrix) {
+            let freeGameMatrix = this.addingFreeGameSymbols(freeSpinMatrix);
+            this.table.emit("CHANGE_MATRIX", { matrix: freeGameMatrix });
+        }
+        if (data && freeGameOptionID) {
+            this.updateWildType(freeGameOptionID);
+        }
         if (!winAmount || (winAmount && winAmount == 0)) {
             this.winAmount.emit("RESET_NUMBER");
         }
-
         this.node.gSlotDataStore.isAutoSpin = true;
         this.spinTimes.emit("UPDATE_SPINTIMES", freeGameRemain);
         this.scheduleOnce(() => {
@@ -42,7 +50,7 @@ cc.Class({
 
     addingFreeGameSymbols(matrix) {
         let newMatrix = matrix;
-        for(let col = 1; col < COL_FOURTH; ++col) {
+        for (let col = 1; col < COL_FOURTH; ++col) {
             this.symbolList = this.gameConfig.SYMBOL_NAME_LIST_FREE[col];
             newMatrix[col].unshift(this.getRandomSymbolName());
         }
@@ -50,7 +58,7 @@ cc.Class({
     },
 
     getRandomSymbolName() {
-        return this.symbolList[Math.floor(Math.random()*this.symbolList.length)];
+        return this.symbolList[Math.floor(Math.random() * this.symbolList.length)];
     },
 
     _spinClick(script) {
@@ -88,24 +96,40 @@ cc.Class({
         this.executeNextScript(script);
     },
 
-    _showFreeSymbolPayLine(script,payLines) {
+    _showFreeSymbolPayLine(script, payLines) {
         if (!this.hasPayline) {
             this.executeNextScript(script);
             return;
         }
-        this.table.emit("BLINK_ALL_NORMAL_PAYLINES",() => {
-            this.table.emit("SHOW_ALL_FREE_PAYLINES",payLines);
+        this.table.emit("BLINK_ALL_NORMAL_PAYLINES", () => {
+            this.table.emit("SHOW_ALL_FREE_PAYLINES", payLines);
             this.executeNextScript(script);
         });
     },
 
-    _showWildPayline(script, { name, content}) {
-        this.table.emit("SHOW_WILD_PAYLINE",() => {
+    _setUpPaylines(script, { matrix, payLines }) {
+        this.hasPayline = true;
+        this.table.emit("SETUP_PAYLINES", matrix, payLines);
+        this.executeNextScript(script);
+    },
+
+    _showJackpotPayLine(script, subSymbols) {
+        if (!this.hasPayline) {
+            this.executeNextScript(script);
+            return;
+        }
+        this.table.emit("SHOW_SUB_SYMBOL_ANIMS", subSymbols, () => {
+            this.executeNextScript(script);
+        });
+    },
+
+    _showWildPayline(script, { name, content }) {
+        this.table.emit("SHOW_WILD_PAYLINE", () => {
             this._showWildMultiplier(script, content);
         });
     },
 
-    _showWildMultiplier(script, content ) {
+    _showWildMultiplier(script, content) {
         const color = 7;
         const { wildMultiplier } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
@@ -113,5 +137,43 @@ cc.Class({
         this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
             this.executeNextScript(script);
         });
+    },
+
+    _resetSymbolPayline(script) {
+        this.table.emit("RESET_SYMBOL_PAYLINES");
+        this.executeNextScript(script);
+    },
+
+    _showWildPayline(script, { name, content }) {
+        this.table.emit("SHOW_WILD_PAYLINE", () => {
+            this._showWildMultiplier(script, content);
+        });
+    },
+
+    _showResultFreeGameOption(script, data) {
+        const { name, content } = data;
+        if (this.node.mainDirector) {
+            this.node.mainDirector.showCutscene(name, content, () => {
+                this.executeNextScript(script);
+            });
+        } else {
+            cc.error('There is no main Director to play cutscenes');
+            this.executeNextScript(script);
+        }
+    },
+
+    _updateSpinTimeFreeGameOption(script) {
+        const { optionResult } = this.node.gSlotDataStore.lastEvent;
+
+        if (optionResult) {
+            const { spinAmount } = optionResult;
+            this.spinTimes.emit("UPDATE_SPINTIMES", Number(spinAmount));
+        }
+        this.executeNextScript(script);
+    },
+
+    _updateValueJP(script, data) {
+        this.node.mainDirector.updateValueJackpot(data.isGrand, data.value);
+        this.executeNextScript(script);
     },
 });
