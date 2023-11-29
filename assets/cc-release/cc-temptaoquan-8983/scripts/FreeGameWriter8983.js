@@ -189,6 +189,9 @@ cc.Class({
                 if (wildMultiplier && wildMultiplier > 1) {
                     listScript.push({
                         command: "_showWildPayline",
+                    });
+                    listScript.push({
+                        command: "_showWildMultiplier",
                         data: {
                             name: "WildTransition",
                             content: {

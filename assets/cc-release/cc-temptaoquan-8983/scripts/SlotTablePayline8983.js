@@ -154,8 +154,7 @@ cc.Class({
         for (let col = 0; col < symbolCount; col++) {
             for (let row = 0; row < this.paylinesMatrix[col].length; row++) {
                 const { symbol, paylineSymbol } = this.paylinesMatrix[col][row];
-                const isNormalSymbol = (symbol.symbol == symbolId) &&
-                    (symbol.symbol != 'A') && (symbol.symbol != 'K');
+                const isNormalSymbol = (symbol.symbol == symbolId) && (symbol.symbol != 'A');
 
                 if (isNormalSymbol) {
                     symbol.active = true;

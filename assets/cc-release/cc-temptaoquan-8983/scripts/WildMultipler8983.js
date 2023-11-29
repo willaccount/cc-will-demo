@@ -13,6 +13,7 @@ cc.Class({
 
     onLoad() {
         this.node.on('ACTIVE_MULTIPLIER', this.active, this);
+        this.node.on('ACTIVE_FAST', this.activeFast, this);
         this.node.on('HIDE_MULTIPLIER', this.hide, this);
         this.assets = convertAssetArrayToObject(this.images);
         this.display.scale = 0;
@@ -66,7 +67,19 @@ cc.Class({
             .start();
     },
 
+    activeFast(multiplier, color = 7) {
+        this.isShowing = true;
+        const imagesName = this.convertName(multiplier, color);
+        this.display.getComponent(cc.Sprite).spriteFrame = this.assets[imagesName];
+        if (this.spineAnim) this.spineAnim.setAnimation(0, 'Static', true);
+        this.display.getComponent(cc.Sprite).spriteFrame = this.assets[imagesName];
+        this.display.stopAllActions();
+        this.display.scale = 1;
+        this.display.angle = 0;
+        this.display.opacity = 255;
+    },
+
     convertName(multiplier, color) {
         return 'X' + multiplier + '-' + COLOR[color - 1];
-    }
+    },
 });

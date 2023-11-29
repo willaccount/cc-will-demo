@@ -20,7 +20,6 @@ cc.Class({
         const isFreeGame = (freeGameRemain && freeGameRemain > 0) || false;
         const isFreeGameOption = (freeGameOption && freeGameOption > 0) || false;
         const hasNormalPayline = (normalGamePayLines && normalGamePayLines.length > 0) || false;
-        const updatedWinAmount = winAmount - (betValue * currentBonusCredits);
         
         let listScript = [];
 
@@ -73,11 +72,11 @@ cc.Class({
             });
         }
 
-        if (updatedWinAmount && updatedWinAmount > 0) {
+        if (winAmount && winAmount > 0) {
             listScript.push({
                 command: "_updateWinningAmount",
                 data: { 
-                    winAmount: updatedWinAmount, 
+                    winAmount: winAmount, 
                     time: 0 
                 }
             });
@@ -239,6 +238,8 @@ cc.Class({
         const { currentBetData } = this.node.gSlotDataStore.slotBetDataStore.data;
         const listScript = [];
         const isBigwin = winAmount && winAmount >= currentBetData * 20 && !jackpotInfo;
+        const { gameSpeed } = this.node.gSlotDataStore;
+        const isFastToResult = gameSpeed === this.node.config.GAME_SPEED.INSTANTLY;
 
         if (payLines) {
             listScript.push({
@@ -286,12 +287,13 @@ cc.Class({
                         name: "WildTransition",
                         content: {
                             wildMultiplier,
+                            isFastToResult
                         }
                     }
                 });
             }
             listScript.push({
-                command: "_blinkAllPaylines",
+                command: "_blinkAllPaylines_2",
             });
             listScript.push({
                 command: "_showCutscene",
@@ -303,10 +305,19 @@ cc.Class({
                     }
                 }
             });
+            if (winAmount && winAmount > 0) {
+                listScript.push({
+                    command: "_updateWinningAmountSync",
+                    data: { 
+                        winAmount: winAmount, 
+                        time: 0 
+                    }
+                });
+            }
         }
         if (freeSpinOption && freeSpinOption > 0) {
             listScript.push({
-                command: "_blinkAllPaylines",
+                command: "_blinkAllPaylines_2",
             });
             listScript.push({
                 command: "_showScatterPayLine",
@@ -344,17 +355,18 @@ cc.Class({
             if (payLines && payLines.length > 0) {
                 if (wildMultiplier && wildMultiplier > 1) {
                     listScript.push({
-                        command: "_showWildPayline",
+                        command: "_showWildMultiplier",
                         data: {
                             name: "WildTransition",
                             content: {
                                 wildMultiplier,
+                                isFastToResult
                             }
                         }
                     });
                 }
                 listScript.push({
-                    command: "_blinkAllPaylines",
+                    command: "_blinkAllPaylines_2",
                 });
                 listScript.push({
                     command: "_showEachPayLine",
@@ -364,8 +376,16 @@ cc.Class({
                     command: "_clearPaylines",
                 });
             }
+            if (winAmount && winAmount > 0) {
+                listScript.push({
+                    command: "_updateWinningAmountSync",
+                    data: { 
+                        winAmount: winAmount, 
+                        time: 0 
+                    }
+                });
+            }
         }
-
         listScript.push({
             command: "_gameEnd"
         });
@@ -376,7 +396,40 @@ cc.Class({
             command: "_gameRestart"
         });
         return listScript;
-
     },
 
+    makeScriptGameRestart() {
+        const listScript = [];
+        const { spinTimes, isAutoSpin, promotion, promotionRemain } = this.node.gSlotDataStore;
+
+        if (promotion) {
+            listScript.push({
+                command: "_resetPromotionButtons"
+            });
+        }
+        if (spinTimes && spinTimes > 0 && !promotion) {
+            listScript.push({
+                command: "_runAutoSpin"
+            });
+        } else {
+            if (!promotionRemain || promotionRemain <= 0) {
+                listScript.push({
+                    command: "_enableBet"
+                });
+                listScript.push({
+                    command: "_exitPromotionMode"
+                });
+            }
+            if (isAutoSpin) {
+                this.node.gSlotDataStore.isAutoSpin = false;
+                listScript.push({
+                    command: "_resetSpinButton",
+                });
+            }
+        }
+        listScript.push({
+            command: "_runAsyncScript",
+        });
+        return listScript;
+    },
 });

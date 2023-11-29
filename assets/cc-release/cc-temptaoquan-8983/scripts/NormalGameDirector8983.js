@@ -1,4 +1,5 @@
 const BaseSlotGameDirector = require('SlotGameDirector');
+const SILVER = 1;
 cc.Class({
     extends: BaseSlotGameDirector,
 
@@ -6,18 +7,43 @@ cc.Class({
         wildMultiplier: cc.Node
     },
 
-    _showWildMultiplier(script, { name, content }) {
-        const color = 7;
-        const { isAutoSpin } = this.node.gSlotDataStore;
-
-        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', content.nwm, color, isAutoSpin, () => {
-            this.executeNextScript(script);
-        });
+    extendInit() {
+        this.listExcuteNextScriptAsync = [];
     },
 
     _showEachPayLine(script) {
-        this.table.emit("SHOW_ALL_NORMAL_PAYLINES");
-        this.executeNextScript(script);
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.table.emit("SHOW_ALL_NORMAL_PAYLINES", () => {
+                    this.runAsyncScript();
+                });
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: true, name: "_showEachPayLine" });
+            this.executeNextScript(script);
+        } else {
+            this.table.emit("SHOW_ALL_NORMAL_PAYLINES", () => {
+                this.executeNextScript(script);
+            });
+        }
+    },
+
+    _blinkAllPaylines_2(script) {
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.table.emit("BLINK_ALL_NORMAL_PAYLINES", () => {
+                    this.runAsyncScript();
+                });
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: true, name: "_blinkAllPayline_2" });
+            this.executeNextScript(script);
+        } else {
+            this._blinkAllPaylines(script);
+        }
     },
 
     _spinClick(script) {
@@ -94,24 +120,166 @@ cc.Class({
         this.executeNextScript(script);
     },
 
-    _showWildPayline(script, { name, content}) {
-        this.table.emit("SHOW_WILD_PAYLINE",() => {
-            this._showWildMultiplier(script, content);
-        });
-    },
-
-    _showWildMultiplier(script, content ) {
-        const color = 1;
-        const { wildMultiplier } = content;
+    _showWildPayline(script) {
+        const { isFinished } = this.node.gSlotDataStore.playSession;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
-        this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, color, isAutoSpin, () => {
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.table.emit('SHOW_WILD_PAYLINE', () => {
+                    this.runAsyncScript();
+                });
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: true, name: "_showWildPayline" });
             this.executeNextScript(script);
-        });
+        } else {
+            this.table.emit("SHOW_WILD_PAYLINE", () => {
+                this.executeNextScript(script);
+            });
+        }
     },
-    
+
+    _showWildMultiplier(script, data) {
+        const { content } = data;
+        const { wildMultiplier, isFastToResult } = content;
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                if (isFastToResult) {
+                    this.wildMultiplier.emit('ACTIVE_FAST', wildMultiplier, SILVER);
+                    this.runAsyncScript();
+                } else {
+                    this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, SILVER, isAutoSpin, () => {
+                        this.runAsyncScript();
+                    });
+                }
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: true, name: "_showWildMultiplier" });
+            this.executeNextScript(script);
+        } else {
+            if (isFastToResult) {
+                this.wildMultiplier.emit('ACTIVE_FAST', wildMultiplier, SILVER);
+                this.executeNextScript(script);
+            } else {
+                this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, SILVER, isAutoSpin, () => {
+                    this.executeNextScript(script);
+                });
+            }
+        }
+    },
+
     _updateValueJP(script, data) {
         this.node.mainDirector.updateValueJackpot(data.isGrand, data.value);
         this.executeNextScript(script);
+    },
+
+    _delayTimeScript(script, time) {
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.delayTimeCallback = () => {
+                    this.delayTimeCallback = null;
+                    this.runAsyncScript();
+                };
+                this.scheduleOnce(this.delayTimeCallback, time);
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: true, name: "_delayTimeScript" });
+            this.executeNextScript(script);
+        } else {
+            this.delayTimeCallback = () => {
+                this.delayTimeCallback = null;
+                this.executeNextScript(script);
+            };
+            this.scheduleOnce(this.delayTimeCallback, time);
+        }
+    },
+
+    _updateWinningAmount(script, { winAmount, time }) {
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.winAmount.emit("UPDATE_WIN_AMOUNT", { value: winAmount, time });
+                this.runAsyncScript();
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: false, name: "_updateWinningAmount" });
+            this.executeNextScript(script);
+        } else {
+            this.winAmount.emit("UPDATE_WIN_AMOUNT", { value: winAmount, time });
+            this.executeNextScript(script);
+        }
+    },
+
+    _updateWinningAmountSync(script, { winAmount, time }) {
+        this._canFastUpdateWinAmount = true;
+        this._winValue = winAmount;
+        const { isFinished } = this.node.gSlotDataStore.playSession;
+        const { isAutoSpin } = this.node.gSlotDataStore;
+        if (isFinished && !isAutoSpin) {
+            const callback = () => {
+                this.winAmount.emit("UPDATE_WIN_AMOUNT", { value: winAmount, time }, () => {
+                    this._canFastUpdateWinAmount = false;
+                    this._winValue = 0;
+                });
+                this.runAsyncScript();
+            };
+            this.listExcuteNextScriptAsync.push({ callback, isSkippable: false, name: "_updateWinningAmountSync" });
+            this.executeNextScript(script);
+        } else {
+            this.winAmount.emit("UPDATE_WIN_AMOUNT", { value: winAmount, time }, () => {
+                this._canFastUpdateWinAmount = false;
+                this._winValue = 0;
+            });
+            this.executeNextScript(script);
+        }
+    },
+
+    fastToResultClick() {
+        this.skipAllEffects();
+        this._super();
+    },
+
+    runAsyncScript() {
+        if (this.isResetAsyncScript) return;
+        const command = this.listExcuteNextScriptAsync.shift();
+        if (command) {
+            const { callback, name } = command;
+            if (name) cc.log(this.name + ' run AsyncScript: ', name);
+            callback && callback();
+        }
+    },
+
+    _runAsyncScript(script) {
+        this.runAsyncScript();
+        this.executeNextScript(script);
+    },
+
+    resetAsyncScript() {
+        if (!this.listExcuteNextScriptAsync) return;
+        this.isResetAsyncScript = true;
+        while (this.listExcuteNextScriptAsync.length > 0) {
+            const command = this.listExcuteNextScriptAsync.shift();
+            if (command) {
+                const { callback, isSkippable, name } = command;
+                if (!isSkippable) {
+                    if (name) cc.log(this.name + ' run resetAsyncScript: ', name);
+                    callback && callback();
+                }
+            }
+        }
+        this.isResetAsyncScript = false;
+    },
+
+    skipAllEffects() {
+        this.resetAsyncScript();
+        this.wildMultiplier.emit('ACTIVE_FAST');
+        this._super();
+        if (this.delayTimeCallback) {
+            this.unschedule(this.delayTimeCallback);
+            this.delayTimeCallback();
+        }
     },
 });

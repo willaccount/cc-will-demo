@@ -126,13 +126,15 @@ cc.Class({
         });
     },
 
-    _showWildPayline(script, { name, content }) {
-        this.table.emit("SHOW_WILD_PAYLINE", () => {
-            this._showWildMultiplier(script, content);
+    _showWildPayline(script) {
+        this.table.emit("SHOW_WILD_PAYLINE",() => {
+            this.executeNextScript(script);
         });
     },
 
-    _showWildMultiplier(script, content) {
+    _showWildMultiplier(script, data ) {
+        const color = 1;
+        const { content } = data;
         const { wildMultiplier, freeGameOptionID } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
