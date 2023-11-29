@@ -62,6 +62,7 @@ cc.Class({
             SYMBOL_SMALL_NAME_LIST: ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q'],
             SYMBOL_WIDTH: 160,
             SYMBOL_HEIGHT: 161,
+            TOTAL_BET_CREDIT: 20,
 
             SYMBOL_MYTHICAL_WIDTH: 120,
             SYMBOL_MYTHICAL_HEIGHT: 90,
