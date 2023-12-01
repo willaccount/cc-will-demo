@@ -1828,10 +1828,10 @@
       "__uuid__": "6e9d8be0-7798-4c5d-964e-e1276dc5de3b"
     },
     "_N$pressedSprite": {
-      "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
+      "__uuid__": "9876b7a4-dfa6-4129-b2d6-ca568af573d2"
     },
     "pressedSprite": {
-      "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
+      "__uuid__": "9876b7a4-dfa6-4129-b2d6-ca568af573d2"
     },
     "_N$hoverSprite": {
       "__uuid__": "66936dfb-01ed-4074-a172-798fd2c740e1"
@@ -1840,7 +1840,7 @@
       "__uuid__": "66936dfb-01ed-4074-a172-798fd2c740e1"
     },
     "_N$disabledSprite": {
-      "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
+      "__uuid__": "bcef1932-d32a-4a4f-aed2-36ff2035acf2"
     },
     "_N$target": {
       "__id__": 21

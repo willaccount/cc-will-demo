@@ -24,6 +24,7 @@ cc.Class({
         this.node.on("SHOW_SUB_SYMBOL", this.showSubSymbol, this);
         this.node.on("REMOVE_SUB_SYMBOL", this.removeSubSymbol, this);
         this.node.on("SHOW_SMALL_SUB_SYMBOL", this.showSmallSubSymbol, this);
+        this.node.on("SHOW_SMALLI_SUB_SYMBOL_FAST", this.showSmallSubSymbolFast, this);
         this.node.on("RESET_SUB_SYMBOL", this.reset, this);
         this.node.on("SHOW_SUB_SYMBOL_ANIM", this.showSubSymbolAnim, this);
     },
@@ -32,6 +33,7 @@ cc.Class({
         this.node.showSubSymbol = this.showSubSymbol.bind(this);
         this.node.removeSubSymbol = this.removeSubSymbol.bind(this);
         this.node.showSmallSubSymbol = this.showSmallSubSymbol.bind(this);
+        this.node.showSmallSubSymbolFast = this.showSmallSubSymbolFast.bind(this);
         this.node.reset = this.reset.bind(this);
         this.node.showSubSymbolAnim = this.showSubSymbolAnim.bind(this);
     },
@@ -57,6 +59,18 @@ cc.Class({
             .to(0.1, { scale: 0.5 })
             .to(0.1, { position: cc.v2(40, 40) })
             .start();
+    },
+
+    showSmallSubSymbolFast(subSymbolName) {
+        const asset = this.assets[subSymbolName];
+        this.staticSymbol.opacity = 0;
+        this.subSymbol.active = true;
+        this.subSymbol.opacity = 255;
+        this.subSymbolAnim.node.active = false;
+        this.subSymbolAnim.node.opacity = 255;
+        this.subSymbol.getComponent(cc.Sprite).spriteFrame = asset;
+        this.subSymbol.scale = 0.5;
+        this.subSymbol.position = cc.v2(40, 40);
     },
 
     removeSubSymbol() {

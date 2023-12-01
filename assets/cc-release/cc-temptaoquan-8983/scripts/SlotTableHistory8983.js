@@ -37,35 +37,19 @@ cc.Class({
         const { result } = data;
         const { matrixResult } = data;
         const { wildNormalMulplier, wildFreeMulplier } = result.metaData;
+        const { subSymGrandNormal, subSymMajorNormal, subSymGrandFree, subSymMajorFree } = result.extraData;
 
-        // if (result && result.extraData) {
-        //     if (result.extraData.subSymGrandNormal) {
-        //         this.subSymGrandNormal = [...result.extraData.subSymGrandNormal];
-        //     }
-        //     if (result.extraData.subSymMajorNormal) {
-        //         this.subSymMajorNormal = [...result.extraData.subSymMajorNormal];
-        //     }
-        //     if (result.extraData.subSymGrandFree) {
-        //         this.subSymGrandFree = [...result.extraData.subSymGrandFree];
-        //         for (let i = 0; i < this.subSymGrandFree.length; i++) {
-        //             if (this.subSymGrandFree[i] >= 15) {
-        //                 this.subSymGrandFree[i] += 2;
-        //             } else {
-        //                 this.subSymGrandFree[i] += 1;
-        //             }
-        //         }
-        //     }
-        //     if (result.extraData.subSymMajorFree) {
-        //         this.subSymMajorFree = [...result.extraData.subSymMajorFree];
-        //         for (let i = 0; i < this.subSymMajorFree.length; i++) {
-        //             if (this.subSymMajorFree[i] >= 15) {
-        //                 this.subSymMajorFree[i] += 2;
-        //             } else {
-        //                 this.subSymMajorFree[i] += 1;
-        //             }
-        //         }
-        //     }
-        // }
+        if (result && result.extraData) {
+            if(subSymGrandNormal) {
+                this.convertSubSymbolIndexToMatrix("grand", subSymGrandNormal, this.subSymGrandNormal, this.node.config.TABLE_FORMAT);
+            } else if (subSymMajorNormal) {
+                this.convertSubSymbolIndexToMatrix("major", subSymMajorNormal, this.subSymMajorNormal, this.node.config.TABLE_FORMAT);
+            } else if (subSymGrandFree) {
+                this.convertSubSymbolIndexToMatrix("grand", subSymGrandFree, this.subSymGrandFree, this.node.config.TABLE_FORMAT_FREE);
+            } else if (subSymMajorFree) {
+                this.convertSubSymbolIndexToMatrix("major", subSymMajorFree, this.subSymMajorFree, this.node.config.TABLE_FORMAT_FREE);
+            }
+        }
 
         this.gameMode = data.mode;
 
@@ -117,8 +101,6 @@ cc.Class({
         let count = 0;
         this.listSymbol = [];
 
-        let startX = (-format.length / 2 + 0.5) * (symbolWidth - 10);
-
         if (freeGameOptionID > 0) {
             this.freeGameID.node.active = true;
             this.freeGameID.setSkin("skin" + freeGameOptionID);
@@ -129,10 +111,15 @@ cc.Class({
                 let symbol = this.getSymbol(this.currentMode);
                 let startY = (format[col] / 2 - 0.5) * (symbolHeight);
                 let startY2 = (format[col] / 2 - 0.5) * (symbolHeight / 2);
+
                 if (this.gameMode == "normal") {
+                    let startX = (-format.length / 2 + 0.5) * (symbolWidth - 10);
+
                     symbol.parent = this.normalReelContainer;
                     symbol.setPosition(startX + col * (symbolWidth - 10), startY - row * (symbolHeight));
                 } else {
+                    let startX = (-format.length / 2 + 0.5) * (symbolWidth - 5);
+
                     symbol.parent = this.freeReelContainer;
                     if (col == 0 || col == (format.length - 1)) {
                         symbol.setPosition(startX + col * (symbolWidth - 5), startY2 - row * (symbolHeight));
@@ -152,34 +139,38 @@ cc.Class({
         }
 
         // add sub symbol
-        // if (this.gameMode == "normal") {
-        //     if (this.subSymGrandNormal) {
-        //         this.subSymGrandNormal.forEach(subSymbol => {
-        //             let symbol = this.listSymbol[subSymbol];
-        //             symbol.showSmallSubSymbol('s1');
-        //         });
-        //     }
-        //     if (this.subSymMajorNormal) {
-        //         this.subSymMajorNormal.forEach(subSymbol => {
-        //             let symbol = this.listSymbol[subSymbol];
-        //             symbol.showSmallSubSymbol('s2');
-        //         });
-        //     }
-        // }
-        // else {
-        //     if (this.subSymGrandFree) {
-        //         this.subSymGrandFree.forEach(subSymbol => {
-        //             let symbol = this.listSymbol[subSymbol];
-        //             symbol.showSmallSubSymbol('s1');
-        //         });
-        //     }
-        //     if (this.subSymMajorFree) {
-        //         this.subSymMajorFree.forEach(subSymbol => {
-        //             let symbol = this.listSymbol[subSymbol];
-        //             symbol.showSmallSubSymbol('s2');
-        //         });
-        //     }
-        // }
+        if (this.gameMode == "normal") {
+            if (this.subSymGrandNormal) {
+                this.subSymGrandNormal.forEach(subSymbol => {
+                    if(subSymbol == 1) {
+                        symbol.showSmallSubSymbolFast('s1');
+                    }
+                });
+            }
+            if (this.subSymMajorNormal) {
+                this.subSymMajorNormal.forEach(subSymbol => {
+                    if(subSymbol == 2) {
+                        symbol.showSmallSubSymbolFast('s2');
+                    }
+                });
+            }
+        }
+        else {
+            if (this.subSymGrandFree) {
+                this.subSymGrandFree.forEach(subSymbol => {
+                    if(subSymbol == 1) {
+                        symbol.showSmallSubSymbolFast('s1');
+                    }
+                });
+            }
+            if (this.subSymMajorFree) {
+                this.subSymMajorFree.forEach(subSymbol => {
+                    if(subSymbol == 2) {
+                        symbol.showSmallSubSymbolFast('s2');
+                    }
+                });
+            }
+        }
     },
 
     clearTable() {
@@ -188,6 +179,10 @@ cc.Class({
         this.wildMultiplierText.active = false;
         this.wildMultiplierText.emit("HIDE_FAST");
         this.freeGameID.node.active = false;
+        this.subSymGrandNormal = [];
+        this.subSymMajorNormal = [];
+        this.subSymGrandFree = [];
+        this.subSymMajorFree = [];
     },
 
     clearPools() {
@@ -206,5 +201,24 @@ cc.Class({
             }
         }
         this.paylineInfo.emit('HIDE_PAYLINE');
+    },
+
+    convertSubSymbolIndexToMatrix(type, subSymbols, matrix = [], format) {
+
+        let offsetIndex = 0;
+        for (let col = 0; col < format.length; ++col) {
+            matrix[col] = [];
+            for (let row = 0; row < format[col]; row++) {
+                let currentIndex = offsetIndex + row;
+                matrix[col][row] = 0;
+                if (type == "grand" && subSymbols.indexOf(currentIndex) >= 0) {
+                    matrix[col][row] = 1;
+                }
+                if (type == "major" && subSymbols.indexOf(currentIndex) >= 0) {
+                    matrix[col][row] = 2;
+                }
+            }
+            offsetIndex += format[col];
+        }
     },
 });
