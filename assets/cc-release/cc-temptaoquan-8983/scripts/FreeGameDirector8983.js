@@ -17,6 +17,10 @@ cc.Class({
         const { fgoi: freeGameOptionID } = this.node.gSlotDataStore.playSession.extend;
         const hasFreegame = freeGameRemain && freeGameRemain > 0;
 
+        if (this.node.soundPlayer) {
+            this.node.soundPlayer.playMainBGM();
+        }
+
         if (isResume && !hasFreegame && freeGameOptionID) {
             this.updateWildType(freeGameOptionID);
             this.scheduleOnce(() => {
@@ -138,6 +142,9 @@ cc.Class({
         const { wildMultiplier, freeGameOptionID } = content;
         const { isAutoSpin } = this.node.gSlotDataStore;
 
+        if (this.node.soundPlayer) {
+            this.node.soundPlayer.playMultiplier(wildMultiplier);
+        }
         this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, freeGameOptionID, isAutoSpin, () => {
             this.executeNextScript(script);
         });

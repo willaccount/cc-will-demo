@@ -34,7 +34,12 @@ cc.Class({
         if (isMysteryOption) {
             this.getRandomMysteryChoices(customData);
         }
-        this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
+        this.delayTween = cc.tween(this.node);
+        this.delayTween.delay(1)
+            .call(() => {
+                this.node.mainDirector.getComponent('Director').gameStateManager.triggerFreeSpinOption(customData);
+            })
+            .start();
     },
 
     getRandomMysteryChoices() {

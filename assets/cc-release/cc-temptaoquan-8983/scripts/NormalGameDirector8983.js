@@ -151,6 +151,9 @@ cc.Class({
                     this.wildMultiplier.emit('ACTIVE_FAST', wildMultiplier, SILVER);
                     this.runAsyncScript();
                 } else {
+                    if (this.node.soundPlayer) {
+                        this.node.soundPlayer.playMultiplier(wildMultiplier);
+                    }
                     this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, SILVER, isAutoSpin, () => {
                         this.runAsyncScript();
                     });
@@ -163,6 +166,9 @@ cc.Class({
                 this.wildMultiplier.emit('ACTIVE_FAST', wildMultiplier, SILVER);
                 this.executeNextScript(script);
             } else {
+                if (this.node.soundPlayer) {
+                    this.node.soundPlayer.playMultiplier(wildMultiplier);
+                }
                 this.wildMultiplier.emit('ACTIVE_MULTIPLIER', wildMultiplier, SILVER, isAutoSpin, () => {
                     this.executeNextScript(script);
                 });
@@ -210,6 +216,14 @@ cc.Class({
         } else {
             this.winAmount.emit("UPDATE_WIN_AMOUNT", { value: winAmount, time });
             this.executeNextScript(script);
+        }
+    },
+
+    _resumeGameMode(script, {name, data}) {
+        this._super(script, {name, data});
+
+        if (this.node.soundPlayer) {
+            this.node.soundPlayer.playMainBGM();
         }
     },
 

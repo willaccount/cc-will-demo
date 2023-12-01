@@ -49,8 +49,14 @@ cc.Class({
             this.canClick = false;
             if (!isHighligth) {
                 this.dimOption.active = true;
+            } else {
+                this.displayOptionAnim();
             }
         }
+    },
+
+    displayOptionAnim() {
+        this.wildSpine.getComponent(sp.Skeleton).setAnimation(0, 'animation', false);
     },
 
     callback() {

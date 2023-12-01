@@ -3,8 +3,8 @@ const WIN_ANIM = {
     1: 'thangcuclon',
     2: 'thangsieulon'
 };
-const {formatMoney} = require('utils');
-const {reverseEasing} = require('globalAnimationLibrary');
+const { formatMoney } = require('utils');
+const { reverseEasing } = require('globalAnimationLibrary');
 cc.Class({
     extends: require('WinEffectv2'),
 
@@ -20,12 +20,15 @@ cc.Class({
         this.phaoHoaLeft.active = false;
         this.phaoHoaRight.active = false;
         this.bigWinType = 0;
+        if (this.node.soundPlayer) {
+            this.soundPlayer = this.node.soundPlayer;
+        }
     },
 
     enter() {
         this.node.stopAllActions();
         let modeTurbo = false;
-        if (this.node.gSlotDataStore) modeTurbo = this.node.gSlotDataStore.modeTurbo;   
+        if (this.node.gSlotDataStore) modeTurbo = this.node.gSlotDataStore.modeTurbo;
         this.showEffectWin();
         this.node.fullDisplay = !modeTurbo;
     },
@@ -49,23 +52,41 @@ cc.Class({
         this.winValue = data.winAmount;
     },
 
+    playSoundStart() {
+        this.soundPlayer.node.emit("STOP_ALL_AUDIO");
+        this.soundPlayer.node.emit("PLAY_WIN_LOOP");
+    },
+
+    playSoundEnd() {
+        this.soundPlayer.node.emit("STOP_WIN_LOOP");
+        this.soundPlayer.node.emit("PLAY_WIN_END");
+
+        this.replayTheme = cc.tween(this.soundPlayer);
+        this.replayTheme
+            .delay(1.5)
+            .call(() => {
+                this.soundPlayer.node.emit("PLAY_THEME_SOUND");
+            })
+            .start();
+    },
+
     update() {
         if (!this.isUpdating) return;
         this.label.string = formatMoney(this.currentValue);
         if (this.currentValue >= this.superWinAmount && this.currentTitle == 1) {
             this.changeTitle(2);
-        } else if (this.currentValue >= this.megaWinAmount  && this.currentTitle == 0) {
+        } else if (this.currentValue >= this.megaWinAmount && this.currentTitle == 0) {
             this.changeTitle(1);
         }
     },
 
     showEffectWin() {
         this.isShowNormalEffect = true;
-        if(this.overlayNode){
+        if (this.overlayNode) {
             this.overlayNode.active = true;
         }
         this.winInfo.opacity = 255;
-        if(this.bigWinAnim) {
+        if (this.bigWinAnim) {
             this.bigWinAnim.getComponent(sp.Skeleton).setSkin(WIN_ANIM[0]);
             this.bigWinAnim.getComponent(sp.Skeleton).setSlotsToSetupPose();
             this.bigWinAnim.getComponent(sp.Skeleton).setAnimation(0, 'animation', true);
@@ -106,7 +127,7 @@ cc.Class({
 
     changeTitle(index) {
         this.currentTitle = index;
-        if(this.bigWinAnim) {
+        if (this.bigWinAnim) {
             this.bigWinAnim.getComponent(sp.Skeleton).setSkin(WIN_ANIM[index]);
             this.bigWinAnim.getComponent(sp.Skeleton).setSlotsToSetupPose();
             this.bigWinAnim.getComponent(sp.Skeleton).setAnimation(0, 'animation', true);
@@ -117,9 +138,9 @@ cc.Class({
         this.currentTween = cc.tween(this);
         if (this.winValue >= this.superWinAmount) {
             this.currentTween
-                .to(this.animDuration / 3, {currentValue: this.megaWinAmount}, {easing: "sineInOut"})
-                .to(this.animDuration / 3, {currentValue: this.superWinAmount}, {easing: "sineInOut"})
-                .to(this.animDuration / 3, {currentValue: this.winValue}, {easing: "sineInOut"})
+                .to(this.animDuration / 3, { currentValue: this.megaWinAmount }, { easing: "sineInOut" })
+                .to(this.animDuration / 3, { currentValue: this.superWinAmount }, { easing: "sineInOut" })
+                .to(this.animDuration / 3, { currentValue: this.winValue }, { easing: "sineInOut" })
                 .call(() => {
                     this.skippable = false;
                     this.currentTween = null;
@@ -127,8 +148,8 @@ cc.Class({
                 });
         } else if (this.winValue >= this.megaWinAmount) {
             this.currentTween = cc.tween(this)
-                .to(this.animDuration / 2, {currentValue: this.megaWinAmount}, {easing: "sineInOut"})
-                .to(this.animDuration / 2, {currentValue: this.winValue}, {easing: "sineInOut"})
+                .to(this.animDuration / 2, { currentValue: this.megaWinAmount }, { easing: "sineInOut" })
+                .to(this.animDuration / 2, { currentValue: this.winValue }, { easing: "sineInOut" })
                 .call(() => {
                     this.skippable = false;
                     this.currentTween = null;
@@ -136,7 +157,7 @@ cc.Class({
                 });
         } else {
             this.currentTween = cc.tween(this)
-                .to(this.animDuration, {currentValue: this.winValue}, {easing: "sineInOut"})
+                .to(this.animDuration, { currentValue: this.winValue }, { easing: "sineInOut" })
                 .call(() => {
                     this.skippable = false;
                     this.currentTween = null;
@@ -154,7 +175,7 @@ cc.Class({
         this.winInfo.runAction(cc.sequence(
             cc.delayTime(this.delayShowTime),
             cc.scaleTo(this.hideTime, 0),
-            cc.callFunc(()=>{
+            cc.callFunc(() => {
                 //this.node.soundPlayer.playBackgroundMusic();
                 this.label.string = '';
                 this.winInfo.opacity = 0;
@@ -164,7 +185,7 @@ cc.Class({
         ));
     },
 
-    exit(){
+    exit() {
         this._super();
 
         this.phaoHoaLeft.active = false;
