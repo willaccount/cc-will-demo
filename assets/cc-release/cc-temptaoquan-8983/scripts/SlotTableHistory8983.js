@@ -128,12 +128,18 @@ cc.Class({
             for (let row = 0; row < format[col]; row++) {
                 let symbol = this.getSymbol(this.currentMode);
                 let startY = (format[col] / 2 - 0.5) * (symbolHeight);
+                let startY2 = (format[col] / 2 - 0.5) * (symbolHeight / 2);
                 if (this.gameMode == "normal") {
                     symbol.parent = this.normalReelContainer;
                     symbol.setPosition(startX + col * (symbolWidth - 10), startY - row * (symbolHeight));
                 } else {
                     symbol.parent = this.freeReelContainer;
-                    symbol.setPosition(startX + col * (symbolWidth - 5), startY - row * (symbolHeight));
+                    if (col == 0 || col == (format.length - 1)) {
+                        symbol.setPosition(startX + col * (symbolWidth - 5), startY2 - row * (symbolHeight));
+                    } else {
+                        symbol.setPosition(startX + col * (symbolWidth - 5), startY - row * (symbolHeight));
+                    }
+
                 }
                 let symbolName = matrix[count];
                 symbol.changeToSymbol(symbolName);
