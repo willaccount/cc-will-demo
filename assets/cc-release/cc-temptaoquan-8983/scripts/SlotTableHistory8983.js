@@ -37,16 +37,20 @@ cc.Class({
         const { result } = data;
         const { matrixResult } = data;
         const { wildNormalMulplier, wildFreeMulplier } = result.metaData;
-        const { subSymGrandNormal, subSymMajorNormal, subSymGrandFree, subSymMajorFree } = result.extraData;
 
         if (result && result.extraData) {
+            const { subSymGrandNormal, subSymMajorNormal, subSymGrandFree, subSymMajorFree } = result.extraData;
+            
             if(subSymGrandNormal) {
                 this.convertSubSymbolIndexToMatrix("grand", subSymGrandNormal, this.subSymGrandNormal, this.node.config.TABLE_FORMAT);
-            } else if (subSymMajorNormal) {
+            } 
+            if (subSymMajorNormal) {
                 this.convertSubSymbolIndexToMatrix("major", subSymMajorNormal, this.subSymMajorNormal, this.node.config.TABLE_FORMAT);
-            } else if (subSymGrandFree) {
+            } 
+            if (subSymGrandFree) {
                 this.convertSubSymbolIndexToMatrix("grand", subSymGrandFree, this.subSymGrandFree, this.node.config.TABLE_FORMAT_FREE);
-            } else if (subSymMajorFree) {
+            } 
+            if (subSymMajorFree) {
                 this.convertSubSymbolIndexToMatrix("major", subSymMajorFree, this.subSymMajorFree, this.node.config.TABLE_FORMAT_FREE);
             }
         }
@@ -107,6 +111,7 @@ cc.Class({
         }
 
         for (let col = 0; col < format.length; col++) {
+            this.listSymbol[col] = [];
             for (let row = 0; row < format[col]; row++) {
                 let symbol = this.getSymbol(this.currentMode);
                 let startY = (format[col] / 2 - 0.5) * (symbolHeight);
@@ -133,42 +138,50 @@ cc.Class({
                 symbol.col = col;
                 symbol.row = row;
                 symbol.val = symbolName;
-                this.listSymbol.push(symbol);
+                this.listSymbol[col].push(symbol);
                 count++;
             }
         }
 
         // add sub symbol
         if (this.gameMode == "normal") {
-            if (this.subSymGrandNormal) {
-                this.subSymGrandNormal.forEach(subSymbol => {
-                    if(subSymbol == 1) {
-                        symbol.showSmallSubSymbolFast('s1');
+            if (this.subSymGrandNormal && this.subSymGrandNormal.length > 0) {
+                for(let col = 0; col < format.length; col++) {
+                    for(let row = 0; row < format[col]; row++) {
+                        if(this.subSymGrandNormal[col][row] == 1) {
+                            this.listSymbol[col][row].showSmallSubSymbolFast('s1');
+                        }
                     }
-                });
-            }
-            if (this.subSymMajorNormal) {
-                this.subSymMajorNormal.forEach(subSymbol => {
-                    if(subSymbol == 2) {
-                        symbol.showSmallSubSymbolFast('s2');
+                }
+            } else
+            if (this.subSymMajorNormal && this.subSymMajorNormal.length > 0) {
+                for(let col = 0; col < format.length; col++) {
+                    for(let row = 0; row < format[col]; row++) {
+                        if(this.subSymMajorNormal[col][row] == 2) {
+                            this.listSymbol[col][row].showSmallSubSymbolFast('s2');
+                        }
                     }
-                });
+                }
             }
         }
         else {
-            if (this.subSymGrandFree) {
-                this.subSymGrandFree.forEach(subSymbol => {
-                    if(subSymbol == 1) {
-                        symbol.showSmallSubSymbolFast('s1');
+            if (this.subSymGrandFree && this.subSymGrandFree.length > 0) {
+                for(let col = 0; col < format.length; col++) {
+                    for(let row = 0; row < format[col]; row++) {
+                        if(this.subSymGrandFree[col][row] == 1) {
+                            this.listSymbol[col][row].showSmallSubSymbolFast('s1');
+                        }
                     }
-                });
-            }
-            if (this.subSymMajorFree) {
-                this.subSymMajorFree.forEach(subSymbol => {
-                    if(subSymbol == 2) {
-                        symbol.showSmallSubSymbolFast('s2');
+                }
+            } else
+            if (this.subSymMajorFree && this.subSymMajorFree.length > 0) {
+                for(let col = 0; col < format.length; col++) {
+                    for(let row = 0; row < format[col]; row++) {
+                        if(this.subSymMajorFree[col][row] == 2) {
+                            this.listSymbol[col][row].showSmallSubSymbolFast('s2');
+                        }
                     }
-                });
+                }
             }
         }
     },

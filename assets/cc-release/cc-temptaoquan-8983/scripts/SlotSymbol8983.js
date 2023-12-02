@@ -63,7 +63,7 @@ cc.Class({
 
     showSmallSubSymbolFast(subSymbolName) {
         const asset = this.assets[subSymbolName];
-        this.staticSymbol.opacity = 0;
+        // this.staticSymbol.opacity = 0;
         this.subSymbol.active = true;
         this.subSymbol.opacity = 255;
         this.subSymbolAnim.node.active = false;
