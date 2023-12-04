@@ -146,28 +146,7 @@ cc.Class({
         }
     },
 
-    showWildPayLine(freeGameOptionID = 0, callback) {
-        this.showSpecialPayline(freeGameOptionID, this.wildHolderNode, callback);
-    },
-
     showJackpotPayLine(callback) {
-    },
-
-    showSpecialPayline(freeGameOptionID, node, callback) {
-        this.paylineHolderNode.opacity = 255;
-        this.disableHighlightNormalPaylines();
-        node.forEach((child) => {
-            child.symbol.enableHighlight();
-            child.symbol.playAnimation();
-            child.paylineSymbol.enableHighlight();
-            child.paylineSymbol.playAnimation(freeGameOptionID);
-        });
-        cc.director.getScheduler().schedule(function(){
-            node.opacity = 0;
-            if (callback && typeof callback == "function") {
-                callback();
-            }
-        }, this, 0, 0, this.node.curentConfig.ANIMATION_DURATION, false);
     },
 
     showNormalPaylineAllLine({ symbolId, symbolCount }) {

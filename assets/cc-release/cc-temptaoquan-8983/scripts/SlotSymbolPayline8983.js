@@ -1,16 +1,13 @@
 cc.Class({
     extends: require('SlotSymbolPaylinev2'),
 
-    playAnimation(freeGameOptionID, duration = 2, isNearWin = false) {
+    playAnimation(duration = 2, isNearWin = false) {
         const NORMAL_DURATION = 2;
         if (this.havingAnim) {
             this.spineNode.opacity = 255;
             this.spineNode.active = true;
             this.staticSymbol.opacity = 0
             this.displayWinEffect();
-            if(freeGameOptionID > 0) {
-                this.animation.setSkin("skin" + freeGameOptionID);
-            }
             if (this.animation.findAnimation("animation")) {
                 this.animation.setAnimation(0, "animation", isNearWin);
                 this.animation.timeScale = NORMAL_DURATION / duration;

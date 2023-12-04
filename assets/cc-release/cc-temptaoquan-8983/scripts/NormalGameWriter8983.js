@@ -87,6 +87,20 @@ cc.Class({
                 command: "_showScatterPayLine",
             });
             listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "ScatterTransition",
+                    content: {}
+                }
+            });
+            listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "CloudsTransition",
+                    content: {}
+                }
+            });
+            listScript.push({
                 command: "_showUnskippedCutscene",
                 data: {
                     name: "FreeGameOption"
@@ -149,6 +163,9 @@ cc.Class({
 
         if (normalGamePayLines && normalGamePayLines.length > 0) {
             if (wildMultiplier && wildMultiplier > 1) {
+                listScript.push({
+                    command: "_showWildPayline",
+                });
                 listScript.push({
                     command: "_showWildMultiplier",
                     data: {
@@ -321,6 +338,20 @@ cc.Class({
             });
             listScript.push({
                 command: "_showScatterPayLine",
+            });
+            listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "ScatterTransition",
+                    content: {}
+                }
+            });
+            listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "CloudTransition",
+                    content: {}
+                }
             });
             listScript.push({
                 command: "_showUnskippedCutscene",

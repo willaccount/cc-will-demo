@@ -6,14 +6,21 @@ cc.Class({
     properties: {
         optionPrefabs: [cc.Node],
         mysteryIndex: 7,
+        godKitchenIdle: sp.Skeleton,
+        godKitchenFlyOut: sp.Skeleton,
+        godKitchenFlyIn: sp.Skeleton
     },
 
     init(mainDirector) {
         let gameConfig = mainDirector.node.config;
         this.mysteryNode = this.optionPrefabs[this.mysteryIndex];
+        this.animation = this.getComponent(cc.Animation);
     },
 
     enter() {
+        this.godKitchenIdle.node.active = true;
+        this.godKitchenIdle.setAnimation(0, "animation", true);
+
         if (!this.content) {
             this.isShowingResult = false;
             this.onCompleteFreeGameOption = this.callback;
@@ -52,11 +59,11 @@ cc.Class({
 
         if (mythicalOption == spinAmountIndex) {
             this.optionPrefabs[this.mysteryIndex - 1].emit("STOP_SPINNING_MYSTERY_REELS", this.content, () => {
-                this.exit();
+                this.playGodKitchenFlyingAnim(spinAmountIndex);
                 this.resetAllOptions();
             });
         } else {
-            this.exit();
+            this.playGodKitchenFlyingAnim(spinAmountIndex);
             this.tweenReset = cc.tween(this.node);
             this.tweenReset
                 .delay(2)
@@ -65,6 +72,40 @@ cc.Class({
                 })
                 .start();
         }
+    },
+
+    playGodKitchenFlyingAnim(optionIndex) {
+        this.godKitchenFlyOut.node.active = true;
+        this.godKitchenIdle.node.active = false;
+
+        switch (optionIndex) {
+            case 1:
+                this.godKitchenFlyOut.setSkin("chep_bac");
+                break;
+            case 2:
+                this.godKitchenFlyOut.setSkin("chep_do");
+                break;
+            case 3:
+                this.godKitchenFlyOut.setSkin("chep_den");
+                break;
+            case 4:
+                this.godKitchenFlyOut.setSkin("chep_xanhduong");
+                break;
+            case 5:
+                this.godKitchenFlyOut.setSkin("chep_vang");
+                break;
+            case 6:
+                this.godKitchenFlyOut.setSkin("chep_xanhla");
+                break;
+            case 7:
+                this.godKitchenFlyOut.setSkin("chep_tim");
+                break;
+        }
+
+        this.godKitchenFlyOut.setAnimation(0, "Appear", false);
+        this.godKitchenFlyOut.addAnimation(0, "Idle", true);
+
+        this.exit();
     },
 
     exit() {

@@ -189,9 +189,6 @@ cc.Class({
                 if (wildMultiplier && wildMultiplier > 1 && freeGameOptionID) {
                     listScript.push({
                         command: "_showWildPayline",
-                        data: {
-                            freeGameOptionID
-                        }
                     });
                     listScript.push({
                         command: "_showWildMultiplier",

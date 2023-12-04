@@ -64,6 +64,28 @@
             }
           ]
         }
+      },
+      "MainView/GoiKitchenAppear": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -52.117,
+                59.476,
+                0
+              ]
+            },
+            {
+              "frame": 0.5,
+              "value": [
+                775.224,
+                59.476,
+                0
+              ]
+            }
+          ]
+        }
       }
     }
   },
