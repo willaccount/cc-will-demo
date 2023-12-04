@@ -186,9 +186,12 @@ cc.Class({
             });
         } else {
             if (payLines && payLines.length > 0) {
-                if (wildMultiplier && wildMultiplier > 1) {
+                if (wildMultiplier && wildMultiplier > 1 && freeGameOptionID) {
                     listScript.push({
                         command: "_showWildPayline",
+                        data: {
+                            freeGameOptionID
+                        }
                     });
                     listScript.push({
                         command: "_showWildMultiplier",

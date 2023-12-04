@@ -130,8 +130,9 @@ cc.Class({
         });
     },
 
-    _showWildPayline(script) {
-        this.table.emit("SHOW_WILD_PAYLINE",() => {
+    _showWildPayline(script, data) {
+        const { freeGameOptionID } = data;
+        this.table.emit("SHOW_WILD_PAYLINE", freeGameOptionID, () => {
             this.executeNextScript(script);
         });
     },

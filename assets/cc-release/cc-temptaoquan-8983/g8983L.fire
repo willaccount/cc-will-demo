@@ -38231,7 +38231,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 76,
+      "width": 0,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -38453,7 +38453,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 76,
+      "width": 0,
       "height": 50.4
     },
     "_resize": 1,
@@ -40704,7 +40704,7 @@
     "_prefab": {
       "__id__": 1238
     },
-    "_opacity": 255,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
