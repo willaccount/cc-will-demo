@@ -144,6 +144,13 @@ cc.Class({
             });
         } else if(!isFreeGame && freeSpinMatrix) {
             listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "CloudsTransition",
+                    content: {}
+                }
+            });
+            listScript.push({
                 command: "_newGameMode",
                 data: {
                     name: "freeGame",
@@ -334,7 +341,7 @@ cc.Class({
         }
         if (freeSpinOption && freeSpinOption > 0) {
             listScript.push({
-                command: "_blinkAllPaylines_2",
+                command: "_setupScatterPaylines",
             });
             listScript.push({
                 command: "_showScatterPayLine",
@@ -349,7 +356,7 @@ cc.Class({
             listScript.push({
                 command: "_showCutscene",
                 data: {
-                    name: "CloudTransition",
+                    name: "CloudsTransition",
                     content: {}
                 }
             });
@@ -357,6 +364,13 @@ cc.Class({
                 command: "_showUnskippedCutscene",
                 data: {
                     name: "FreeGameOption"
+                }
+            });
+            listScript.push({
+                command: "_showCutscene",
+                data: {
+                    name: "CloudsTransition",
+                    content: {}
                 }
             });
             listScript.push({

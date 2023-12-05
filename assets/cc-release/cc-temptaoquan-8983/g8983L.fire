@@ -30348,14 +30348,11 @@
     },
     "_enabled": true,
     "_defaultClip": {
-      "__uuid__": "71a0e586-1eda-4883-9978-7a06cab8b6cc"
+      "__uuid__": "e845888e-3f74-4476-9678-dfdbffd2bf95"
     },
     "_clips": [
       {
-        "__uuid__": "71a0e586-1eda-4883-9978-7a06cab8b6cc"
-      },
-      {
-        "__uuid__": "d08509cf-0fb5-450d-899b-b49ec67fd107"
+        "__uuid__": "e845888e-3f74-4476-9678-dfdbffd2bf95"
       }
     ],
     "playOnLoad": false,

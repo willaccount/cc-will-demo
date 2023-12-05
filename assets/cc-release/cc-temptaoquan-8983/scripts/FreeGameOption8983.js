@@ -15,6 +15,17 @@ cc.Class({
         let gameConfig = mainDirector.node.config;
         this.mysteryNode = this.optionPrefabs[this.mysteryIndex];
         this.animation = this.getComponent(cc.Animation);
+        this.isShowing = false;
+    },
+
+    show() {
+        this.node.opacity = 255;
+        this.node.active = true;
+
+        if(!this.isShowing) {
+            this.animation.play("FGOptionTransitionIn");
+            this.isShowing = true;
+        }
     },
 
     enter() {
@@ -102,10 +113,60 @@ cc.Class({
                 break;
         }
 
-        this.godKitchenFlyOut.setAnimation(0, "Appear", false);
+        this.godKitchenFlyOut.setAnimation(0, "Appear", true);
         this.godKitchenFlyOut.addAnimation(0, "Idle", true);
 
-        this.exit();
+        
+
+        cc.tween(this.godKitchenFlyOut)
+        .delay(1)
+        .call(() => {
+            this.animation.play("KoiMoveOut");
+        })
+        .delay(0.5)
+        .call(() => {
+            this.displayFlyInAnim(optionIndex);
+        })
+        .start();
+
+    },
+
+    displayFlyInAnim(optionIndex) {
+        this.godKitchenFlyIn.node.active = true;
+        this.godKitchenFlyOut.node.active = false;
+
+        switch (optionIndex) {
+            case 1:
+                this.godKitchenFlyIn.setSkin("Ca_Bac");
+                break;
+            case 2:
+                this.godKitchenFlyIn.setSkin("Ca_Do");
+                break;
+            case 3:
+                this.godKitchenFlyIn.setSkin("Ca_Den");
+                break;
+            case 4:
+                this.godKitchenFlyIn.setSkin("Ca_XanhDuong");
+                break;
+            case 5:
+                this.godKitchenFlyIn.setSkin("Ca_Vang");
+                break;
+            case 6:
+                this.godKitchenFlyIn.setSkin("Ca_XanhLa");
+                break;
+            case 7:
+                this.godKitchenFlyIn.setSkin("Ca_Tim");
+                break;
+        }
+
+        this.godKitchenFlyIn.setAnimation(0, "animation", true);
+
+        cc.tween(this.godKitchenFlyIn)
+        .delay(2)
+        .call(() => {
+            this.exit();
+        })
+        .start();
     },
 
     exit() {
@@ -116,6 +177,7 @@ cc.Class({
 
         this.onCompleteFreeGameOption && this.onCompleteFreeGameOption();
         this.onCompleteFreeGameOption = null;
+        this.isShowing = false;
         this.node.active = false;
     },
 

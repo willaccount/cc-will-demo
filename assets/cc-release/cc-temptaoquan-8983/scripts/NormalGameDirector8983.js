@@ -296,4 +296,17 @@ cc.Class({
             this.delayTimeCallback();
         }
     },
+
+    _showScatterPayLine(script) {
+        this.table.emit("SHOW_SCATTER_PAYLINE",() => {
+            this.node.mainDirector.onIngameEvent("ON_FINISH_SCATTER_PAYLINE");
+            this.executeNextScript(script);
+        });
+    },
+
+    _setupScatterPaylines(script) {
+        this.hasPayline = true;
+        this.table.emit("SETUP_PAYLINES", null, null);
+        this.executeNextScript(script);
+    },
 });
